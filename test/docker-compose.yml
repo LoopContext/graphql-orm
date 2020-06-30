@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  dev:
+    command: ./scripts/run-dev.sh
+    build:
+      context: .
+      dockerfile: docker/dev.dockerfile
+    env_file:
+      - .env.dev
+    ports:
+      - 8081:8081
+      - 5002:5002
+    volumes:
+      - .:./
+  dev-linux:
+    network_mode: "host"
+    command: ./scripts/run-dev.sh
+    build:
+      context: .
+      dockerfile: docker/dev.dockerfile
+    env_file:
+      - .env.dev
+    ports:
+      - 8081:8081
+      - 5002:5002
+    volumes:
+      - .:./
+  prod:
+    build:
+      context: .
+      dockerfile: docker/prod.dockerfile
+    env_file:
+      - .env
+    ports:
+      - 80:80
+  docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - 80:80

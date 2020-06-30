@@ -1,21 +1,23 @@
 package templates
 
+// Loaders ...
 var Loaders = `package gen
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/graph-gophers/dataloader"
 )
 
+// GetLoaders ...
 func GetLoaders(db *DB) map[string]*dataloader.Loader {
 	loaders := map[string]*dataloader.Loader{}
-	
+
 	{{range $object := .Model.ObjectEntities}}
-	{{$object.TableName}}BatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+	// {{$object.TableNameLCC}}BatchFn batch func
+	{{$object.TableNameLCC}}BatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
-		
+
 		ids := make([]string, len(keys))
 		for i, key := range keys {
 			ids[i] = key.String()
@@ -53,7 +55,7 @@ func GetLoaders(db *DB) map[string]*dataloader.Loader {
 		return results
 	}
 
-	loaders["{{$object.Name}}"] = dataloader.NewBatchedLoader({{$object.TableName}}BatchFn, dataloader.WithClearCacheOnBatch())
+	loaders["{{$object.Name}}"] = dataloader.NewBatchedLoader({{$object.TableNameLCC}}BatchFn, dataloader.WithClearCacheOnBatch())
 
 	{{end}}
 

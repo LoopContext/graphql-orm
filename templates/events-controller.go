@@ -12,20 +12,23 @@ import (
 
 	cloudevents "github.com/cloudevents/sdk-go"
 	"github.com/cloudevents/sdk-go/pkg/cloudevents/transport"
-	cloudeventsaws "github.com/jakubknejzlik/cloudevents-aws-transport"
 	"github.com/novacloudcz/graphql-orm/events"
+	cloudeventsaws "github.com/loopcontext/cloudevents-aws-transport"
 )
 
 const (
+	// ORMChangeEvent ...
 	ORMChangeEvent = "com.graphql.orm.change"
 )
 
+// EventController ...
 type EventController struct {
 	clients map[string]cloudevents.Client
 	debug   bool
 	source  string
 }
 
+// NewEventController ...
 func NewEventController() (ec EventController, err error) {
 	source := os.Getenv("EVENT_TRANSPORT_SOURCE")
 	if source == "" {

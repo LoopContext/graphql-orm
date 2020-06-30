@@ -1,5 +1,6 @@
 package templates
 
+// Database ...
 var Database = `package gen
 
 import (
@@ -8,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mssql"
+	// _ "github.com/jinzhu/gorm/dialects/mssql"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -29,6 +30,8 @@ func NewDBFromEnvVars() *DB {
 	return NewDBWithString(urlString)
 }
 
+
+// TableName gets table name
 func TableName(name string) string {
 	prefix := os.Getenv("TABLE_NAME_PREFIX")
 	if prefix != "" {
@@ -62,7 +65,7 @@ func NewDBWithString(urlString string) *DB {
 	if err != nil {
 		panic(err)
 	}
-	
+
 	if urlString == "sqlite3://:memory:" {
 		db.DB().SetMaxIdleConns(1)
 		db.DB().SetConnMaxLifetime(time.Second * 300)
@@ -73,7 +76,7 @@ func NewDBWithString(urlString string) *DB {
 		db.DB().SetMaxOpenConns({{.Config.MaxOpenConnections}})
 	}
 	db.LogMode(os.Getenv("DEBUG") == "true")
-	
+
 	return NewDB(db)
 }
 
@@ -122,6 +125,7 @@ func (db *DB) Close() error {
 	return db.db.Close()
 }
 
+// Ping pong
 func (db *DB) Ping() error {
 	return db.db.DB().Ping()
 }

@@ -1,5 +1,6 @@
 package templates
 
+// Constants ...
 var Constants = `package gen
 
 import (
@@ -7,6 +8,7 @@ import (
 
 type key int
 
+// consts ...
 const (
 	KeyPrincipalID      	key    = iota
 	KeyLoaders          	key    = iota

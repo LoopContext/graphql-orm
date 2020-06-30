@@ -1,5 +1,6 @@
 package templates
 
+// Migrations ...
 var Migrations = `package gen
 
 import (
@@ -11,6 +12,7 @@ import (
 	"gopkg.in/gormigrate.v1"
 )
 
+// Migrate runs migrations
 func Migrate(db *gorm.DB, options *gormigrate.Options, migrations []*gormigrate.Migration) error {
 	m := gormigrate.New(db, options, migrations)
 

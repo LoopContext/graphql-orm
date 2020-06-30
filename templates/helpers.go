@@ -8,20 +8,23 @@ import (
 	"path"
 	"text/template"
 
-	"github.com/novacloudcz/graphql-orm/model"
-	"github.com/novacloudcz/graphql-orm/tools"
+	"github.com/loopcontext/graphql-orm/model"
+	"github.com/loopcontext/graphql-orm/tools"
 )
 
+// TemplateData ...
 type TemplateData struct {
 	Model     *model.Model
 	Config    *model.Config
 	RawSchema *string
 }
 
+// WriteTemplate ...
 func WriteTemplate(t, filename string, data TemplateData) error {
 	return WriteTemplateRaw(t, filename, data)
 }
 
+// WriteTemplateRaw ...
 func WriteTemplateRaw(t, filename string, data interface{}) error {
 	temp, err := template.New(filename).Parse(t)
 	if err != nil {

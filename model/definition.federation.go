@@ -44,20 +44,6 @@ func createFederationEntityUnion(m *Model) *ast.UnionDefinition {
 		Types: types,
 	}
 }
-func createFederationEntitiesQueryField() *ast.FieldDefinition {
-	return &ast.FieldDefinition{
-		Kind: kinds.FieldDefinition,
-		Name: nameNode("_entities"),
-		Type: nonNull(listType(namedType("_Entity"))),
-		Arguments: []*ast.InputValueDefinition{
-			&ast.InputValueDefinition{
-				Kind: kinds.InputValueDefinition,
-				Name: nameNode("representations"),
-				Type: nonNull(listType(nonNull(namedType("_Any")))),
-			},
-		},
-	}
-}
 
 func getObjectDefinitionFromFederationExtension(def *ast.ObjectDefinition) *ast.ObjectDefinition {
 	federationDirectives := []string{"requires", "provides", "key", "extends", "external"}

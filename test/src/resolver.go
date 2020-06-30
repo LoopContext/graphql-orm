@@ -6,10 +6,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/novacloudcz/graphql-orm/events"
-	"github.com/novacloudcz/graphql-orm/test/gen"
+	// "github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/graphql-orm/test/gen"
 )
 
+// New ...
 func New(db *gen.DB, ec *gen.EventController) *Resolver {
 	resolver := NewResolver(db, ec)
 
@@ -49,15 +50,18 @@ func New(db *gen.DB, ec *gen.EventController) *Resolver {
 	return resolver
 }
 
+// Hello ...
 func (r *QueryResolver) Hello(ctx context.Context) (string, error) {
 	return "world", nil
 }
 
+// TopCompanies ...
 func (r *QueryResolver) TopCompanies(ctx context.Context) (items []*gen.Company, err error) {
 	err = r.GetDB(ctx).Model(&gen.Company{}).Find(&items).Error
 	return
 }
 
+// UppercaseName ...
 func (r *CompanyResolver) UppercaseName(ctx context.Context, obj *gen.Company) (string, error) {
 	name := ""
 	if obj.Name != nil {
@@ -66,6 +70,7 @@ func (r *CompanyResolver) UppercaseName(ctx context.Context, obj *gen.Company) (
 	return strings.ToUpper(name), nil
 }
 
+// Company ...
 func (r *ReviewResolver) Company(ctx context.Context, obj *gen.Review) (*gen.Company, error) {
 	opts := gen.QueryCompanyHandlerOptions{
 		ID: &obj.ReferenceID,
@@ -73,6 +78,7 @@ func (r *ReviewResolver) Company(ctx context.Context, obj *gen.Review) (*gen.Com
 	return r.Handlers.QueryCompany(ctx, r.GeneratedResolver, opts)
 }
 
+// ShortText ...
 func (r *PlainEntityResolver) ShortText(ctx context.Context, obj *gen.PlainEntity) (string, error) {
 	val := ""
 	if obj.Text != nil {

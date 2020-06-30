@@ -3,3 +3,6 @@ src/resolver_gen.go
 app
 test.db
 lambda.zip
+scripts/
+docker/
+.env

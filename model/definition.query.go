@@ -2,8 +2,8 @@ package model
 
 import (
 	"github.com/graphql-go/graphql/language/kinds"
-	"github.com/iancoleman/strcase"
 	"github.com/jinzhu/inflection"
+	"github.com/loopcontext/anycase"
 
 	"github.com/graphql-go/graphql/language/ast"
 )
@@ -11,10 +11,6 @@ import (
 func queryDefinition(m *Model) *ast.ObjectDefinition {
 	fields := []*ast.FieldDefinition{
 		createFederationServiceQueryField(),
-	}
-
-	if m.HasFederatedTypes() {
-		fields = append(fields, createFederationEntitiesQueryField())
 	}
 
 	for _, obj := range m.ObjectEntities() {
@@ -33,7 +29,7 @@ func queryDefinition(m *Model) *ast.ObjectDefinition {
 func fetchFieldDefinition(obj Object) *ast.FieldDefinition {
 	return &ast.FieldDefinition{
 		Kind: kinds.FieldDefinition,
-		Name: nameNode(inflection.Singular(strcase.ToLowerCamel(obj.Name()))),
+		Name: nameNode(inflection.Singular(anycase.ToLowerCamel(obj.Name()))),
 		Type: namedType(obj.Name()),
 		Arguments: []*ast.InputValueDefinition{
 			&ast.InputValueDefinition{
@@ -58,13 +54,13 @@ func fetchFieldDefinition(obj Object) *ast.FieldDefinition {
 }
 
 func listFieldDefinition(obj Object) *ast.FieldDefinition {
-	return listFieldResultTypeDefinition(obj, inflection.Plural(strcase.ToLowerCamel(obj.Name())))
+	return listFieldResultTypeDefinition(obj, inflection.Plural(anycase.ToLowerCamel(obj.Name())))
 }
 func listFieldResultTypeDefinition(obj Object, name string) *ast.FieldDefinition {
 	return &ast.FieldDefinition{
 		Kind: kinds.FieldDefinition,
-		Name: nameNode(name),
-		Type: nonNull(namedType(obj.Name() + "ResultType")),
+		Name: nameNode(inflection.Plural(anycase.ToLowerCamel(obj.Name()))),
+		Type: namedType(obj.Name() + "ResultType"),
 		Arguments: []*ast.InputValueDefinition{
 			&ast.InputValueDefinition{
 				Kind: kinds.InputValueDefinition,

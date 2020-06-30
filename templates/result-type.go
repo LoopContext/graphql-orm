@@ -1,45 +1,55 @@
 package templates
 
+// ResultType ...
 var ResultType = `package gen
 
 import (
 	"context"
 	"strings"
 
-	"github.com/iancoleman/strcase"
-	"github.com/vektah/gqlparser/ast"
+	"github.com/loopcontext/anycase"
+	"github.com/vektah/gqlparser/v2/ast"
 
 	"github.com/jinzhu/gorm"
 )
 
+// GetItem ...
 func GetItem(ctx context.Context, db *gorm.DB, out interface{}, id *string) error {
 	return db.Find(out, "id = ?", id).Error
 }
 
+// GetItemForRelation ...
 func GetItemForRelation(ctx context.Context, db *gorm.DB, obj interface{}, relation string, out interface{}) error {
 	return db.Model(obj).Related(out, relation).Error
 }
 
+// EntityFilter interface
 type EntityFilter interface {
 	Apply(ctx context.Context, dialect gorm.Dialect, wheres *[]string, whereValues *[]interface{}, havings *[]string, havingValues *[]interface{}, joins *[]string) error
 }
+// EntityFilterQuery interface
 type EntityFilterQuery interface {
 	Apply(ctx context.Context, dialect gorm.Dialect, selectionSet *ast.SelectionSet, wheres *[]string, values *[]interface{}, joins *[]string) error
 }
 
-
+// SortInfo struct
 type SortInfo struct {
 	Field         string
 	Direction     string
 	IsAggregation bool
 }
+
+// String method
 func (si *SortInfo) String() string {
 	return fmt.Sprintf("%s %s", si.Field, si.Direction)
 }
+
+// EntitySort interface
 type EntitySort interface {
 	Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]SortInfo, joins *[]string) error
 }
 
+// EntityResultType struct
 type EntityResultType struct {
 	Offset       *int
 	Limit        *int
@@ -50,12 +60,13 @@ type EntityResultType struct {
 	SelectionSet *ast.SelectionSet
 }
 
+// GetItemsOptions struct
 type GetItemsOptions struct {
 	Alias      string
 	Preloaders []string
 }
 
-// GetResultTypeItems ...
+// GetItems ...
 func (r *EntityResultType) GetItems(ctx context.Context, db *gorm.DB, opts GetItemsOptions, out interface{}) error {
 	subq := db.Model(out)
 	q := db
@@ -190,6 +201,7 @@ func (r *EntityResultType) GetCount(ctx context.Context, db *gorm.DB, opts GetIt
 	return
 }
 
+// GetSortStrings ...
 func (r *EntityResultType) GetSortStrings() []string {
 	return []string{}
 }

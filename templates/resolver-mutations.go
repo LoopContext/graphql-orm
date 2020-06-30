@@ -1,30 +1,35 @@
 package templates
 
+// ResolverMutations ...
 var ResolverMutations = `package gen
 
 import (
 	"context"
 	"os"
 	"time"
-	
+
 	"github.com/graph-gophers/dataloader"
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/gofrs/uuid"
-	"github.com/novacloudcz/graphql-orm/events"
-	"github.com/vektah/gqlparser/ast"
+	"github.com/loopcontext/graphql-orm/events"
+	"github.com/vektah/gqlparser/v2/ast"
 )
 
+// GeneratedMutationResolver ...
 type GeneratedMutationResolver struct{ *GeneratedResolver }
 
+// MutationEvents ...
 type MutationEvents struct {
 	Events []events.Event
 }
 
+// EnrichContextWithMutations ...
 func EnrichContextWithMutations(ctx context.Context, r *GeneratedResolver) context.Context {
 	_ctx := context.WithValue(ctx, KeyMutationTransaction, r.GetDB(ctx).Begin())
 	_ctx = context.WithValue(_ctx, KeyMutationEvents, &MutationEvents{})
 	return _ctx
 }
+// FinishMutationContext ...
 func FinishMutationContext(ctx context.Context, r *GeneratedResolver) (err error) {
 	s := GetMutationEventStore(ctx)
 
@@ -48,19 +53,23 @@ func FinishMutationContext(ctx context.Context, r *GeneratedResolver) (err error
 
 	return
 }
+// RollbackMutationContext ...
 func RollbackMutationContext(ctx context.Context, r *GeneratedResolver) error {
 	tx := r.GetDB(ctx)
 	return tx.Rollback().Error
 }
+// GetMutationEventStore ...
 func GetMutationEventStore(ctx context.Context) *MutationEvents {
 	return ctx.Value(KeyMutationEvents).(*MutationEvents)
 }
+// AddMutationEvent ...
 func AddMutationEvent(ctx context.Context, e events.Event) {
 	s := GetMutationEventStore(ctx)
 	s.Events = append(s.Events, e)
 }
 
 {{range $obj := .Model.ObjectEntities}}
+	// Create{{$obj.Name}} ...
 	func (r *GeneratedMutationResolver) Create{{$obj.Name}}(ctx context.Context, input map[string]interface{}) (item *{{$obj.Name}}, err error) {
 		ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 		item, err = r.Handlers.Create{{$obj.Name}}(ctx, r.GeneratedResolver, input)
@@ -70,6 +79,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 		err = FinishMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
+	// Create{{$obj.Name}}Handler ...
 	func Create{{$obj.Name}}Handler(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *{{$obj.Name}}, err error) {
 		principalID := GetPrincipalIDFromContext(ctx)
 		now := time.Now()
@@ -88,7 +98,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 		err = ApplyChanges(input, &changes)
 		if err != nil {
 			tx.Rollback()
-			return 
+			return
 		}
 
 		{{range $col := .Columns}}{{if $col.IsCreatable}}
@@ -101,7 +111,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 					}
 					strval := string(_value)
 					value := {{if $col.IsOptional}}&{{end}}strval
-					if item.{{$col.MethodName}} != value {{if $col.IsOptional}}&& (item.{{$col.MethodName}} == nil || value == nil || *item.{{$col.MethodName}} != *value){{end}} { 
+					if item.{{$col.MethodName}} != value {{if $col.IsOptional}}&& (item.{{$col.MethodName}} == nil || value == nil || *item.{{$col.MethodName}} != *value){{end}} {
 						item.{{$col.MethodName}} = value
 						event.AddNewValue("{{$col.Name}}", value)
 					}
@@ -114,13 +124,13 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 				}
 			{{end}}
 		{{end}}{{end}}
-		
+
 		err = tx.Create(item).Error
 		if err != nil {
 			tx.Rollback()
 			return
 		}
-		
+
 		{{range $rel := $obj.Relationships}}
 			{{if $rel.IsToMany}}{{if not $rel.Target.IsExtended}}
 				if ids,exists:=input["{{$rel.Name}}Ids"]; exists {
@@ -134,8 +144,9 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 
 		AddMutationEvent(ctx, event)
 
-		return 
+		return
 	}
+	// Update{{$obj.Name}} ...
 	func (r *GeneratedMutationResolver) Update{{$obj.Name}}(ctx context.Context, id string, input map[string]interface{}) (item *{{$obj.Name}}, err error) {
 		ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 		item,err = r.Handlers.Update{{$obj.Name}}(ctx, r.GeneratedResolver, id, input)
@@ -146,6 +157,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 		err = FinishMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
+	// Update{{$obj.Name}}Handler ...
 	func Update{{$obj.Name}}Handler(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *{{$obj.Name}}, err error) {
 		principalID := GetPrincipalIDFromContext(ctx)
 		item = &{{$obj.Name}}{}
@@ -164,13 +176,13 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 		err = ApplyChanges(input, &changes)
 		if err != nil {
 			tx.Rollback()
-			return 
+			return
 		}
 
 		err = GetItem(ctx, tx, item, &id)
 		if err != nil {
 			tx.Rollback()
-			return 
+			return
 		}
 
 		item.UpdatedBy = principalID
@@ -189,7 +201,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 					}
 					strval := string(_value)
 					value := {{if $col.IsOptional}}&{{end}}strval
-					if item.{{$col.MethodName}} != value {{if $col.IsOptional}}&& (item.{{$col.MethodName}} == nil || value == nil || *item.{{$col.MethodName}} != *value){{end}} { 
+					if item.{{$col.MethodName}} != value {{if $col.IsOptional}}&& (item.{{$col.MethodName}} == nil || value == nil || *item.{{$col.MethodName}} != *value){{end}} {
 						event.AddOldValue("{{$col.Name}}", item.{{$col.MethodName}})
 						event.AddNewValue("{{$col.Name}}", value)
 						item.{{$col.MethodName}} = value
@@ -204,7 +216,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 			{{end}}
 		{{end}}
 		{{end}}
-		
+
 		err = tx.Save(item).Error
 		if err != nil {
 			tx.Rollback()
@@ -226,8 +238,9 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 			AddMutationEvent(ctx, event)
 		}
 
-		return 
+		return
 	}
+	// Delete{{$obj.Name}} ...
 	func (r *GeneratedMutationResolver) Delete{{$obj.Name}}(ctx context.Context, id string) (item *{{$obj.Name}}, err error) {
 		ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 		item,err = r.Handlers.Delete{{$obj.Name}}(ctx, r.GeneratedResolver, id)
@@ -238,6 +251,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 		err = FinishMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
+	// Delete{{$obj.Name}}Handler handler
 	func Delete{{$obj.Name}}Handler(ctx context.Context, r *GeneratedResolver, id string) (item *{{$obj.Name}}, err error) {
 		principalID := GetPrincipalIDFromContext(ctx)
 		item = &{{$obj.Name}}{}
@@ -247,7 +261,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 		err = GetItem(ctx, tx, item, &id)
 		if err != nil {
 			tx.Rollback()
-			return 
+			return
 		}
 
 		event := events.NewEvent(events.EventMetadata{
@@ -266,8 +280,9 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 
 		AddMutationEvent(ctx, event)
 
-		return 
+		return
 	}
+	// DeleteAll{{$obj.PluralName}} ...
 	func (r *GeneratedMutationResolver) DeleteAll{{$obj.PluralName}}(ctx context.Context) (bool, error) {
 		ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 		done,err:=r.Handlers.DeleteAll{{$obj.PluralName}}(ctx, r.GeneratedResolver)
@@ -278,6 +293,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 		err = FinishMutationContext(ctx, r.GeneratedResolver)
 		return done,err
 	}
+	// DeleteAll{{$obj.PluralName}}Handler handler
 	func DeleteAll{{$obj.PluralName}}Handler(ctx context.Context, r *GeneratedResolver) (bool,error) {
 		// delete all resolvers are primarily used for 
 		if os.Getenv("ENABLE_DELETE_ALL_RESOLVERS") == "" {

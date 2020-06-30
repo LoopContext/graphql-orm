@@ -1,25 +1,27 @@
 package templates
 
+// ResolverCore ...
 var ResolverCore = `package gen
 
 import (
 	"context"
 	"time"
-	
+
 	"github.com/graph-gophers/dataloader"
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/gofrs/uuid"
-	"github.com/novacloudcz/graphql-orm/events"
-	"github.com/vektah/gqlparser/ast"
+	"github.com/loopcontext/graphql-orm/events"
+	"github.com/vektah/gqlparser/v2/ast"
 )
 
+// ResolutionHandlers struct
 type ResolutionHandlers struct {
 	OnEvent        func(ctx context.Context, r *GeneratedResolver, e *events.Event) error
 	{{range $obj := .Model.ObjectEntities}}
 		Create{{$obj.Name}} func (ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *{{$obj.Name}}, err error)
 		Update{{$obj.Name}} func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *{{$obj.Name}}, err error)
 		Delete{{$obj.Name}} func(ctx context.Context, r *GeneratedResolver, id string) (item *{{$obj.Name}}, err error)
-		DeleteAll{{$obj.PluralName}} func (ctx context.Context, r *GeneratedResolver) (bool, error) 
+		DeleteAll{{$obj.PluralName}} func (ctx context.Context, r *GeneratedResolver) (bool, error)
 		Query{{$obj.Name}} func (ctx context.Context, r *GeneratedResolver, opts Query{{$obj.Name}}HandlerOptions) (*{{$obj.Name}}, error)
 		Query{{$obj.PluralName}} func (ctx context.Context, r *GeneratedResolver, opts Query{{$obj.PluralName}}HandlerOptions) (*{{$obj.Name}}ResultType, error)
 		{{range $col := $obj.Fields}}{{if $col.NeedsQueryResolver}}
@@ -31,6 +33,7 @@ type ResolutionHandlers struct {
 	{{end}}
 }
 
+// DefaultResolutionHandlers ...
 func DefaultResolutionHandlers() ResolutionHandlers {
 	handlers := ResolutionHandlers{
 		OnEvent: func(ctx context.Context, r *GeneratedResolver, e *events.Event) error { return nil },
@@ -52,6 +55,7 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 	return handlers
 }
 
+// GeneratedResolver struct
 type GeneratedResolver struct {
 	Handlers ResolutionHandlers
 	db *DB

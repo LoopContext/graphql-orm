@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/novacloudcz/graphql-orm/cmd"
-	"github.com/novacloudcz/graphql-orm/events"
+	"github.com/loopcontext/graphql-orm/cmd"
+	"github.com/loopcontext/graphql-orm/events"
 )
 
 func main() {

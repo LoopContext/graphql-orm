@@ -1,5 +1,6 @@
 package templates
 
+// QueryFilters ...
 var QueryFilters = `package gen
 
 import (
@@ -8,15 +9,17 @@ import (
 	"fmt"
 
 	"github.com/jinzhu/gorm"
-	"github.com/vektah/gqlparser/ast"
+	"github.com/vektah/gqlparser/v2/ast"
 )
 
 {{range $object := .Model.ObjectEntities}}
 
+// {{$object.Name}}QueryFilter struct
 type {{$object.Name}}QueryFilter struct {
 	Query *string
 }
 
+// Apply ...
 func (qf *{{$object.Name}}QueryFilter) Apply(ctx context.Context, dialect gorm.Dialect, selectionSet *ast.SelectionSet, wheres *[]string, values *[]interface{}, joins *[]string) error {
 	if qf.Query == nil {
 		return nil
@@ -30,7 +33,7 @@ func (qf *{{$object.Name}}QueryFilter) Apply(ctx context.Context, dialect gorm.D
 			}
 		}
 	} else {
-		return fmt.Errorf("Cannot query with 'q' attribute without items field.")
+		return fmt.Errorf("Cannot query with 'q' attribute without items field")
 	}
 
 	queryParts := strings.Split(*qf.Query, " ")
@@ -48,7 +51,7 @@ func (qf *{{$object.Name}}QueryFilter) applyQueryWithFields(dialect gorm.Dialect
 	if len(fields) == 0 {
 		return nil
 	}
-	
+
 	fieldsMap := map[string][]*ast.Field{}
 	for _, f := range fields {
 		fieldsMap[f.Name] = append(fieldsMap[f.Name],f)
@@ -76,7 +79,7 @@ func (qf *{{$object.Name}}QueryFilter) applyQueryWithFields(dialect gorm.Dialect
 		_fields := []*ast.Field{}
 		_alias := alias + "_{{$rel.Name}}"
 		*joins = append(*joins,{{$rel.JoinString}})
-		
+
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
 				if f, ok := s.(*ast.Field); ok {
@@ -91,7 +94,7 @@ func (qf *{{$object.Name}}QueryFilter) applyQueryWithFields(dialect gorm.Dialect
 		}
 	}
 	{{end}}
-	
+
 	return nil
 }
 

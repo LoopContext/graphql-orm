@@ -1,5 +1,6 @@
 package templates
 
+// Filters ...
 var Filters = `package gen
 
 import (
@@ -12,6 +13,7 @@ import (
 
 {{range $obj := .Model.ObjectEntities}}
 {{if not $obj.IsExtended}}
+// IsEmpty ...
 func (f *{{$obj.Name}}FilterType) IsEmpty(ctx context.Context, dialect gorm.Dialect) bool {
 	wheres := []string{}
 	havings := []string{}
@@ -24,15 +26,19 @@ func (f *{{$obj.Name}}FilterType) IsEmpty(ctx context.Context, dialect gorm.Dial
 	}
 	return len(wheres) == 0 && len(havings) == 0
 }
+
+// Apply method
 func (f *{{$obj.Name}}FilterType) Apply(ctx context.Context, dialect gorm.Dialect, wheres *[]string, whereValues *[]interface{}, havings *[]string, havingValues *[]interface{}, joins *[]string) error {
 	return f.ApplyWithAlias(ctx, dialect, TableName("{{$obj.TableName}}"), wheres, whereValues, havings, havingValues, joins)
 }
+
+// ApplyWithAlias method
 func (f *{{$obj.Name}}FilterType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, wheres *[]string, whereValues *[]interface{}, havings *[]string, havingValues *[]interface{}, joins *[]string) error {
 	if f == nil {
 		return nil
 	}
 	aliasPrefix := dialect.Quote(alias) + "."
-	
+
 	_where, _whereValues := f.WhereContent(dialect, aliasPrefix)
 	_having, _havingValues := f.HavingContent(dialect, aliasPrefix)
 	*wheres = append(*wheres, _where...)
@@ -93,7 +99,7 @@ func (f *{{$obj.Name}}FilterType) ApplyWithAlias(ctx context.Context, dialect go
 		*havingValues = append(*havingValues, hvs...)
 		*joins = append(*joins, js...)
 	}
-	
+
 	{{range $rel := $obj.Relationships}}
 	{{if not $rel.Target.IsExtended}}
 	{{$varName := (printf "f.%s" $rel.MethodName)}}
@@ -109,6 +115,7 @@ func (f *{{$obj.Name}}FilterType) ApplyWithAlias(ctx context.Context, dialect go
 	return nil
 }
 
+// WhereContent ...
 func (f *{{$obj.Name}}FilterType) WhereContent(dialect gorm.Dialect, aliasPrefix string) (conditions []string, values []interface{}) {
 	conditions = []string{}
 	values = []interface{}{}

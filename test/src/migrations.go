@@ -2,10 +2,11 @@ package src
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/novacloudcz/graphql-orm/test/gen"
+	"github.com/loopcontext/graphql-orm/test/gen"
 	"gopkg.in/gormigrate.v1"
 )
 
+// GetMigrations migrations
 func GetMigrations(db *gen.DB) []*gormigrate.Migration {
 	return []*gormigrate.Migration{
 		&gormigrate.Migration{
@@ -14,7 +15,7 @@ func GetMigrations(db *gen.DB) []*gormigrate.Migration {
 				return db.AutoMigrate()
 			},
 			Rollback: func(tx *gorm.DB) error {
-				// there's not much we can do if initialization/automigration failes
+				// there's not much we can do if initialization/automigration fails
 				return nil
 			},
 		},
@@ -30,6 +31,9 @@ func GetMigrations(db *gen.DB) []*gormigrate.Migration {
 		&gormigrate.Migration{
 			ID: "02drop_user_blah",
 			Migrate: func(tx *gorm.DB) error {
+				if tx.Dialect().GetName() == "sqlite3" {
+					return nil
+				}
 				type User struct {
 					blah string
 				}

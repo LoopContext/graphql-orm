@@ -1,22 +1,26 @@
 package templates
 
+// Sorting ...
 var Sorting = `package gen
 
 import (
 	"context"
-	
+
 	"github.com/jinzhu/gorm"
 )
 
 {{range $obj := .Model.ObjectEntities}}
 {{if not $obj.IsExtended}}
+// Apply method
 func (s {{$obj.Name}}SortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]SortInfo, joins *[]string) error {
 	return s.ApplyWithAlias(ctx, dialect, TableName("{{$obj.TableName}}"), sorts, joins)
 }
+
+// ApplyWithAlias method
 func (s {{$obj.Name}}SortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]SortInfo, joins *[]string) error {
 	aliasPrefix := dialect.Quote(alias) + "."
-	
-	{{range $col := $obj.Columns}} {{if $col.IsSortable}} 
+
+	{{range $col := $obj.Columns}} {{if $col.IsSortable}}
 	if s.{{$col.MethodName}} != nil {
 		sort := SortInfo{Field: aliasPrefix+dialect.Quote("{{$col.Name}}"), Direction: s.{{$col.MethodName}}.String()}
 		*sorts = append(*sorts, sort)
@@ -28,7 +32,7 @@ func (s {{$obj.Name}}SortType) ApplyWithAlias(ctx context.Context, dialect gorm.
 	}
 	{{end}}
 	{{end}}{{end}}
-	
+
 	{{range $rel := $obj.Relationships}}
 	{{if not $rel.Target.IsExtended}}
 	{{$varName := (printf "s.%s" $rel.MethodName)}}

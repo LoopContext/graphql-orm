@@ -1,5 +1,6 @@
 package templates
 
+// GQLGen ...
 var GQLGen = `# Generated with graphql-orm
 {{$config:=.Config}}
 schema:
@@ -13,6 +14,9 @@ model:
 resolver:
   filename: resolver.go
   type: Resolver
+  package: gen
+federation:
+  filename: federation.go
   package: gen
 
 models:
@@ -36,7 +40,7 @@ models:
   {{$obj.Name}}UpdateInput:
     model: "map[string]interface{}"
   {{end}}
-  
+
   {{range $ext := .Model.ObjectExtensions}}{{$obj := $ext.Object}}{{if not $ext.ExtendsLocalObject}}
   {{$obj.Name}}:
     fields:{{range $col := $obj.Columns}}{{if $col.IsReadonlyType}}
@@ -45,6 +49,4 @@ models:
       {{$rel.Name}}:
         resolver: true{{end}}
   {{end}}{{end}}
-  _Any:
-    model: {{$config.Package}}/gen._Any
-`
+  `

@@ -9,8 +9,9 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/novacloudcz/graphql-orm/test/gen"
-	"github.com/novacloudcz/graphql-orm/test/src"
+	"github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/graphql-orm/test/gen"
+	"github.com/loopcontext/graphql-orm/test/src"
 	"github.com/rs/cors"
 	"github.com/urfave/cli"
 )
@@ -138,7 +139,8 @@ func startServer(enableCors bool, port string) error {
 
 	log.Println("\nShutting down the server...")
 
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 
 	err = h.Shutdown(ctx)
 	if err != nil {

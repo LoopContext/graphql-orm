@@ -1,22 +1,25 @@
 package templates
 
+// Model ...
 var Model = `package gen
 
 import (
 	"fmt"
 	"reflect"
 	"time"
-	
+
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/mitchellh/mapstructure"
 )
 
 {{range $object := .Model.ObjectEntities}}
 
+	// {{.Name}}ResultType struct
 	type {{.Name}}ResultType struct {
 		EntityResultType
 	}
 
+	// {{.Name}} struct
 	type {{.Name}} struct {
 	{{range $col := $object.Columns}}
 		{{$col.MethodName}} {{$col.GoType}} ` + "`" + `{{$col.ModelTags}}` + "`" + `{{end}}
@@ -27,12 +30,15 @@ import (
 	{{end}}
 	}
 
-	func (m *{{.Name}}) Is_Entity() {}
+	// IsEntity ...
+	func (m *{{.Name}}) IsEntity() {}
 
 	{{range $interface := $object.Interfaces}}
+	// Is{{$interface}} ...
 	func (m *{{$object.Name}}) Is{{$interface}}() {}
 	{{end}}
 
+	// {{.Name}}Changes struct
 	type {{.Name}}Changes struct {
 		{{range $col := $object.Columns}}
 		{{$col.MethodName}} {{$col.InputTypeName}}{{end}}
@@ -42,18 +48,21 @@ import (
 
 	{{range $rel := $object.Relationships}}
 		{{if and $rel.IsManyToMany $rel.IsMainRelationshipForManyToMany}}
-		type {{$rel.ManyToManyObjectName}} struct {
-			{{$rel.ForeignKeyDestinationColumn}} string
-			{{$rel.InverseRelationship.ForeignKeyDestinationColumn}} string
+		// {{$rel.ManyToManyObjectNameCC}} struct
+		type {{$rel.ManyToManyObjectNameCC}} struct {
+			{{$rel.ForeignKeyDestinationColumnCC}} string
+			{{$rel.InverseRelationship.ForeignKeyDestinationColumnCC}} string
 		}
-		func ({{$rel.ManyToManyObjectName}}) TableName() string {
+
+		// TableName ...
+		func ({{$rel.ManyToManyObjectNameCC}}) TableName() string {
 			return TableName("{{$rel.ManyToManyJoinTable}}")
 		}
 		{{end}}
 	{{end}}
 {{end}}
 
-// used to convert map[string]interface{} to EntityChanges struct
+// ApplyChanges used to convert map[string]interface{} to EntityChanges struct
 func ApplyChanges(changes map[string]interface{}, to interface{}) error {
 	dec, err := mapstructure.NewDecoder(&mapstructure.DecoderConfig{
 		ErrorUnused: true,

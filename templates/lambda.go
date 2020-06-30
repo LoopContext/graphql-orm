@@ -1,5 +1,6 @@
 package templates
 
+// Lambda ...
 var Lambda = `package main
 
 import (
@@ -11,7 +12,7 @@ import (
 
 func main() {
 	db := gen.NewDBFromEnvVars()
-	
+
 	eventController, err := gen.NewEventController()
 	if err != nil {
 		panic(err)

@@ -1,12 +1,13 @@
 package templates
 
+// ResolverSrc ...
 var ResolverSrc = `package src
 
 import (
 	"{{.Config.Package}}/gen"
 )
 
-
+// New ...
 func New(db *gen.DB, ec *gen.EventController) *Resolver {
 	resolver := NewResolver(db, ec)
 
@@ -18,6 +19,7 @@ func New(db *gen.DB, ec *gen.EventController) *Resolver {
 }
 
 // You can extend QueryResolver for adding custom fields in schema
+// // Hello world
 // func (r *QueryResolver) Hello(ctx context.Context) (string, error) {
 // 	return "world", nil
 // }

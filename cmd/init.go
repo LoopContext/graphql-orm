@@ -9,11 +9,11 @@ import (
 	"path"
 	"strings"
 
-	"github.com/novacloudcz/graphql-orm/templates"
+	"github.com/loopcontext/graphql-orm/templates"
 
 	"gopkg.in/yaml.v2"
 
-	"github.com/novacloudcz/graphql-orm/model"
+	"github.com/loopcontext/graphql-orm/model"
 	"github.com/urfave/cli"
 )
 
@@ -57,7 +57,7 @@ var initCmd = cli.Command{
 			return cli.NewExitError(err, 1)
 		}
 
-		if err := createDockerFile(p); err != nil {
+		if err := createDockerFiles(p); err != nil {
 			return cli.NewExitError(err, 1)
 		}
 
@@ -121,17 +121,51 @@ func createDummyModelFile(p string) error {
 	data := templates.TemplateData{Model: nil, Config: nil}
 	return templates.WriteTemplate(templates.DummyModel, path.Join(p, "model.graphql"), data)
 }
+
 func createMakeFile(p string) error {
-	data := templates.TemplateData{Model: nil, Config: nil}
-	return templates.WriteTemplate(templates.Makefile, path.Join(p, "makefile"), data)
-}
-func createDockerFile(p string) error {
 	c, err := model.LoadConfigFromPath(p)
 	if err != nil {
 		return err
 	}
 	data := templates.TemplateData{Model: nil, Config: &c}
-	return templates.WriteTemplate(templates.Dockerfile, path.Join(p, "Dockerfile"), data)
+	return templates.WriteTemplate(templates.Makefile, path.Join(p, "makefile"), data)
+}
+
+func createDockerFiles(p string) error {
+	c, err := model.LoadConfigFromPath(p)
+	if err != nil {
+		return err
+	}
+	data := templates.TemplateData{Model: nil, Config: &c}
+
+	ensureDir(path.Join(p, "docker"))
+	ensureDir(path.Join(p, "scripts"))
+	err = templates.WriteTemplate(templates.DotenvExample, path.Join(p, ".env.dev"), data)
+	if err != nil {
+		return err
+	}
+	err = templates.WriteTemplate(templates.RunDevSh, path.Join(p, "scripts/run-dev.sh"), data)
+	if err != nil {
+		return err
+	}
+	err = templates.WriteTemplate(templates.RunSh, path.Join(p, "scripts/run.sh"), data)
+	if err != nil {
+		return err
+	}
+	err = templates.WriteTemplate(templates.DockerfileDev, path.Join(p, "docker/dev.dockerfile"), data)
+	if err != nil {
+		return err
+	}
+	err = templates.WriteTemplate(templates.DockerfileProd, path.Join(p, "docker/prod.dockerfile"), data)
+	if err != nil {
+		return err
+	}
+	err = templates.WriteTemplate(templates.Dockerfile, path.Join(p, "Dockerfile"), data)
+	if err != nil {
+		return err
+	}
+	err = templates.WriteTemplate(templates.DockerComposeYml, path.Join(p, "docker-compose.yml"), data)
+	return err
 }
 
 func createResolverFile(p string) error {
