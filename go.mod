@@ -13,7 +13,6 @@ require (
 	github.com/loopcontext/anycase v0.0.1
 	github.com/novacloudcz/graphql-orm v0.4.15
 	github.com/urfave/cli v1.22.4
-	golang.org/x/crypto v0.0.0-20200204104054-c9f3fb736b72 // indirect
 	gopkg.in/AlecAivazis/survey.v1 v1.8.8
 	gopkg.in/yaml.v2 v2.3.0
 )
