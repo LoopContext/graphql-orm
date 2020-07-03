@@ -140,6 +140,14 @@ func createDockerFiles(p string) error {
 
 	ensureDir(path.Join(p, "docker"))
 	ensureDir(path.Join(p, "scripts"))
+	err = templates.WriteTemplate(templates.GitIgnore, path.Join(p, ".gitignore"), data)
+	if err != nil {
+		return err
+	}
+	err = templates.WriteTemplate(templates.AirConf, path.Join(p, ".air.conf"), data)
+	if err != nil {
+		return err
+	}
 	err = templates.WriteTemplate(templates.DotenvExample, path.Join(p, ".env.dev"), data)
 	if err != nil {
 		return err

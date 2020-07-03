@@ -21,8 +21,8 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = "graphql-orm"
-	app.Usage = "This tool is for generating "
-	app.Version = "0.0.0"
+	app.Usage = "This tool is for generating a graphql-api"
+	app.Version = "0.1.0"
 
 	app.Commands = []cli.Command{
 		startCmd,
