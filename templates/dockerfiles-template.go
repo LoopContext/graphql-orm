@@ -63,7 +63,7 @@ clean_on_exit = true
 // DockerfileDev development dockerfile
 var DockerfileDev = `FROM golang:alpine as base
 
-RUN apk --update upgrade && apk add --no-cache bash git openssh curl
+RUN apk --update upgrade && apk add --no-cache bash git openssh curl build-base
 # removing apk cache
 RUN rm -rf /var/cache/apk/*
 
@@ -82,6 +82,7 @@ FROM golang:alpine as base
 
 FROM base AS ci
 
+# To add sqlite3 support, add build-base to the package list
 RUN apk update && apk upgrade && apk add --no-cache git
 RUN mkdir /build
 ADD . /build/
@@ -92,6 +93,7 @@ FROM ci AS build-env
 
 RUN go mod download
 
+# To add sqlite3 support, change to CGO_ENABLED=1
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix \
     cgo -ldflags '-extldflags "-static"' -o server .
 
@@ -160,7 +162,8 @@ printf "\nStopped app: $app\n\n"
 `
 
 // DotenvExample example .env file
-var DotenvExample = `DATABASE_URL=postgres://test:test@host.docker.internal/test?sslmode=disable
+var DotenvExample = `DEBUG=true
+DATABASE_URL=sqlite3://dev.db
 EXPOSE_MIGRATION_ENDPOINT=false
 TABLE_NAME_PREFIX=
 EVENT_TRANSPORT_URL=
