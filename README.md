@@ -1,5 +1,8 @@
 # graphql-orm
 
+[![Godoc Reference](https://godoc.org/github.com/loopcontext/graphql-orm?status.svg)](http://godoc.org/github.com/loopcontext/graphql-orm)
+[![Go Report Card](https://goreportcard.com/badge/github.com/loopcontext/graphql-orm)](https://goreportcard.com/report/github.com/loopcontext/graphql-orm)
+
 Golang GraphQL API generator using [gqlgen](https://gqlgen.com) and [gorm](https://gorm.io)
 
 # Why

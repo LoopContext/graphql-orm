@@ -41,15 +41,7 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 		})
 	}
 	mux.HandleFunc("/graphql", func(res http.ResponseWriter, req *http.Request) {
-		claims, _ := getJWTClaims(req)
-		var principalID *string
-		if claims != nil {
-			principalID = &(*claims).Subject
-		}
-		ctx := context.WithValue(req.Context(), KeyJWTClaims, claims)
-		if principalID != nil {
-			ctx = context.WithValue(ctx, KeyPrincipalID, principalID)
-		}
+		ctx := initContextWithJWTClaims(req)
 		ctx = context.WithValue(ctx, KeyLoaders, loaders)
 		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
 		req = req.WithContext(ctx)
@@ -59,15 +51,7 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	if os.Getenv("EXPOSE_PLAYGROUND_ENDPOINT") == "true" {
 		playgroundHandler := handler.Playground("GraphQL playground", "/graphql")
 		mux.HandleFunc("/graphql/playground", func(res http.ResponseWriter, req *http.Request) {
-			claims, _ := getJWTClaims(req)
-			var principalID *string
-			if claims != nil {
-				principalID = &(*claims).Subject
-			}
-			ctx := context.WithValue(req.Context(), KeyJWTClaims, claims)
-			if principalID != nil {
-				ctx = context.WithValue(ctx, KeyPrincipalID, principalID)
-			}
+			ctx := initContextWithJWTClaims(req)
 			ctx = context.WithValue(ctx, KeyLoaders, loaders)
 			ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
 			req = req.WithContext(ctx)
@@ -79,6 +63,19 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	handler := mux
 
 	return handler
+}
+
+func initContextWithJWTClaims(req *http.Request) context.Context {
+	claims, _ := getJWTClaims(req)
+	var principalID *string
+	if claims != nil {
+		principalID = &(*claims).Subject
+	}
+	ctx := context.WithValue(req.Context(), KeyJWTClaims, claims)
+	if principalID != nil {
+		ctx = context.WithValue(ctx, KeyPrincipalID, principalID)
+	}
+	return ctx
 }
 
 // GetPrincipalIDFromContext ...
