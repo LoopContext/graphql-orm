@@ -9,9 +9,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/novacloudcz/graphql-orm/model"
-	"github.com/novacloudcz/graphql-orm/templates"
-	"github.com/novacloudcz/graphql-orm/tools"
+	"github.com/loopcontext/graphql-orm/model"
+	"github.com/loopcontext/graphql-orm/templates"
+	"github.com/loopcontext/graphql-orm/tools"
 	"github.com/urfave/cli"
 )
 

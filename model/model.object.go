@@ -42,7 +42,7 @@ func (o *Object) TableNameLCC() string {
 	return anycase.ToLowerCamel(inflection.Plural(o.LowerName()))
 }
 
-// TableNameCC lower camelCase tableName
+// TableNameCC camelCase tableName
 func (o *Object) TableNameCC() string {
 	return anycase.ToCamel(inflection.Plural(o.LowerName()))
 }
