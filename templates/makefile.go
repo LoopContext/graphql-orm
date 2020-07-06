@@ -9,16 +9,16 @@ reinit:
 	GO111MODULE=on go run github.com/loopcontext/graphql-orm init
 
 migrate:
-	DATABASE_URL=sqlite3://dev.db PORT=8080 go run *.go migrate
+	DATABASE_URL=sqlite3://dev.db PORT=8081 go run *.go migrate
 
 automigrate:
-	DATABASE_URL=sqlite3://dev.db PORT=8080 go run *.go automigrate
+	DATABASE_URL=sqlite3://dev.db PORT=8081 go run *.go automigrate
 
 run:
-	DATABASE_URL=sqlite3://dev.db PORT=8080 go run *.go start --cors
+	DATABASE_URL=sqlite3://dev.db PORT=8081 go run *.go start --cors
 
 debug:
-	DEBUG=true DATABASE_URL=sqlite3://dev.db PORT=8080 go run *.go start --cors
+	DEBUG=true DATABASE_URL=sqlite3://dev.db PORT=8081 go run *.go start --cors
 
 voyager:
 	docker run --rm -v ` + "`" + `pwd` + "`" + `/gen/schema.graphql:/app/schema.graphql -p 8082:80 graphql/voyager

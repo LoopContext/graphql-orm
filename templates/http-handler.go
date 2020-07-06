@@ -5,7 +5,9 @@ var HTTPHandler = `package gen
 
 import (
 	"context"
+	"fmt"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/99designs/gqlgen/handler"
@@ -22,7 +24,6 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 
 	loaders := GetLoaders(db)
 
-	playgroundHandler := handler.Playground("GraphQL playground", "/graphql")
 	if os.Getenv("EXPOSE_MIGRATION_ENDPOINT") == "true" {
 		mux.HandleFunc("/migrate", func(res http.ResponseWriter, req *http.Request) {
 			err := db.Migrate(migrations)
@@ -52,12 +53,29 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 		ctx = context.WithValue(ctx, KeyLoaders, loaders)
 		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
 		req = req.WithContext(ctx)
-		if req.Method == "GET" {
-			playgroundHandler(res, req)
-		} else {
-			gqlHandler(res, req)
-		}
+		gqlHandler(res, req)
 	})
+
+	if os.Getenv("EXPOSE_PLAYGROUND_ENDPOINT") == "true" {
+		playgroundHandler := handler.Playground("GraphQL playground", "/graphql")
+		mux.HandleFunc("/graphql/playground", func(res http.ResponseWriter, req *http.Request) {
+			claims, _ := getJWTClaims(req)
+			var principalID *string
+			if claims != nil {
+				principalID = &(*claims).Subject
+			}
+			ctx := context.WithValue(req.Context(), KeyJWTClaims, claims)
+			if principalID != nil {
+				ctx = context.WithValue(ctx, KeyPrincipalID, principalID)
+			}
+			ctx = context.WithValue(ctx, KeyLoaders, loaders)
+			ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
+			req = req.WithContext(ctx)
+			if req.Method == "GET" {
+				playgroundHandler(res, req)
+			}
+		})
+	}
 	handler := mux
 
 	return handler
@@ -102,6 +120,7 @@ func (c *JWTClaims) Scopes() []string {
 	}
 	return []string{}
 }
+
 // HasScope ...
 func (c *JWTClaims) HasScope(scope string) bool {
 	for _, s := range c.Scopes() {

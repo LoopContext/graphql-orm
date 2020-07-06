@@ -47,9 +47,11 @@ make debug
 
 ## Environment variables
 
+- `PORT` - sets the default port for the API
 - `DEBUG` - setting to `"true"` enables debugging for GORM
 - `DATABASE_URL` - connection string for database in format `db://user:password@host:port/tablename` (eg. `mysql://root:pass@localhost:3306/test`; required)
 - `EXPOSE_MIGRATION_ENDPOINT` - expose `/migration` endpoint which triggers database migration (migrates to latest database schema; default: false)
+- `EXPOSE_PLAYGROUND_ENDPOINT` - expose `/graphql/playground` playground endpoint (allows playground; default: false)
 - `TABLE_NAME_PREFIX` - set global prefix for all table names (default: "")
 - `EVENT_TRANSPORT_URL` - destination url for sending mutation events (array supported in format `EVENT_TRANSPORT_URL_[INDEX]`) see [Events transport](#installation)
 - `EVENT_TRANSPORT_SOURCE` - custom value for CloudEvent source attribute (default: `http://{hostname}/graphql`)

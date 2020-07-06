@@ -152,18 +152,20 @@ app="./"
 program="$buildPath/$app"
 printf "\nStart app: $app\n"
 # Set all ENV vars for the program to run
-export $(grep -v '^#' .env | xargs)
+#export $(grep -v '^#' .env | xargs)
 time make automigrate
 time make migrate
 time ./$program
 # This should unset all the ENV vars, just in case.
-unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
+#unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
 printf "\nStopped app: $app\n\n"
 `
 
 // DotenvExample example .env file
 var DotenvExample = `DEBUG=true
+PORT=8081
 DATABASE_URL=sqlite3://dev.db
+EXPOSE_PLAYGROUND_ENDPOINT=true
 EXPOSE_MIGRATION_ENDPOINT=false
 TABLE_NAME_PREFIX=
 EVENT_TRANSPORT_URL=
