@@ -184,7 +184,7 @@ services:
       - 8081:8081
       - 5002:5002
     volumes:
-      - .:./
+      - .:/graphql-server
   dev-linux:
     network_mode: "host"
     command: ./scripts/run-dev.sh
@@ -197,7 +197,7 @@ services:
       - 8081:8081
       - 5002:5002
     volumes:
-      - .:./
+      - .:/graphql-server
   prod:
     build:
       context: .
