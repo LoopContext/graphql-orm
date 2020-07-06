@@ -202,8 +202,6 @@ services:
     build:
       context: .
       dockerfile: docker/prod.dockerfile
-    env_file:
-      - .env
     ports:
       - 80:80
   docker:
