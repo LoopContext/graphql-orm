@@ -131,7 +131,7 @@ func startServer(enableCors bool, port string) error {
 	h := &http.Server{Addr: ":" + port, Handler: handler}
 
 	go func() {
-		log.Printf("connect to http://localhost:%s/graphql for GraphQL playground", port)
+		log.Printf("connect to http://localhost:%s/graphql/playground for GraphQL playground", port)
 		log.Fatal(h.ListenAndServe())
 	}()
 
