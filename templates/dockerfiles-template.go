@@ -24,7 +24,7 @@ cmd = "go build -o ./tmp/graphql-server ."
 # Binary file yields from "cmd".
 bin = "tmp/graphql-server"
 # Customize binary.
-full_bin = "./tmp/graphql-server automigrate;./tmp/graphql-server migrate;./tmp/graphql-server start"
+full_bin = "./tmp/graphql-server automigrate && ./tmp/graphql-server migrate && ./tmp/graphql-server start"
 # Watch these filename extensions.
 include_ext = ["go", "tpl", "tmpl", "html"]
 # Ignore these filename extensions or directories.
