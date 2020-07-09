@@ -70,7 +70,7 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	})
 
 	if os.Getenv("EXPOSE_PLAYGROUND_ENDPOINT") == "true" {
-		playgroundHandler := handler.Playground("GraphQL playground", "/graphql")
+		playgroundHandler := playground.Handler("GraphQL playground", "/graphql")
 		mux.HandleFunc("/graphql/playground", func(res http.ResponseWriter, req *http.Request) {
 			ctx := initContextWithJWTClaims(req)
 			ctx = context.WithValue(ctx, KeyLoaders, loaders)
