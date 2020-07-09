@@ -10,7 +10,13 @@ import (
 	"os"
 	"strings"
 
-	"github.com/99designs/gqlgen/handler"
+	"github.com/99designs/gqlgen/graphql/handler"
+	"github.com/99designs/gqlgen/graphql/handler/apollotracing"
+	"github.com/99designs/gqlgen/graphql/handler/extension"
+	"github.com/99designs/gqlgen/graphql/handler/lru"
+	"github.com/99designs/gqlgen/graphql/handler/transport"
+	"github.com/99designs/gqlgen/graphql/playground"
+
 	jwtgo "github.com/dgrijalva/jwt-go"
 	"gopkg.in/gormigrate.v1"
 )
@@ -20,7 +26,22 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	mux := http.NewServeMux()
 
 	executableSchema := NewExecutableSchema(Config{Resolvers: r})
-	gqlHandler := handler.GraphQL(executableSchema)
+	gqlHandler := handler.New(executableSchema)
+	gqlHandler.AddTransport(transport.Websocket{
+		KeepAlivePingInterval: 10 * time.Second,
+	})
+	gqlHandler.AddTransport(transport.Options{})
+	gqlHandler.AddTransport(transport.GET{})
+	gqlHandler.AddTransport(transport.POST{})
+	gqlHandler.AddTransport(transport.MultipartForm{})
+	gqlHandler.Use(extension.FixedComplexityLimit(300))
+	if os.Getenv("DEBUG") == "true" {
+		gqlHandler.Use(extension.Introspection{})
+	}
+	gqlHandler.Use(apollotracing.Tracer{})
+	gqlHandler.Use(extension.AutomaticPersistedQuery{
+		Cache: lru.New(100),
+	})
 
 	loaders := GetLoaders(db)
 
@@ -45,7 +66,7 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 		ctx = context.WithValue(ctx, KeyLoaders, loaders)
 		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
 		req = req.WithContext(ctx)
-		gqlHandler(res, req)
+		gqlHandler.ServeHTTP(res, req)
 	})
 
 	if os.Getenv("EXPOSE_PLAYGROUND_ENDPOINT") == "true" {

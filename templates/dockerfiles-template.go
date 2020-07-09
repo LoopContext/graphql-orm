@@ -70,7 +70,7 @@ RUN rm -rf /var/cache/apk/*
 WORKDIR /graphql-server
 COPY . /graphql-server/
 
-RUN go mod download
+RUN go get -v
 RUN go get -v -u github.com/cosmtrek/air
 
 CMD ["./scripts/run-dev.sh"]
@@ -162,11 +162,12 @@ printf "\nStopped app: $app\n\n"
 `
 
 // DotenvExample example .env file
-var DotenvExample = `DEBUG=true
-PORT=8081
-DATABASE_URL=sqlite3://dev.db
+var DotenvExample = `PORT=8081
+DEBUG=true
+#DATABASE_URL=sqlite3://dev.db
+DATABASE_URL=postgres://test:test@host.docker.internal:5432/test?sslmode=disable
+EXPOSE_MIGRATION_ENDPOINT=true
 EXPOSE_PLAYGROUND_ENDPOINT=true
-EXPOSE_MIGRATION_ENDPOINT=false
 TABLE_NAME_PREFIX=
 EVENT_TRANSPORT_URL=
 EVENT_TRANSPORT_SOURCE=
@@ -184,7 +185,6 @@ services:
       - .env.dev
     ports:
       - 8081:8081
-      - 5002:5002
     volumes:
       - .:/graphql-server
   dev-linux:
@@ -197,7 +197,6 @@ services:
       - .env.dev
     ports:
       - 8081:8081
-      - 5002:5002
     volumes:
       - .:/graphql-server
   prod:

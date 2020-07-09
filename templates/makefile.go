@@ -32,5 +32,5 @@ test:
 	GO111MODULE=on go build -o app *.go && ./app migrate && (ENABLE_DELETE_ALL_RESOLVERS=true PORT=8080 ./app start& export app_pid=$$! && make test-godog || test_result=$$? && kill $$app_pid && exit $$test_result)
 // TODO: add detection of host ip (eg. host.docker.internal) for other OS
 test-godog:
-	docker run --rm --network="host" -v "${PWD}/features:/godog/features" -e GRAPHQL_URL=http://$$(if [[ $${OSTYPE} == darwin* ]]; then echo host.docker.internal;else echo localhost;fi):8080/graphql loopcontext/godog-graphql
+	docker run --rm --network="host" -v "${PWD}/features:/godog/features" -e GRAPHQL_URL=http://$$(if [[ $${OSTYPE} == darwin* ]]; then echo host.docker.internal;else echo localhost;fi):8081/graphql loopcontext/godog-graphql
 `
