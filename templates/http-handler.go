@@ -8,7 +8,9 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"path"
 	"strings"
+	"time"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/handler/apollotracing"
@@ -46,14 +48,14 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	loaders := GetLoaders(db)
 
 	if os.Getenv("EXPOSE_MIGRATION_ENDPOINT") == "true" {
-		mux.HandleFunc("/migrate", func(res http.ResponseWriter, req *http.Request) {
+		mux.HandleFunc(os.Getenv("API_VERSION")+"/migrate", func(res http.ResponseWriter, req *http.Request) {
 			err := db.Migrate(migrations)
 			if err != nil {
 				http.Error(res, err.Error(), 400)
 			}
 			fmt.Fprintf(res, "OK")
 		})
-		mux.HandleFunc("/automigrate", func(res http.ResponseWriter, req *http.Request) {
+		mux.HandleFunc(os.Getenv("API_VERSION")+"/automigrate", func(res http.ResponseWriter, req *http.Request) {
 			err := db.AutoMigrate()
 			if err != nil {
 				http.Error(res, err.Error(), 400)
@@ -61,7 +63,7 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 			fmt.Fprintf(res, "OK")
 		})
 	}
-	mux.HandleFunc("/graphql", func(res http.ResponseWriter, req *http.Request) {
+	mux.HandleFunc(os.Getenv("API_VERSION")+"/graphql", func(res http.ResponseWriter, req *http.Request) {
 		ctx := initContextWithJWTClaims(req)
 		ctx = context.WithValue(ctx, KeyLoaders, loaders)
 		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
@@ -70,8 +72,8 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	})
 
 	if os.Getenv("EXPOSE_PLAYGROUND_ENDPOINT") == "true" {
-		playgroundHandler := playground.Handler("GraphQL playground", "/graphql")
-		mux.HandleFunc("/graphql/playground", func(res http.ResponseWriter, req *http.Request) {
+		playgroundHandler := playground.Handler("GraphQL playground", os.Getenv("API_VERSION")+"/graphql")
+		mux.HandleFunc(os.Getenv("API_VERSION")+"/graphql/playground", func(res http.ResponseWriter, req *http.Request) {
 			ctx := initContextWithJWTClaims(req)
 			ctx = context.WithValue(ctx, KeyLoaders, loaders)
 			ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
@@ -84,6 +86,62 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	handler := mux
 
 	return handler
+}
+
+// GetHTTPVercel func for be used with Vercel deployments
+func GetHTTPVercel(r ResolverRoot, db *DB, migrations []*gormigrate.Migration, res http.ResponseWriter, req *http.Request) {
+	executableSchema := NewExecutableSchema(Config{Resolvers: r})
+	gqlHandler := handler.New(executableSchema)
+	gqlHandler.AddTransport(transport.Websocket{
+		KeepAlivePingInterval: 10 * time.Second,
+	})
+	gqlHandler.AddTransport(transport.Options{})
+	gqlHandler.AddTransport(transport.GET{})
+	gqlHandler.AddTransport(transport.POST{})
+	gqlHandler.AddTransport(transport.MultipartForm{})
+	gqlHandler.Use(extension.FixedComplexityLimit(300))
+	if os.Getenv("DEBUG") == "true" {
+		gqlHandler.Use(extension.Introspection{})
+	}
+	gqlHandler.Use(apollotracing.Tracer{})
+	gqlHandler.Use(extension.AutomaticPersistedQuery{
+		Cache: lru.New(100),
+	})
+	loaders := GetLoaders(db)
+	if os.Getenv("EXPOSE_MIGRATION_ENDPOINT") == "true" {
+		if path.Base(req.URL.Path) == "migrate" {
+			err := db.Migrate(migrations)
+			if err != nil {
+				http.Error(res, err.Error(), 400)
+			}
+			fmt.Fprintf(res, "OK")
+		}
+		if path.Base(req.URL.Path) == "automigrate" {
+			err := db.AutoMigrate()
+			if err != nil {
+				http.Error(res, err.Error(), 400)
+			}
+			fmt.Fprintf(res, "OK")
+		}
+	}
+	if path.Base(req.URL.Path) == "graphql" {
+		ctx := initContextWithJWTClaims(req)
+		ctx = context.WithValue(ctx, KeyLoaders, loaders)
+		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
+		req = req.WithContext(ctx)
+		gqlHandler.ServeHTTP(res, req)
+	}
+
+	if os.Getenv("EXPOSE_PLAYGROUND_ENDPOINT") == "true" && path.Base(req.URL.Path) == "playground" {
+		playgroundHandler := playground.Handler("GraphQL playground", os.Getenv("API_VERSION")+"/graphql")
+		ctx := initContextWithJWTClaims(req)
+		ctx = context.WithValue(ctx, KeyLoaders, loaders)
+		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
+		req = req.WithContext(ctx)
+		if req.Method == "GET" {
+			playgroundHandler(res, req)
+		}
+	}
 }
 
 func initContextWithJWTClaims(req *http.Request) context.Context {
