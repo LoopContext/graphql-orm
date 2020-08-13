@@ -183,17 +183,17 @@ func getJWTClaims(req *http.Request) (*JWTClaims, error) {
 // JWTClaims JWT Claims
 type JWTClaims struct {
 	jwtgo.StandardClaims
-	Email  string
-	Avatar string
+	Email  string    ` + "`" + `json:"email"` + "`" + `
+	Avatar string    ` + "`" + `json:"avatar,omitempty"` + "`" + `
 	Roles  []JWTRole ` + "`" + `json:"roles,omitempty"` + "`" + `
 	Scope  *string   ` + "`" + `json:"scope,omitempty"` + "`" + `
 }
 
 // JWTRole defines a role
 type JWTRole struct {
-	Name        string
-	Description string
-	Permissions []string
+	Name        string    ` + "`" + `json:"name"` + "`" + `
+	Description string    ` + "`" + `json:"description"` + "`" + `
+	Permissions []string  ` + "`" + `json:"permissions"` + "`" + `
 }
 
 // Scopes ...

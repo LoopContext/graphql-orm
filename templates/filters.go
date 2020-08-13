@@ -138,6 +138,8 @@ func (f *{{$obj.Name}}FilterType) WhereContent(dialect gorm.Dialect, aliasPrefix
 
 	return
 }
+
+// HavingContent method
 func (f *{{$obj.Name}}FilterType) HavingContent(dialect gorm.Dialect, aliasPrefix string) (conditions []string, values []interface{}) {
 	conditions = []string{}
 	values = []interface{}{}
