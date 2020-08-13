@@ -28,7 +28,9 @@ func AutoMigrate(db *gorm.DB) (err error) {
 	_db := db.AutoMigrate({{range $obj := .Model.ObjectEntities}}
 		{{.Name}}{},{{end}}
 	)
-
+	if _db.Error != nil {
+		return _db.Error
+	}
 	if(_db.Dialect().GetName() != "sqlite3"){
 		{{range $obj := .Model.ObjectEntities}}
 			{{range $rel := $obj.Relationships}}
@@ -54,6 +56,6 @@ func AutoMigrate(db *gorm.DB) (err error) {
 			{{end}}
 		{{end}}
 	}
-	return _db.Error
+	return nil // _db.Error
 }
 `
