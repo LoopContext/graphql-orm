@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/jinzhu/gorm"
+	"github.com/rs/zerolog/log"
 	"gopkg.in/gormigrate.v1"
 )
 
@@ -29,6 +30,7 @@ func AutoMigrate(db *gorm.DB) (err error) {
 		{{.Name}}{},{{end}}
 	)
 	if _db.Error != nil {
+		log.Err(_db.Error).Send()
 		return _db.Error
 	}
 	if(_db.Dialect().GetName() != "sqlite3"){
@@ -55,6 +57,9 @@ func AutoMigrate(db *gorm.DB) (err error) {
 				{{end}}
 			{{end}}
 		{{end}}
+		if _db.Error != nil {
+			log.Err(_db.Error).Send()
+		}
 	}
 	return nil // _db.Error
 }
