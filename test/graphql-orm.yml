@@ -1,2 +1,2 @@
-package: github.com/loopcontext/graphql-orm/test
+package: github.com/loopcontext/go-graphql-orm/test
 connection: null

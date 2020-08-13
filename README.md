@@ -1,7 +1,7 @@
 # graphql-orm
 
-[![Godoc Reference](https://godoc.org/github.com/loopcontext/graphql-orm?status.svg)](http://godoc.org/github.com/loopcontext/graphql-orm)
-[![Go Report Card](https://goreportcard.com/badge/github.com/loopcontext/graphql-orm)](https://goreportcard.com/report/github.com/loopcontext/graphql-orm)
+[![Godoc Reference](https://godoc.org/github.com/loopcontext/go-graphql-orm?status.svg)](http://godoc.org/github.com/loopcontext/go-graphql-orm)
+[![Go Report Card](https://goreportcard.com/badge/github.com/loopcontext/go-graphql-orm)](https://goreportcard.com/report/github.com/loopcontext/go-graphql-orm)
 
 Golang GraphQL API generator using [gqlgen](https://gqlgen.com) and [gorm](https://gorm.io)
 
@@ -21,10 +21,10 @@ go get golang.org/x/tools/cmd/goimports
 
 1. Create new project repository
 1. run `go mod init [MODULE]` to initialize your project with go modules
-1. run `go run github.com/loopcontext/graphql-orm init`
+1. run `go run github.com/loopcontext/go-graphql-orm init`
 1. follow initialization instruction (creating makefile is suggested)
 1. open created `model.graphql` and create your custom model schema
-1. each time you change model, run `make generate` or `go run github.com/loopcontext/graphql-orm` to recreate generated source codes
+1. each time you change model, run `make generate` or `go run github.com/loopcontext/go-graphql-orm` to recreate generated source codes
 
 > _NOTE: graphql-orm requires Go modules for installation. If you are running in \$GOPATH, make sure you are running init command with GO111MODULE=on_
 
@@ -69,7 +69,7 @@ Or use in-memory storage:
 
 ## Example
 
-You can find example project at [graphql-orm-example repo](https://github.com/loopcontext/graphql-orm-example)
+You can find example project at [graphql-orm-example repo](https://github.com/loopcontext/go-graphql-orm-example)
 
 ## Schema preview in Voyager
 
@@ -100,7 +100,7 @@ If you want, use the generated Dockerfile initialization it's as easy as running
 docker build -f docker/Dockerfile -t {IMAGE_NAME} .
 ```
 
-If you want to create your own docker image, you can check the example repository for generated Dockerfile: <https://github.com/loopcontext/graphql-orm-example/blob/master/Dockerfile>
+If you want to create your own docker image, you can check the example repository for generated Dockerfile: <https://github.com/loopcontext/go-graphql-orm-example/blob/master/Dockerfile>
 
 <<<<<<< HEAD
 
@@ -122,7 +122,7 @@ Services built using this library automatically send event for every mutation us
 - HTTP/HTTPS
 - AWS Services using [cloudevents-aws-transport](github.com/loopcontext/cloudevents-aws-transport) (SNS/SQS/EventBridge)
 
-For more information about event structure see: <https://github.com/loopcontext/graphql-orm/blob/master/events/model.go>
+For more information about event structure see: <https://github.com/loopcontext/go-graphql-orm/blob/master/events/model.go>
 
 ## Migrations and automigrations
 

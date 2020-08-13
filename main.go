@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/loopcontext/graphql-orm/cmd"
-	"github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/cmd"
+	"github.com/loopcontext/go-graphql-orm/events"
 )
 
 func main() {

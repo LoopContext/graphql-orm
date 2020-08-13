@@ -1,4 +1,4 @@
-module github.com/loopcontext/graphql-orm
+module github.com/loopcontext/go-graphql-orm
 
 go 1.14
 

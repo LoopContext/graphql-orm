@@ -11,7 +11,7 @@ import (
 	"github.com/graph-gophers/dataloader"
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/gofrs/uuid"
-	"github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/events"
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
@@ -295,7 +295,7 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 	}
 	// DeleteAll{{$obj.PluralName}}Handler handler
 	func DeleteAll{{$obj.PluralName}}Handler(ctx context.Context, r *GeneratedResolver) (bool,error) {
-		// delete all resolvers are primarily used for 
+		// delete all resolvers are primarily used for
 		if os.Getenv("ENABLE_DELETE_ALL_RESOLVERS") == "" {
 			return false, fmt.Errorf("delete all resolver is not enabled (ENABLE_DELETE_ALL_RESOLVERS not specified)")
 		}

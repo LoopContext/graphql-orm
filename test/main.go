@@ -9,9 +9,9 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/loopcontext/graphql-orm/events"
-	"github.com/loopcontext/graphql-orm/test/gen"
-	"github.com/loopcontext/graphql-orm/test/src"
+	"github.com/loopcontext/go-graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/test/gen"
+	"github.com/loopcontext/go-graphql-orm/test/src"
 	"github.com/rs/cors"
 	"github.com/urfave/cli"
 )

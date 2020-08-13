@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/akrylysov/algnhsa"
-	"github.com/loopcontext/graphql-orm/events"
-	"github.com/loopcontext/graphql-orm/test/gen"
-	"github.com/loopcontext/graphql-orm/test/src"
+	"github.com/loopcontext/go-graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/test/gen"
+	"github.com/loopcontext/go-graphql-orm/test/src"
 )
 
 func main() {

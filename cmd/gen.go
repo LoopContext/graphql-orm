@@ -9,9 +9,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/loopcontext/graphql-orm/model"
-	"github.com/loopcontext/graphql-orm/templates"
-	"github.com/loopcontext/graphql-orm/tools"
+	"github.com/loopcontext/go-graphql-orm/model"
+	"github.com/loopcontext/go-graphql-orm/templates"
+	"github.com/loopcontext/go-graphql-orm/tools"
 	"github.com/urfave/cli"
 )
 

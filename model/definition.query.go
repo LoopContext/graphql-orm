@@ -59,8 +59,8 @@ func listFieldDefinition(obj Object) *ast.FieldDefinition {
 func listFieldResultTypeDefinition(obj Object, name string) *ast.FieldDefinition {
 	return &ast.FieldDefinition{
 		Kind: kinds.FieldDefinition,
-		Name: nameNode(inflection.Plural(anycase.ToLowerCamel(obj.Name()))),
-		Type: namedType(obj.Name() + "ResultType"),
+		Name: nameNode(name),
+		Type: nonNull(namedType(obj.Name() + "ResultType")),
 		Arguments: []*ast.InputValueDefinition{
 			&ast.InputValueDefinition{
 				Kind: kinds.InputValueDefinition,

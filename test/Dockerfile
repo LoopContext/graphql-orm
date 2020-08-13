@@ -1,7 +1,7 @@
 FROM golang as builder
 
 ENV GO111MODULE=on
-WORKDIR /go/src/github.com/loopcontext/graphql-orm/test
+WORKDIR /go/src/github.com/loopcontext/go-graphql-orm/test
 
 COPY . .
 RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o /tmp/app *.go

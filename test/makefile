@@ -1,9 +1,9 @@
-# Makefile for github.com/loopcontext/graphql-orm/test
+# Makefile for github.com/loopcontext/go-graphql-orm/test
 generate:
-	GO111MODULE=on go run github.com/loopcontext/graphql-orm
+	GO111MODULE=on go run github.com/loopcontext/go-graphql-orm
 
 reinit:
-	GO111MODULE=on go run github.com/loopcontext/graphql-orm init
+	GO111MODULE=on go run github.com/loopcontext/go-graphql-orm init
 
 migrate:
 	DATABASE_URL=sqlite3://test.db PORT=8080 go run *.go migrate

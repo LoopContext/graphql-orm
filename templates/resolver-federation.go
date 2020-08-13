@@ -10,7 +10,7 @@ import (
 	"github.com/graph-gophers/dataloader"
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/gofrs/uuid"
-	"github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/events"
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
@@ -61,7 +61,7 @@ import (
 // 	"github.com/graph-gophers/dataloader"
 // 	"github.com/99designs/gqlgen/graphql"
 // 	"github.com/gofrs/uuid"
-// 	"github.com/loopcontext/graphql-orm/events"
+// 	"github.com/loopcontext/go-graphql-orm/events"
 // 	"github.com/vektah/gqlparser/v2/ast"
 // )
 

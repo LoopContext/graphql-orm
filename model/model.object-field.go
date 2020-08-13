@@ -141,6 +141,8 @@ func (o *ObjectField) IsSortable() bool {
 func (o *ObjectField) IsSearchable() bool {
 	return o.IsString() || o.IsNumeric()
 }
+
+// IsNumeric ...
 func (o *ObjectField) IsNumeric() bool {
 	t := getNamedType(o.Def.Type).(*ast.Named)
 	return t.Name.Value == "Int" || t.Name.Value == "Float"

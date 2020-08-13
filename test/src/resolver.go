@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strings"
 
-	// "github.com/loopcontext/graphql-orm/events"
-	"github.com/loopcontext/graphql-orm/test/gen"
+	// "github.com/loopcontext/go-graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/test/gen"
 )
 
 // New ...

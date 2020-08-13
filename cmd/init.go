@@ -9,11 +9,11 @@ import (
 	"path"
 	"strings"
 
-	"github.com/loopcontext/graphql-orm/templates"
+	"github.com/loopcontext/go-graphql-orm/templates"
 
 	"gopkg.in/yaml.v2"
 
-	"github.com/loopcontext/graphql-orm/model"
+	"github.com/loopcontext/go-graphql-orm/model"
 	"github.com/urfave/cli"
 )
 

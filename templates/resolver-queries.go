@@ -10,7 +10,7 @@ import (
 	"github.com/graph-gophers/dataloader"
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/gofrs/uuid"
-	"github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/events"
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
@@ -273,6 +273,8 @@ type GeneratedQueryResolver struct{ *GeneratedResolver }
 
 					return
 				}
+
+				// {{$rel.MethodName}}Connection method
 				func (r *Generated{{$obj.Name}}Resolver) {{$rel.MethodName}}Connection(ctx context.Context, obj *{{$obj.Name}}, offset *int, limit *int, q *string, sort []*{{$rel.TargetType}}SortType, filter *{{$rel.TargetType}}FilterType) (res *{{$rel.TargetType}}ResultType, err error) {
 					f := &{{$rel.TargetType}}FilterType{
 						{{$rel.InverseRelationship.MethodName}}: &{{$obj.Name}}FilterType{

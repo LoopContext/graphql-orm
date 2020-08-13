@@ -8,8 +8,8 @@ import (
 	"path"
 	"text/template"
 
-	"github.com/loopcontext/graphql-orm/model"
-	"github.com/loopcontext/graphql-orm/tools"
+	"github.com/loopcontext/go-graphql-orm/model"
+	"github.com/loopcontext/go-graphql-orm/tools"
 )
 
 // TemplateData ...

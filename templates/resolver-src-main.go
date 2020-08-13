@@ -6,7 +6,7 @@ var ResolverSrc = `package src
 import (
 	"context"
 	"{{.Config.Package}}/gen"
-	"github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/events"
 	"golang.org/x/crypto/bcrypt"
 	//"github.com/loopcontext/checkmail"
 )

@@ -2,7 +2,7 @@ package src
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/loopcontext/graphql-orm/test/gen"
+	"github.com/loopcontext/go-graphql-orm/test/gen"
 	"gopkg.in/gormigrate.v1"
 )
 

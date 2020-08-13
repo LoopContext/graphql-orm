@@ -5,6 +5,7 @@ type ObjectFieldAggregation struct {
 	Name string
 }
 
+// Aggregations method
 func (o *ObjectField) Aggregations() []ObjectFieldAggregation {
 	res := []ObjectFieldAggregation{
 		{Name: "Min"},
