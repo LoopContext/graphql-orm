@@ -167,12 +167,6 @@ func GetJWTClaimsFromContext(ctx context.Context) *JWTClaims {
 	return val
 }
 
-// JWTClaims ...
-type JWTClaims struct {
-	jwtgo.StandardClaims
-	Scope *string
-}
-
 func getJWTClaims(req *http.Request) (*JWTClaims, error) {
 	var p *JWTClaims
 
@@ -184,6 +178,22 @@ func getJWTClaims(req *http.Request) (*JWTClaims, error) {
 	p = &JWTClaims{}
 	jwtgo.ParseWithClaims(tokenStr, p, nil)
 	return p, nil
+}
+
+// JWTClaims JWT Claims
+type JWTClaims struct {
+	jwtgo.StandardClaims
+	Email  string
+	Avatar string
+	Roles  []JWTRole ` + "`" + `json:"roles,omitempty"` + "`" + `
+	Scope  *string   ` + "`" + `json:"scope,omitempty"` + "`" + `
+}
+
+// JWTRole defines a role
+type JWTRole struct {
+	Name        string
+	Description string
+	Permissions []string
 }
 
 // Scopes ...
