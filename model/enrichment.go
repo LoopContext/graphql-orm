@@ -21,7 +21,7 @@ func EnrichModelObjects(m *Model) error {
 		o.Def.Fields = append([]*ast.FieldDefinition{id}, o.Def.Fields...)
 		for _, rel := range o.Relationships() {
 			if rel.IsToOne() {
-				o.Def.Fields = append(o.Def.Fields, columnDefinition(rel.Name()+"_id", "ID", false))
+				o.Def.Fields = append(o.Def.Fields, columnDefinition(rel.Name()+"Id", "ID", false))
 			}
 		}
 		o.Def.Fields = append(o.Def.Fields, updatedAt, createdAt, updatedBy, createdBy)
