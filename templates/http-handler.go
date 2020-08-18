@@ -26,9 +26,6 @@ import (
 
 // GetHTTPServeMux HTTP Mux
 func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration) *mux.Router {
-	if os.Getenv("DEBUG") == "true" {
-		log.Debug().Msgf("Path base: %s", path.Base(req.URL.Path))
-	}
 
 	mux := mux.NewRouter()
 
