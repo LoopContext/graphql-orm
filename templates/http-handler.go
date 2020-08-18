@@ -23,7 +23,7 @@ import (
 	"gopkg.in/gormigrate.v1"
 )
 
-// GetHTTPServeMux ...
+// GetHTTPServeMux HTTP Mux
 func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration) *mux.Router {
 	mux := mux.NewRouter()
 
@@ -67,7 +67,7 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	if gqlBasePath == "" {
 		gqlBasePath = "/graphql"
 	}
-	mux.HandleFunc(os.Getenv("API_VERSION")+os.Getenv("API_GRAPHQL_BASE_RESOURCE"), func(res http.ResponseWriter, req *http.Request) {
+	mux.HandleFunc(os.Getenv("API_VERSION")+gqlBasePath, func(res http.ResponseWriter, req *http.Request) {
 		ctx := initContextWithJWTClaims(req)
 		ctx = context.WithValue(ctx, KeyLoaders, loaders)
 		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
@@ -76,8 +76,8 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	})
 
 	if os.Getenv("EXPOSE_PLAYGROUND_ENDPOINT") == "true" {
-		playgroundHandler := playground.Handler("GraphQL playground", os.Getenv("API_VERSION")+os.Getenv("API_GRAPHQL_BASE_RESOURCE"))
-		mux.HandleFunc(os.Getenv("API_VERSION")+os.Getenv("API_GRAPHQL_BASE_RESOURCE")+"/playground", func(res http.ResponseWriter, req *http.Request) {
+		playgroundHandler := playground.Handler("GraphQL playground", os.Getenv("API_VERSION")+gqlBasePath)
+		mux.HandleFunc(os.Getenv("API_VERSION")+gqlBasePath+"/playground", func(res http.ResponseWriter, req *http.Request) {
 			ctx := initContextWithJWTClaims(req)
 			ctx = context.WithValue(ctx, KeyLoaders, loaders)
 			ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
@@ -130,7 +130,7 @@ func GetHTTPVercel(r ResolverRoot, db *DB, migrations []*gormigrate.Migration, r
 	if gqlBasePath == "" {
 		gqlBasePath = "/graphql"
 	}
-	if path.Base(req.URL.Path) == os.Getenv("API_GRAPHQL_BASE_RESOURCE") {
+	if path.Base(req.URL.Path) == gqlBasePath {
 		ctx := initContextWithJWTClaims(req)
 		ctx = context.WithValue(ctx, KeyLoaders, loaders)
 		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
@@ -139,7 +139,7 @@ func GetHTTPVercel(r ResolverRoot, db *DB, migrations []*gormigrate.Migration, r
 	}
 
 	if os.Getenv("EXPOSE_PLAYGROUND_ENDPOINT") == "true" && path.Base(req.URL.Path) == "playground" {
-		playgroundHandler := playground.Handler("GraphQL playground", os.Getenv("API_GRAPHQL_BASE_RESOURCE"))
+		playgroundHandler := playground.Handler("GraphQL playground", gqlBasePath)
 		ctx := initContextWithJWTClaims(req)
 		ctx = context.WithValue(ctx, KeyLoaders, loaders)
 		ctx = context.WithValue(ctx, KeyExecutableSchema, executableSchema)
