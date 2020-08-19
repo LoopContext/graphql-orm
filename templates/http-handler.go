@@ -133,7 +133,7 @@ func GetHTTPVercel(r ResolverRoot, db *DB, migrations []*gormigrate.Migration, r
 	}
 	gqlBasePath := os.Getenv("API_GRAPHQL_BASE_RESOURCE")
 	if gqlBasePath == "" {
-		gqlBasePath = "/graphql"
+		gqlBasePath = "graphql"
 	}
 	if path.Base(req.URL.Path) == gqlBasePath {
 		ctx := initContextWithJWTClaims(req)
