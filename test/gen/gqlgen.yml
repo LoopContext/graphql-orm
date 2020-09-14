@@ -1,0 +1,123 @@
+# Generated with graphql-orm
+
+schema:
+  - schema.graphql
+exec:
+  filename: generated.go
+  package: gen
+model:
+  filename: models_gen.go
+  package: gen
+resolver:
+  filename: resolver.go
+  type: Resolver
+  package: gen
+federation:
+  filename: federation.go
+  package: gen
+
+models:
+
+  Task:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.Task
+    fields:
+      assignee:
+        resolver: true
+      owner:
+        resolver: true
+      parentTask:
+        resolver: true
+      subtasks:
+        resolver: true
+      categories:
+        resolver: true
+  TaskResultType:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.TaskResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  TaskCreateInput:
+    model: "map[string]interface{}"
+  TaskUpdateInput:
+    model: "map[string]interface{}"
+
+  TaskCategory:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.TaskCategory
+    fields:
+      tasks:
+        resolver: true
+  TaskCategoryResultType:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.TaskCategoryResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  TaskCategoryCreateInput:
+    model: "map[string]interface{}"
+  TaskCategoryUpdateInput:
+    model: "map[string]interface{}"
+
+  Company:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.Company
+    fields:
+      employees:
+        resolver: true
+  CompanyResultType:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.CompanyResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  CompanyCreateInput:
+    model: "map[string]interface{}"
+  CompanyUpdateInput:
+    model: "map[string]interface{}"
+
+  User:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.User
+    fields:
+      employers:
+        resolver: true
+      tasks:
+        resolver: true
+      createdTasks:
+        resolver: true
+  UserResultType:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.UserResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  UserCreateInput:
+    model: "map[string]interface{}"
+  UserUpdateInput:
+    model: "map[string]interface{}"
+
+  PlainEntity:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.PlainEntity
+    fields:
+  PlainEntityResultType:
+    model: github.com/loopcontext/go-graphql-orm/test/gen.PlainEntityResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  PlainEntityCreateInput:
+    model: "map[string]interface{}"
+  PlainEntityUpdateInput:
+    model: "map[string]interface{}"
+
+
+
+  Review:
+    fields:
+
+  Country:
+    fields:
+
