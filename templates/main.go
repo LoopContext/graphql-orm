@@ -6,14 +6,14 @@ var Main = `package main
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"strings"
 
-	"github.com/99designs/gqlgen/handler"
-	jwtgo "github.com/dgrijalva/jwt-go"
 	"github.com/rs/cors"
+	"github.com/rs/zerolog/log"
+	"github.com/99designs/gqlgen/handler"
+
 	"{{.Config.Package}}/gen"
 	"{{.Config.Package}}/src"
 )
@@ -22,7 +22,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "graphql-orm"
 	app.Usage = "This tool is for generating a graphql-api"
-	app.Version = "0.1.0"
+	app.Version = "1.0.81"
 
 	app.Commands = []cli.Command{
 		startCmd,
@@ -133,13 +133,13 @@ func startServer(enableCors bool, port string) error {
 	h := &http.Server{Addr: ":" + port, Handler: handler}
 
 	go func() {
-		log.Printf("connect to http://localhost:%s/graphql/playground for GraphQL playground", port)
-		log.Fatal(h.ListenAndServe())
+		log.Info().Msgf("connect to http://localhost:%s%s%s/playground for GraphQL playground", port, os.Getenv("API_VERSION"), gqlBasePath)
+		log.Fatal().Err(h.ListenAndServe()).Send()
 	}()
 
 	<-stop
 
-	log.Println("\nShutting down the server...")
+	log.Info().Msg("Shutting down the server...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -148,13 +148,13 @@ func startServer(enableCors bool, port string) error {
 	if err != nil {
 		return cli.NewExitError(err, 1)
 	}
-	log.Println("Server gracefully stopped")
+	log.Info().Msg("Server gracefully stopped")
 
 	err = db.Close()
 	if err != nil {
 		return cli.NewExitError(err, 1)
 	}
-	log.Println("Database connection closed")
+	log.Info().Msg("Database connection closed")
 
 	return nil
 }

@@ -177,6 +177,14 @@ func generateFiles(p string, m *model.Model, c *model.Config) error {
 	if err := templates.WriteTemplate(templates.ResolverSrcGen, path.Join(p, "src/resolver_gen.go"), data); err != nil {
 		return err
 	}
+	// If the extended resolvers exist, do not overwrite, the developer might've done
+	// changes, such as RBAC access, if you want to reset, either delete or rename current ext file
+	// and let the generator create a new one if there are any schema changes.
+	if !fileExists(path.Join(p, "src/resolver_ext.go")) {
+		if err := templates.WriteTemplate(templates.ResolverSrcExt, path.Join(p, "src/resolver_ext.go"), data); err != nil {
+			return err
+		}
+	}
 	if err := templates.WriteTemplate(templates.Migrations, path.Join(p, "gen/migrations.go"), data); err != nil {
 		return err
 	}

@@ -20,13 +20,13 @@ tmp_dir = "tmp"
 
 [build]
 # Just plain old shell command. You could use "make" as well.
-cmd = "go build -o ./tmp/graphql-server ."
+cmd = "go build -v -o ./tmp/graphql-server ."
 # Binary file yields from "cmd".
 bin = "tmp/graphql-server"
 # Customize binary.
 full_bin = "./tmp/graphql-server automigrate && ./tmp/graphql-server migrate && ./tmp/graphql-server start"
 # Watch these filename extensions.
-include_ext = ["go", "tpl", "tmpl", "html"]
+include_ext = ["go", "tpl", "tmpl", "html", ".dev"]
 # Ignore these filename extensions or directories.
 exclude_dir = ["assets", "tmp", "vendor", "frontend/node_modules"]
 # Watch these directories if you specified.

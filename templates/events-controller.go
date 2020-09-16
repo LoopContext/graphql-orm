@@ -1,14 +1,17 @@
 package templates
 
+// EventsController template
 var EventsController = `package gen
 
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/url"
 	"os"
 	"strings"
+
+	"github.com/rs/cors"
+	"github.com/rs/zerolog/log"
 
 	cloudevents "github.com/cloudevents/sdk-go"
 	"github.com/cloudevents/sdk-go/pkg/cloudevents/transport"
