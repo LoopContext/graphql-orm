@@ -225,6 +225,15 @@ func (c *JWTClaims) HasScope(scope string) bool {
 	return false
 }
 
+// Permission Constants
+const (
+	JWTPermissionConstCreate = "create"
+	JWTPermissionConstRead   = "read"
+	JWTPermissionConstUpdate = "update"
+	JWTPermissionConstDelete = "delete"
+	JWTPermissionConstList   = "list"
+)
+
 // HasPermission method checks if a group of claims has a [permission] on an [entity]
 func HasPermission(c *JWTClaims, e string, p string) bool {
 	return strings.Contains(c.Permissions[e], p)
