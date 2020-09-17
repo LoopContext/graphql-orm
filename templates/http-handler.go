@@ -197,16 +197,13 @@ func getJWTClaims(req *http.Request) (*JWTClaims, error) {
 type JWTClaims struct {
 	jwtgo.StandardClaims
 	Email  string    ` + "`" + `json:"email"` + "`" + `
-	Avatar string    ` + "`" + `json:"avatar,omitempty"` + "`" + `
-	Roles  []JWTRole ` + "`" + `json:"roles,omitempty"` + "`" + `
+	Name  string    ` + "`" + `json:"name"` + "`" + `
+	Nickname  string    ` + "`" + `json:"nickname"` + "`" + `
+	Picture string    ` + "`" + `json:"avatar,omitempty"` + "`" + `
+	Roles  []string ` + "`" + `json:"roles,omitempty"` + "`" + `
+	Permissions  map[string][]string ` + "`" + `json:"permissions,omitempty"` + "`" + `
 	Scope  *string   ` + "`" + `json:"scope,omitempty"` + "`" + `
-}
 
-// JWTRole defines a role
-type JWTRole struct {
-	Name        string    ` + "`" + `json:"name"` + "`" + `
-	Description string    ` + "`" + `json:"description"` + "`" + `
-	Permissions []string  ` + "`" + `json:"permissions"` + "`" + `
 }
 
 // Scopes ...
