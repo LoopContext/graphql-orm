@@ -201,7 +201,7 @@ type JWTClaims struct {
 	Nickname  string    ` + "`" + `json:"nickname"` + "`" + `
 	Picture string    ` + "`" + `json:"avatar,omitempty"` + "`" + `
 	Roles  []string ` + "`" + `json:"roles,omitempty"` + "`" + `
-	Permissions  map[string][]string ` + "`" + `json:"permissions,omitempty"` + "`" + `
+	Permissions  map[string]string ` + "`" + `json:"permissions,omitempty"` + "`" + `
 	Scope  *string   ` + "`" + `json:"scope,omitempty"` + "`" + `
 
 }
@@ -223,5 +223,10 @@ func (c *JWTClaims) HasScope(scope string) bool {
 		}
 	}
 	return false
+}
+
+// HasPermission method checks if a group of claims has a [permission] on an [entity]
+func HasPermission(c *JWTClaims, e string, p string) bool {
+	return strings.Contains(c.Permissions[e], p)
 }
 `
