@@ -234,8 +234,18 @@ const (
 	JWTPermissionConstList   = "list"
 )
 
-// HasPermission method checks if a group of claims has a [permission] on an [entity]
+// HasPermission method checks if claims have an [e]ntity's [p]ermission
 func HasPermission(c *JWTClaims, e string, p string) bool {
 	return strings.Contains(c.Permissions[e], p)
+}
+
+// HasRole method checks if claims has a specific [r]ole
+func HasRole(c *JWTClaims, r string) bool {
+	for _, role := range c.Roles {
+		if r == role {
+			return true
+		}
+	}
+	return false
 }
 `
