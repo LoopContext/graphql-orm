@@ -22,7 +22,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "graphql-orm"
 	app.Usage = "This tool is for generating a graphql-api"
-	app.Version = "1.0.81"
+	app.Version = "1.0.8"
 
 	app.Commands = []cli.Command{
 		startCmd,
