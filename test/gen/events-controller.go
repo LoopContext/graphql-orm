@@ -3,13 +3,15 @@ package gen
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/url"
 	"os"
 	"strings"
 
+	"github.com/rs/zerolog/log"
+
 	cloudevents "github.com/cloudevents/sdk-go"
 	"github.com/cloudevents/sdk-go/pkg/cloudevents/transport"
+
 	cloudeventsaws "github.com/loopcontext/cloudevents-aws-transport"
 	"github.com/loopcontext/graphql-orm/events"
 )

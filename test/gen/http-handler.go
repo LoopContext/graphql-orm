@@ -193,17 +193,13 @@ func getJWTClaims(req *http.Request) (*JWTClaims, error) {
 // JWTClaims JWT Claims
 type JWTClaims struct {
 	jwtgo.StandardClaims
-	Email  string    `json:"email"`
-	Avatar string    `json:"avatar,omitempty"`
-	Roles  []JWTRole `json:"roles,omitempty"`
-	Scope  *string   `json:"scope,omitempty"`
-}
-
-// JWTRole defines a role
-type JWTRole struct {
-	Name        string   `json:"name"`
-	Description string   `json:"description"`
-	Permissions []string `json:"permissions"`
+	Email       string            `json:"email"`
+	Name        string            `json:"name"`
+	Nickname    string            `json:"nickname"`
+	Picture     string            `json:"avatar,omitempty"`
+	Roles       []string          `json:"roles,omitempty"`
+	Permissions map[string]string `json:"permissions,omitempty"`
+	Scope       *string           `json:"scope,omitempty"`
 }
 
 // Scopes ...
@@ -219,6 +215,30 @@ func (c *JWTClaims) Scopes() []string {
 func (c *JWTClaims) HasScope(scope string) bool {
 	for _, s := range c.Scopes() {
 		if s == scope {
+			return true
+		}
+	}
+	return false
+}
+
+// Permission Constants
+const (
+	JWTPermissionConstCreate = "create"
+	JWTPermissionConstRead   = "read"
+	JWTPermissionConstUpdate = "update"
+	JWTPermissionConstDelete = "delete"
+	JWTPermissionConstList   = "list"
+)
+
+// HasPermission method checks if claims have an [e]ntity's [p]ermission
+func HasPermission(c *JWTClaims, e string, p string) bool {
+	return strings.Contains(c.Permissions[e], p)
+}
+
+// HasRole method checks if claims has a specific [r]ole
+func HasRole(c *JWTClaims, r string) bool {
+	for _, role := range c.Roles {
+		if r == role {
 			return true
 		}
 	}

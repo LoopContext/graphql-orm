@@ -1465,7 +1465,7 @@ func (ec *executionContext) introspectType(name string) (*introspection.Type, er
 }
 
 var sources = []*ast.Source{
-	&ast.Source{Name: "schema.graphql", Input: `# This schema is generated, please don't update it manually
+	{Name: "schema.graphql", Input: `# This schema is generated, please don't update it manually
 
 scalar Time
 
@@ -3019,7 +3019,7 @@ type Country {
   id: ID!
 }
 `, BuiltIn: false},
-	&ast.Source{Name: "federation/directives.graphql", Input: `
+	{Name: "federation/directives.graphql", Input: `
 scalar _Any
 scalar _FieldSet
 
@@ -3041,6 +3041,7 @@ func (ec *executionContext) field_Company_employeesConnection_args(ctx context.C
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3049,6 +3050,7 @@ func (ec *executionContext) field_Company_employeesConnection_args(ctx context.C
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3057,6 +3059,7 @@ func (ec *executionContext) field_Company_employeesConnection_args(ctx context.C
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3065,6 +3068,7 @@ func (ec *executionContext) field_Company_employeesConnection_args(ctx context.C
 	args["q"] = arg2
 	var arg3 []*UserSortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOUserSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3073,6 +3077,7 @@ func (ec *executionContext) field_Company_employeesConnection_args(ctx context.C
 	args["sort"] = arg3
 	var arg4 *UserFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOUserFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3087,6 +3092,7 @@ func (ec *executionContext) field_Mutation_createCompany_args(ctx context.Contex
 	args := map[string]interface{}{}
 	var arg0 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg0, err = ec.unmarshalNCompanyCreateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3101,6 +3107,7 @@ func (ec *executionContext) field_Mutation_createPlainEntity_args(ctx context.Co
 	args := map[string]interface{}{}
 	var arg0 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg0, err = ec.unmarshalNPlainEntityCreateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3115,6 +3122,7 @@ func (ec *executionContext) field_Mutation_createTaskCategory_args(ctx context.C
 	args := map[string]interface{}{}
 	var arg0 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg0, err = ec.unmarshalNTaskCategoryCreateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3129,6 +3137,7 @@ func (ec *executionContext) field_Mutation_createTask_args(ctx context.Context, 
 	args := map[string]interface{}{}
 	var arg0 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg0, err = ec.unmarshalNTaskCreateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3143,6 +3152,7 @@ func (ec *executionContext) field_Mutation_createUser_args(ctx context.Context, 
 	args := map[string]interface{}{}
 	var arg0 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg0, err = ec.unmarshalNUserCreateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3157,6 +3167,7 @@ func (ec *executionContext) field_Mutation_deleteCompany_args(ctx context.Contex
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3171,6 +3182,7 @@ func (ec *executionContext) field_Mutation_deletePlainEntity_args(ctx context.Co
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3185,6 +3197,7 @@ func (ec *executionContext) field_Mutation_deleteTaskCategory_args(ctx context.C
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3199,6 +3212,7 @@ func (ec *executionContext) field_Mutation_deleteTask_args(ctx context.Context, 
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3213,6 +3227,7 @@ func (ec *executionContext) field_Mutation_deleteUser_args(ctx context.Context, 
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3227,6 +3242,7 @@ func (ec *executionContext) field_Mutation_updateCompany_args(ctx context.Contex
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3235,6 +3251,7 @@ func (ec *executionContext) field_Mutation_updateCompany_args(ctx context.Contex
 	args["id"] = arg0
 	var arg1 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg1, err = ec.unmarshalNCompanyUpdateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3249,6 +3266,7 @@ func (ec *executionContext) field_Mutation_updatePlainEntity_args(ctx context.Co
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3257,6 +3275,7 @@ func (ec *executionContext) field_Mutation_updatePlainEntity_args(ctx context.Co
 	args["id"] = arg0
 	var arg1 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg1, err = ec.unmarshalNPlainEntityUpdateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3271,6 +3290,7 @@ func (ec *executionContext) field_Mutation_updateTaskCategory_args(ctx context.C
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3279,6 +3299,7 @@ func (ec *executionContext) field_Mutation_updateTaskCategory_args(ctx context.C
 	args["id"] = arg0
 	var arg1 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg1, err = ec.unmarshalNTaskCategoryUpdateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3293,6 +3314,7 @@ func (ec *executionContext) field_Mutation_updateTask_args(ctx context.Context, 
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3301,6 +3323,7 @@ func (ec *executionContext) field_Mutation_updateTask_args(ctx context.Context, 
 	args["id"] = arg0
 	var arg1 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg1, err = ec.unmarshalNTaskUpdateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3315,6 +3338,7 @@ func (ec *executionContext) field_Mutation_updateUser_args(ctx context.Context, 
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalNID2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3323,6 +3347,7 @@ func (ec *executionContext) field_Mutation_updateUser_args(ctx context.Context, 
 	args["id"] = arg0
 	var arg1 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg1, err = ec.unmarshalNUserUpdateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3337,6 +3362,7 @@ func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs
 	args := map[string]interface{}{}
 	var arg0 string
 	if tmp, ok := rawArgs["name"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name"))
 		arg0, err = ec.unmarshalNString2string(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3351,6 +3377,7 @@ func (ec *executionContext) field_Query_companies_args(ctx context.Context, rawA
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3359,6 +3386,7 @@ func (ec *executionContext) field_Query_companies_args(ctx context.Context, rawA
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3367,6 +3395,7 @@ func (ec *executionContext) field_Query_companies_args(ctx context.Context, rawA
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3375,6 +3404,7 @@ func (ec *executionContext) field_Query_companies_args(ctx context.Context, rawA
 	args["q"] = arg2
 	var arg3 []*CompanySortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOCompanySortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3383,6 +3413,7 @@ func (ec *executionContext) field_Query_companies_args(ctx context.Context, rawA
 	args["sort"] = arg3
 	var arg4 *CompanyFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOCompanyFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3397,6 +3428,7 @@ func (ec *executionContext) field_Query_company_args(ctx context.Context, rawArg
 	args := map[string]interface{}{}
 	var arg0 *string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalOID2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3405,6 +3437,7 @@ func (ec *executionContext) field_Query_company_args(ctx context.Context, rawArg
 	args["id"] = arg0
 	var arg1 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg1, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3413,6 +3446,7 @@ func (ec *executionContext) field_Query_company_args(ctx context.Context, rawArg
 	args["q"] = arg1
 	var arg2 *CompanyFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg2, err = ec.unmarshalOCompanyFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3427,6 +3461,7 @@ func (ec *executionContext) field_Query_plainEntities_args(ctx context.Context, 
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3435,6 +3470,7 @@ func (ec *executionContext) field_Query_plainEntities_args(ctx context.Context, 
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3443,6 +3479,7 @@ func (ec *executionContext) field_Query_plainEntities_args(ctx context.Context, 
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3451,6 +3488,7 @@ func (ec *executionContext) field_Query_plainEntities_args(ctx context.Context, 
 	args["q"] = arg2
 	var arg3 []*PlainEntitySortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOPlainEntitySortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntitySortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3459,6 +3497,7 @@ func (ec *executionContext) field_Query_plainEntities_args(ctx context.Context, 
 	args["sort"] = arg3
 	var arg4 *PlainEntityFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOPlainEntityFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3473,6 +3512,7 @@ func (ec *executionContext) field_Query_plainEntity_args(ctx context.Context, ra
 	args := map[string]interface{}{}
 	var arg0 *string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalOID2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3481,6 +3521,7 @@ func (ec *executionContext) field_Query_plainEntity_args(ctx context.Context, ra
 	args["id"] = arg0
 	var arg1 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg1, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3489,6 +3530,7 @@ func (ec *executionContext) field_Query_plainEntity_args(ctx context.Context, ra
 	args["q"] = arg1
 	var arg2 *PlainEntityFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg2, err = ec.unmarshalOPlainEntityFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3503,6 +3545,7 @@ func (ec *executionContext) field_Query_taskCategories_args(ctx context.Context,
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3511,6 +3554,7 @@ func (ec *executionContext) field_Query_taskCategories_args(ctx context.Context,
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3519,6 +3563,7 @@ func (ec *executionContext) field_Query_taskCategories_args(ctx context.Context,
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3527,6 +3572,7 @@ func (ec *executionContext) field_Query_taskCategories_args(ctx context.Context,
 	args["q"] = arg2
 	var arg3 []*TaskCategorySortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOTaskCategorySortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3535,6 +3581,7 @@ func (ec *executionContext) field_Query_taskCategories_args(ctx context.Context,
 	args["sort"] = arg3
 	var arg4 *TaskCategoryFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOTaskCategoryFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3549,6 +3596,7 @@ func (ec *executionContext) field_Query_taskCategory_args(ctx context.Context, r
 	args := map[string]interface{}{}
 	var arg0 *string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalOID2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3557,6 +3605,7 @@ func (ec *executionContext) field_Query_taskCategory_args(ctx context.Context, r
 	args["id"] = arg0
 	var arg1 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg1, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3565,6 +3614,7 @@ func (ec *executionContext) field_Query_taskCategory_args(ctx context.Context, r
 	args["q"] = arg1
 	var arg2 *TaskCategoryFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg2, err = ec.unmarshalOTaskCategoryFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3579,6 +3629,7 @@ func (ec *executionContext) field_Query_task_args(ctx context.Context, rawArgs m
 	args := map[string]interface{}{}
 	var arg0 *string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalOID2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3587,6 +3638,7 @@ func (ec *executionContext) field_Query_task_args(ctx context.Context, rawArgs m
 	args["id"] = arg0
 	var arg1 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg1, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3595,6 +3647,7 @@ func (ec *executionContext) field_Query_task_args(ctx context.Context, rawArgs m
 	args["q"] = arg1
 	var arg2 *TaskFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg2, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3609,6 +3662,7 @@ func (ec *executionContext) field_Query_tasks_args(ctx context.Context, rawArgs 
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3617,6 +3671,7 @@ func (ec *executionContext) field_Query_tasks_args(ctx context.Context, rawArgs 
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3625,6 +3680,7 @@ func (ec *executionContext) field_Query_tasks_args(ctx context.Context, rawArgs 
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3633,6 +3689,7 @@ func (ec *executionContext) field_Query_tasks_args(ctx context.Context, rawArgs 
 	args["q"] = arg2
 	var arg3 []*TaskSortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOTaskSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3641,6 +3698,7 @@ func (ec *executionContext) field_Query_tasks_args(ctx context.Context, rawArgs 
 	args["sort"] = arg3
 	var arg4 *TaskFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3655,6 +3713,7 @@ func (ec *executionContext) field_Query_user_args(ctx context.Context, rawArgs m
 	args := map[string]interface{}{}
 	var arg0 *string
 	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 		arg0, err = ec.unmarshalOID2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3663,6 +3722,7 @@ func (ec *executionContext) field_Query_user_args(ctx context.Context, rawArgs m
 	args["id"] = arg0
 	var arg1 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg1, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3671,6 +3731,7 @@ func (ec *executionContext) field_Query_user_args(ctx context.Context, rawArgs m
 	args["q"] = arg1
 	var arg2 *UserFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg2, err = ec.unmarshalOUserFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3685,6 +3746,7 @@ func (ec *executionContext) field_Query_users_args(ctx context.Context, rawArgs 
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3693,6 +3755,7 @@ func (ec *executionContext) field_Query_users_args(ctx context.Context, rawArgs 
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3701,6 +3764,7 @@ func (ec *executionContext) field_Query_users_args(ctx context.Context, rawArgs 
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3709,6 +3773,7 @@ func (ec *executionContext) field_Query_users_args(ctx context.Context, rawArgs 
 	args["q"] = arg2
 	var arg3 []*UserSortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOUserSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3717,6 +3782,7 @@ func (ec *executionContext) field_Query_users_args(ctx context.Context, rawArgs 
 	args["sort"] = arg3
 	var arg4 *UserFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOUserFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3731,6 +3797,7 @@ func (ec *executionContext) field_TaskCategory_tasksConnection_args(ctx context.
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3739,6 +3806,7 @@ func (ec *executionContext) field_TaskCategory_tasksConnection_args(ctx context.
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3747,6 +3815,7 @@ func (ec *executionContext) field_TaskCategory_tasksConnection_args(ctx context.
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3755,6 +3824,7 @@ func (ec *executionContext) field_TaskCategory_tasksConnection_args(ctx context.
 	args["q"] = arg2
 	var arg3 []*TaskSortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOTaskSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3763,6 +3833,7 @@ func (ec *executionContext) field_TaskCategory_tasksConnection_args(ctx context.
 	args["sort"] = arg3
 	var arg4 *TaskFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3777,6 +3848,7 @@ func (ec *executionContext) field_Task_categoriesConnection_args(ctx context.Con
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3785,6 +3857,7 @@ func (ec *executionContext) field_Task_categoriesConnection_args(ctx context.Con
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3793,6 +3866,7 @@ func (ec *executionContext) field_Task_categoriesConnection_args(ctx context.Con
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3801,6 +3875,7 @@ func (ec *executionContext) field_Task_categoriesConnection_args(ctx context.Con
 	args["q"] = arg2
 	var arg3 []*TaskCategorySortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOTaskCategorySortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3809,6 +3884,7 @@ func (ec *executionContext) field_Task_categoriesConnection_args(ctx context.Con
 	args["sort"] = arg3
 	var arg4 *TaskCategoryFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOTaskCategoryFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3823,6 +3899,7 @@ func (ec *executionContext) field_Task_subtasksConnection_args(ctx context.Conte
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3831,6 +3908,7 @@ func (ec *executionContext) field_Task_subtasksConnection_args(ctx context.Conte
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3839,6 +3917,7 @@ func (ec *executionContext) field_Task_subtasksConnection_args(ctx context.Conte
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3847,6 +3926,7 @@ func (ec *executionContext) field_Task_subtasksConnection_args(ctx context.Conte
 	args["q"] = arg2
 	var arg3 []*TaskSortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOTaskSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3855,6 +3935,7 @@ func (ec *executionContext) field_Task_subtasksConnection_args(ctx context.Conte
 	args["sort"] = arg3
 	var arg4 *TaskFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3869,6 +3950,7 @@ func (ec *executionContext) field_User_createdTasksConnection_args(ctx context.C
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3877,6 +3959,7 @@ func (ec *executionContext) field_User_createdTasksConnection_args(ctx context.C
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3885,6 +3968,7 @@ func (ec *executionContext) field_User_createdTasksConnection_args(ctx context.C
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3893,6 +3977,7 @@ func (ec *executionContext) field_User_createdTasksConnection_args(ctx context.C
 	args["q"] = arg2
 	var arg3 []*TaskSortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOTaskSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3901,6 +3986,7 @@ func (ec *executionContext) field_User_createdTasksConnection_args(ctx context.C
 	args["sort"] = arg3
 	var arg4 *TaskFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3915,6 +4001,7 @@ func (ec *executionContext) field_User_employersConnection_args(ctx context.Cont
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3923,6 +4010,7 @@ func (ec *executionContext) field_User_employersConnection_args(ctx context.Cont
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3931,6 +4019,7 @@ func (ec *executionContext) field_User_employersConnection_args(ctx context.Cont
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3939,6 +4028,7 @@ func (ec *executionContext) field_User_employersConnection_args(ctx context.Cont
 	args["q"] = arg2
 	var arg3 []*CompanySortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOCompanySortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3947,6 +4037,7 @@ func (ec *executionContext) field_User_employersConnection_args(ctx context.Cont
 	args["sort"] = arg3
 	var arg4 *CompanyFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOCompanyFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3961,6 +4052,7 @@ func (ec *executionContext) field_User_tasksConnection_args(ctx context.Context,
 	args := map[string]interface{}{}
 	var arg0 *int
 	if tmp, ok := rawArgs["offset"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
 		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3969,6 +4061,7 @@ func (ec *executionContext) field_User_tasksConnection_args(ctx context.Context,
 	args["offset"] = arg0
 	var arg1 *int
 	if tmp, ok := rawArgs["limit"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
 		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3977,6 +4070,7 @@ func (ec *executionContext) field_User_tasksConnection_args(ctx context.Context,
 	args["limit"] = arg1
 	var arg2 *string
 	if tmp, ok := rawArgs["q"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("q"))
 		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3985,6 +4079,7 @@ func (ec *executionContext) field_User_tasksConnection_args(ctx context.Context,
 	args["q"] = arg2
 	var arg3 []*TaskSortType
 	if tmp, ok := rawArgs["sort"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
 		arg3, err = ec.unmarshalOTaskSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -3993,6 +4088,7 @@ func (ec *executionContext) field_User_tasksConnection_args(ctx context.Context,
 	args["sort"] = arg3
 	var arg4 *TaskFilterType
 	if tmp, ok := rawArgs["filter"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
 		arg4, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -4007,6 +4103,7 @@ func (ec *executionContext) field___Type_enumValues_args(ctx context.Context, ra
 	args := map[string]interface{}{}
 	var arg0 bool
 	if tmp, ok := rawArgs["includeDeprecated"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("includeDeprecated"))
 		arg0, err = ec.unmarshalOBoolean2bool(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -4021,6 +4118,7 @@ func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArg
 	args := map[string]interface{}{}
 	var arg0 bool
 	if tmp, ok := rawArgs["includeDeprecated"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("includeDeprecated"))
 		arg0, err = ec.unmarshalOBoolean2bool(ctx, tmp)
 		if err != nil {
 			return nil, err
@@ -4046,10 +4144,11 @@ func (ec *executionContext) _Address_street(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Address",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Address",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4077,10 +4176,11 @@ func (ec *executionContext) _Address_city(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Address",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Address",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4108,10 +4208,11 @@ func (ec *executionContext) _Address_zip(ctx context.Context, field graphql.Coll
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Address",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Address",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4139,10 +4240,11 @@ func (ec *executionContext) _Company_id(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4173,10 +4275,11 @@ func (ec *executionContext) _Company_name(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4204,10 +4307,11 @@ func (ec *executionContext) _Company_countryId(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4235,10 +4339,11 @@ func (ec *executionContext) _Company_country(ctx context.Context, field graphql.
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4266,10 +4371,11 @@ func (ec *executionContext) _Company_employees(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4300,10 +4406,11 @@ func (ec *executionContext) _Company_reviews(ctx context.Context, field graphql.
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4334,10 +4441,11 @@ func (ec *executionContext) _Company_updatedAt(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4365,10 +4473,11 @@ func (ec *executionContext) _Company_createdAt(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4399,10 +4508,11 @@ func (ec *executionContext) _Company_updatedBy(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4430,10 +4540,11 @@ func (ec *executionContext) _Company_createdBy(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4461,10 +4572,11 @@ func (ec *executionContext) _Company_employeesIds(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4495,10 +4607,11 @@ func (ec *executionContext) _Company_employeesConnection(ctx context.Context, fi
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4536,10 +4649,11 @@ func (ec *executionContext) _Company_uppercaseName(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Company",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Company",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4570,10 +4684,11 @@ func (ec *executionContext) _CompanyResultType_items(ctx context.Context, field 
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "CompanyResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "CompanyResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4604,10 +4719,11 @@ func (ec *executionContext) _CompanyResultType_count(ctx context.Context, field 
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "CompanyResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "CompanyResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4638,10 +4754,11 @@ func (ec *executionContext) _Country_id(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Country",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Country",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4672,10 +4789,11 @@ func (ec *executionContext) _Mutation_createTask(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4713,10 +4831,11 @@ func (ec *executionContext) _Mutation_updateTask(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4754,10 +4873,11 @@ func (ec *executionContext) _Mutation_deleteTask(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4795,10 +4915,11 @@ func (ec *executionContext) _Mutation_deleteAllTasks(ctx context.Context, field 
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4829,10 +4950,11 @@ func (ec *executionContext) _Mutation_createTaskCategory(ctx context.Context, fi
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4870,10 +4992,11 @@ func (ec *executionContext) _Mutation_updateTaskCategory(ctx context.Context, fi
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4911,10 +5034,11 @@ func (ec *executionContext) _Mutation_deleteTaskCategory(ctx context.Context, fi
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4952,10 +5076,11 @@ func (ec *executionContext) _Mutation_deleteAllTaskCategories(ctx context.Contex
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -4986,10 +5111,11 @@ func (ec *executionContext) _Mutation_createCompany(ctx context.Context, field g
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5027,10 +5153,11 @@ func (ec *executionContext) _Mutation_updateCompany(ctx context.Context, field g
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5068,10 +5195,11 @@ func (ec *executionContext) _Mutation_deleteCompany(ctx context.Context, field g
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5109,10 +5237,11 @@ func (ec *executionContext) _Mutation_deleteAllCompanies(ctx context.Context, fi
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5143,10 +5272,11 @@ func (ec *executionContext) _Mutation_createUser(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5184,10 +5314,11 @@ func (ec *executionContext) _Mutation_updateUser(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5225,10 +5356,11 @@ func (ec *executionContext) _Mutation_deleteUser(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5266,10 +5398,11 @@ func (ec *executionContext) _Mutation_deleteAllUsers(ctx context.Context, field 
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5300,10 +5433,11 @@ func (ec *executionContext) _Mutation_createPlainEntity(ctx context.Context, fie
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5341,10 +5475,11 @@ func (ec *executionContext) _Mutation_updatePlainEntity(ctx context.Context, fie
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5382,10 +5517,11 @@ func (ec *executionContext) _Mutation_deletePlainEntity(ctx context.Context, fie
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5423,10 +5559,11 @@ func (ec *executionContext) _Mutation_deleteAllPlainEntities(ctx context.Context
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Mutation",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Mutation",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5457,10 +5594,11 @@ func (ec *executionContext) _PlainEntity_id(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntity",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "PlainEntity",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5491,10 +5629,11 @@ func (ec *executionContext) _PlainEntity_date(ctx context.Context, field graphql
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntity",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "PlainEntity",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5522,10 +5661,11 @@ func (ec *executionContext) _PlainEntity_text(ctx context.Context, field graphql
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntity",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "PlainEntity",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5553,10 +5693,11 @@ func (ec *executionContext) _PlainEntity_shortText(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntity",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "PlainEntity",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5587,10 +5728,11 @@ func (ec *executionContext) _PlainEntity_updatedAt(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntity",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "PlainEntity",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5618,10 +5760,11 @@ func (ec *executionContext) _PlainEntity_createdAt(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntity",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "PlainEntity",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5652,10 +5795,11 @@ func (ec *executionContext) _PlainEntity_updatedBy(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntity",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "PlainEntity",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5683,10 +5827,11 @@ func (ec *executionContext) _PlainEntity_createdBy(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntity",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "PlainEntity",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5714,10 +5859,11 @@ func (ec *executionContext) _PlainEntityResultType_items(ctx context.Context, fi
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntityResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "PlainEntityResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5748,10 +5894,11 @@ func (ec *executionContext) _PlainEntityResultType_count(ctx context.Context, fi
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "PlainEntityResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "PlainEntityResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5782,10 +5929,11 @@ func (ec *executionContext) _Query__service(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5816,10 +5964,11 @@ func (ec *executionContext) _Query_task(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5854,10 +6003,11 @@ func (ec *executionContext) _Query_tasks(ctx context.Context, field graphql.Coll
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5895,10 +6045,11 @@ func (ec *executionContext) _Query_taskCategory(ctx context.Context, field graph
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5933,10 +6084,11 @@ func (ec *executionContext) _Query_taskCategories(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -5974,10 +6126,11 @@ func (ec *executionContext) _Query_company(ctx context.Context, field graphql.Co
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6012,10 +6165,11 @@ func (ec *executionContext) _Query_companies(ctx context.Context, field graphql.
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6053,10 +6207,11 @@ func (ec *executionContext) _Query_user(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6091,10 +6246,11 @@ func (ec *executionContext) _Query_users(ctx context.Context, field graphql.Coll
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6132,10 +6288,11 @@ func (ec *executionContext) _Query_plainEntity(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6170,10 +6327,11 @@ func (ec *executionContext) _Query_plainEntities(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6211,10 +6369,11 @@ func (ec *executionContext) _Query_hello(ctx context.Context, field graphql.Coll
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6245,10 +6404,11 @@ func (ec *executionContext) _Query_topCompanies(ctx context.Context, field graph
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6279,10 +6439,11 @@ func (ec *executionContext) _Query___type(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6317,10 +6478,11 @@ func (ec *executionContext) _Query___schema(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Query",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6348,10 +6510,11 @@ func (ec *executionContext) _Review_id(ctx context.Context, field graphql.Collec
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Review",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Review",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6382,10 +6545,11 @@ func (ec *executionContext) _Review_referenceID(ctx context.Context, field graph
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Review",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Review",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6416,10 +6580,11 @@ func (ec *executionContext) _Review_company(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Review",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Review",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6447,10 +6612,11 @@ func (ec *executionContext) _Task_id(ctx context.Context, field graphql.Collecte
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6481,10 +6647,11 @@ func (ec *executionContext) _Task_title(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6512,10 +6679,11 @@ func (ec *executionContext) _Task_completed(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6543,10 +6711,11 @@ func (ec *executionContext) _Task_state(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6574,10 +6743,11 @@ func (ec *executionContext) _Task_dueDate(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6605,10 +6775,11 @@ func (ec *executionContext) _Task_metas(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6636,10 +6807,11 @@ func (ec *executionContext) _Task_meta(ctx context.Context, field graphql.Collec
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6667,10 +6839,11 @@ func (ec *executionContext) _Task_assignee(ctx context.Context, field graphql.Co
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6698,10 +6871,11 @@ func (ec *executionContext) _Task_owner(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6732,10 +6906,11 @@ func (ec *executionContext) _Task_parentTask(ctx context.Context, field graphql.
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6763,10 +6938,11 @@ func (ec *executionContext) _Task_subtasks(ctx context.Context, field graphql.Co
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6797,10 +6973,11 @@ func (ec *executionContext) _Task_categories(ctx context.Context, field graphql.
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6831,10 +7008,11 @@ func (ec *executionContext) _Task_assigneeId(ctx context.Context, field graphql.
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6862,10 +7040,11 @@ func (ec *executionContext) _Task_ownerId(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6893,10 +7072,11 @@ func (ec *executionContext) _Task_parentTaskId(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6924,10 +7104,11 @@ func (ec *executionContext) _Task_updatedAt(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6955,10 +7136,11 @@ func (ec *executionContext) _Task_createdAt(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -6989,10 +7171,11 @@ func (ec *executionContext) _Task_updatedBy(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7020,10 +7203,11 @@ func (ec *executionContext) _Task_createdBy(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7051,10 +7235,11 @@ func (ec *executionContext) _Task_subtasksIds(ctx context.Context, field graphql
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7085,10 +7270,11 @@ func (ec *executionContext) _Task_subtasksConnection(ctx context.Context, field 
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7126,10 +7312,11 @@ func (ec *executionContext) _Task_categoriesIds(ctx context.Context, field graph
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7160,10 +7347,11 @@ func (ec *executionContext) _Task_categoriesConnection(ctx context.Context, fiel
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "Task",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "Task",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7201,10 +7389,11 @@ func (ec *executionContext) _TaskCategory_id(ctx context.Context, field graphql.
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7235,10 +7424,11 @@ func (ec *executionContext) _TaskCategory_name(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7266,10 +7456,11 @@ func (ec *executionContext) _TaskCategory_tasks(ctx context.Context, field graph
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7300,10 +7491,11 @@ func (ec *executionContext) _TaskCategory_updatedAt(ctx context.Context, field g
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7331,10 +7523,11 @@ func (ec *executionContext) _TaskCategory_createdAt(ctx context.Context, field g
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7365,10 +7558,11 @@ func (ec *executionContext) _TaskCategory_updatedBy(ctx context.Context, field g
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7396,10 +7590,11 @@ func (ec *executionContext) _TaskCategory_createdBy(ctx context.Context, field g
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7427,10 +7622,11 @@ func (ec *executionContext) _TaskCategory_tasksIds(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7461,10 +7657,11 @@ func (ec *executionContext) _TaskCategory_tasksConnection(ctx context.Context, f
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "TaskCategory",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7502,10 +7699,11 @@ func (ec *executionContext) _TaskCategoryResultType_items(ctx context.Context, f
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategoryResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "TaskCategoryResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7536,10 +7734,11 @@ func (ec *executionContext) _TaskCategoryResultType_count(ctx context.Context, f
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskCategoryResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "TaskCategoryResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7570,10 +7769,11 @@ func (ec *executionContext) _TaskMeta_key(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskMeta",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "TaskMeta",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7604,10 +7804,11 @@ func (ec *executionContext) _TaskMeta_value(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskMeta",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "TaskMeta",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7635,10 +7836,11 @@ func (ec *executionContext) _TaskResultType_items(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "TaskResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7669,10 +7871,11 @@ func (ec *executionContext) _TaskResultType_count(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "TaskResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "TaskResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7703,10 +7906,11 @@ func (ec *executionContext) _User_id(ctx context.Context, field graphql.Collecte
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7737,10 +7941,11 @@ func (ec *executionContext) _User_code(ctx context.Context, field graphql.Collec
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7768,10 +7973,11 @@ func (ec *executionContext) _User_email(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7799,10 +8005,11 @@ func (ec *executionContext) _User_firstName(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7830,10 +8037,11 @@ func (ec *executionContext) _User_lastName(ctx context.Context, field graphql.Co
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7861,10 +8069,11 @@ func (ec *executionContext) _User_addressRaw(ctx context.Context, field graphql.
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7892,10 +8101,11 @@ func (ec *executionContext) _User_address(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7923,10 +8133,11 @@ func (ec *executionContext) _User_salary(ctx context.Context, field graphql.Coll
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7954,10 +8165,11 @@ func (ec *executionContext) _User_employers(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -7988,10 +8200,11 @@ func (ec *executionContext) _User_tasks(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8022,10 +8235,11 @@ func (ec *executionContext) _User_createdTasks(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8056,10 +8270,11 @@ func (ec *executionContext) _User_updatedAt(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8087,10 +8302,11 @@ func (ec *executionContext) _User_createdAt(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8121,10 +8337,11 @@ func (ec *executionContext) _User_updatedBy(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8152,10 +8369,11 @@ func (ec *executionContext) _User_createdBy(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8183,10 +8401,11 @@ func (ec *executionContext) _User_employersIds(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8217,10 +8436,11 @@ func (ec *executionContext) _User_employersConnection(ctx context.Context, field
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8258,10 +8478,11 @@ func (ec *executionContext) _User_tasksIds(ctx context.Context, field graphql.Co
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8292,10 +8513,11 @@ func (ec *executionContext) _User_tasksConnection(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8333,10 +8555,11 @@ func (ec *executionContext) _User_createdTasksIds(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8367,10 +8590,11 @@ func (ec *executionContext) _User_createdTasksConnection(ctx context.Context, fi
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "User",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "User",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8408,10 +8632,11 @@ func (ec *executionContext) _UserResultType_items(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "UserResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "UserResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8442,10 +8667,11 @@ func (ec *executionContext) _UserResultType_count(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "UserResultType",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "UserResultType",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8476,10 +8702,11 @@ func (ec *executionContext) __Service_sdl(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "_Service",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "_Service",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8507,10 +8734,11 @@ func (ec *executionContext) ___Directive_name(ctx context.Context, field graphql
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Directive",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__Directive",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8541,10 +8769,11 @@ func (ec *executionContext) ___Directive_description(ctx context.Context, field 
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Directive",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__Directive",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8572,10 +8801,11 @@ func (ec *executionContext) ___Directive_locations(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Directive",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__Directive",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8606,10 +8836,11 @@ func (ec *executionContext) ___Directive_args(ctx context.Context, field graphql
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Directive",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__Directive",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8640,10 +8871,11 @@ func (ec *executionContext) ___EnumValue_name(ctx context.Context, field graphql
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__EnumValue",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__EnumValue",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8674,10 +8906,11 @@ func (ec *executionContext) ___EnumValue_description(ctx context.Context, field 
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__EnumValue",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__EnumValue",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8705,10 +8938,11 @@ func (ec *executionContext) ___EnumValue_isDeprecated(ctx context.Context, field
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__EnumValue",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__EnumValue",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8739,10 +8973,11 @@ func (ec *executionContext) ___EnumValue_deprecationReason(ctx context.Context, 
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__EnumValue",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__EnumValue",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8770,10 +9005,11 @@ func (ec *executionContext) ___Field_name(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Field",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__Field",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8804,10 +9040,11 @@ func (ec *executionContext) ___Field_description(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Field",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__Field",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8835,10 +9072,11 @@ func (ec *executionContext) ___Field_args(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Field",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__Field",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8869,10 +9107,11 @@ func (ec *executionContext) ___Field_type(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Field",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__Field",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8903,10 +9142,11 @@ func (ec *executionContext) ___Field_isDeprecated(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Field",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Field",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8937,10 +9177,11 @@ func (ec *executionContext) ___Field_deprecationReason(ctx context.Context, fiel
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Field",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Field",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -8968,10 +9209,11 @@ func (ec *executionContext) ___InputValue_name(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__InputValue",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__InputValue",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9002,10 +9244,11 @@ func (ec *executionContext) ___InputValue_description(ctx context.Context, field
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__InputValue",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__InputValue",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9033,10 +9276,11 @@ func (ec *executionContext) ___InputValue_type(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__InputValue",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__InputValue",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9067,10 +9311,11 @@ func (ec *executionContext) ___InputValue_defaultValue(ctx context.Context, fiel
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__InputValue",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
+		Object:     "__InputValue",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9098,10 +9343,11 @@ func (ec *executionContext) ___Schema_types(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Schema",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Schema",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9132,10 +9378,11 @@ func (ec *executionContext) ___Schema_queryType(ctx context.Context, field graph
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Schema",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Schema",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9166,10 +9413,11 @@ func (ec *executionContext) ___Schema_mutationType(ctx context.Context, field gr
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Schema",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Schema",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9197,10 +9445,11 @@ func (ec *executionContext) ___Schema_subscriptionType(ctx context.Context, fiel
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Schema",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Schema",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9228,10 +9477,11 @@ func (ec *executionContext) ___Schema_directives(ctx context.Context, field grap
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Schema",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Schema",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9262,10 +9512,11 @@ func (ec *executionContext) ___Type_kind(ctx context.Context, field graphql.Coll
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9296,10 +9547,11 @@ func (ec *executionContext) ___Type_name(ctx context.Context, field graphql.Coll
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9327,10 +9579,11 @@ func (ec *executionContext) ___Type_description(ctx context.Context, field graph
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9358,10 +9611,11 @@ func (ec *executionContext) ___Type_fields(ctx context.Context, field graphql.Co
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9396,10 +9650,11 @@ func (ec *executionContext) ___Type_interfaces(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9427,10 +9682,11 @@ func (ec *executionContext) ___Type_possibleTypes(ctx context.Context, field gra
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9458,10 +9714,11 @@ func (ec *executionContext) ___Type_enumValues(ctx context.Context, field graphq
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9496,10 +9753,11 @@ func (ec *executionContext) ___Type_inputFields(ctx context.Context, field graph
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9527,10 +9785,11 @@ func (ec *executionContext) ___Type_ofType(ctx context.Context, field graphql.Co
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:   "__Type",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
+		Object:     "__Type",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: false,
 	}
 
 	ctx = graphql.WithFieldContext(ctx, fc)
@@ -9562,996 +9821,1328 @@ func (ec *executionContext) unmarshalInputCompanyFilterType(ctx context.Context,
 		switch k {
 		case "AND":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("AND"))
 			it.And, err = ec.unmarshalOCompanyFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "OR":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("OR"))
 			it.Or, err = ec.unmarshalOCompanyFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_ne"))
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_ne"))
 			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_ne"))
 			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gt"))
 			it.IDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gt"))
 			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gt"))
 			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lt"))
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lt"))
 			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lt"))
 			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gte"))
 			it.IDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gte"))
 			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gte"))
 			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lte"))
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lte"))
 			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lte"))
 			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_in"))
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_in"))
 			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_in"))
 			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_null"))
 			it.IDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name"))
 			it.Name, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin"))
 			it.NameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax"))
 			it.NameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_ne"))
 			it.NameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_ne"))
 			it.NameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_ne"))
 			it.NameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_gt"))
 			it.NameGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_gt"))
 			it.NameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_gt"))
 			it.NameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_lt"))
 			it.NameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_lt"))
 			it.NameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_lt"))
 			it.NameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_gte"))
 			it.NameGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_gte"))
 			it.NameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_gte"))
 			it.NameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_lte"))
 			it.NameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_lte"))
 			it.NameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_lte"))
 			it.NameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_in"))
 			it.NameIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_in"))
 			it.NameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_in"))
 			it.NameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_like"))
 			it.NameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_like"))
 			it.NameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_like"))
 			it.NameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_prefix"))
 			it.NamePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_prefix"))
 			it.NameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_prefix"))
 			it.NameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_suffix"))
 			it.NameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_suffix"))
 			it.NameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_suffix"))
 			it.NameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_null"))
 			it.NameNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId"))
 			it.CountryID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMin"))
 			it.CountryIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMax"))
 			it.CountryIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId_ne"))
 			it.CountryIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMin_ne"))
 			it.CountryIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMax_ne"))
 			it.CountryIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId_gt"))
 			it.CountryIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMin_gt"))
 			it.CountryIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMax_gt"))
 			it.CountryIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId_lt"))
 			it.CountryIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMin_lt"))
 			it.CountryIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMax_lt"))
 			it.CountryIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId_gte"))
 			it.CountryIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMin_gte"))
 			it.CountryIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMax_gte"))
 			it.CountryIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId_lte"))
 			it.CountryIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMin_lte"))
 			it.CountryIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMax_lte"))
 			it.CountryIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId_in"))
 			it.CountryIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMin_in"))
 			it.CountryIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMax_in"))
 			it.CountryIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId_null"))
 			it.CountryIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_ne"))
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_ne"))
 			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_ne"))
 			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gt"))
 			it.UpdatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gt"))
 			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gt"))
 			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lt"))
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lt"))
 			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lt"))
 			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gte"))
 			it.UpdatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gte"))
 			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gte"))
 			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lte"))
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lte"))
 			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lte"))
 			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_in"))
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_in"))
 			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_in"))
 			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_null"))
 			it.UpdatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_ne"))
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_ne"))
 			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_ne"))
 			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gt"))
 			it.CreatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gt"))
 			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gt"))
 			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lt"))
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lt"))
 			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lt"))
 			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gte"))
 			it.CreatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gte"))
 			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gte"))
 			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lte"))
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lte"))
 			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lte"))
 			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_in"))
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_in"))
 			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_in"))
 			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_null"))
 			it.CreatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_ne"))
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_ne"))
 			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_ne"))
 			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gt"))
 			it.UpdatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gt"))
 			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gt"))
 			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lt"))
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lt"))
 			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lt"))
 			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gte"))
 			it.UpdatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gte"))
 			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gte"))
 			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lte"))
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lte"))
 			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lte"))
 			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_in"))
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_in"))
 			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_in"))
 			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_null"))
 			it.UpdatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_ne"))
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_ne"))
 			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_ne"))
 			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gt"))
 			it.CreatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gt"))
 			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gt"))
 			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lt"))
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lt"))
 			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lt"))
 			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gte"))
 			it.CreatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gte"))
 			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gte"))
 			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lte"))
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lte"))
 			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lte"))
 			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_in"))
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_in"))
 			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_in"))
 			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_null"))
 			it.CreatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employees":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employees"))
 			it.Employees, err = ec.unmarshalOUserFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, v)
 			if err != nil {
 				return it, err
@@ -10570,150 +11161,200 @@ func (ec *executionContext) unmarshalInputCompanySortType(ctx context.Context, o
 		switch k {
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name"))
 			it.Name, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin"))
 			it.NameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax"))
 			it.NameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryId":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryId"))
 			it.CountryID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMin"))
 			it.CountryIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "countryIdMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("countryIdMax"))
 			it.CountryIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employeesIds":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employeesIds"))
 			it.EmployeesIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employeesIdsMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employeesIdsMin"))
 			it.EmployeesIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employeesIdsMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employeesIdsMax"))
 			it.EmployeesIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employees":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employees"))
 			it.Employees, err = ec.unmarshalOUserSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx, v)
 			if err != nil {
 				return it, err
@@ -10732,990 +11373,1320 @@ func (ec *executionContext) unmarshalInputPlainEntityFilterType(ctx context.Cont
 		switch k {
 		case "AND":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("AND"))
 			it.And, err = ec.unmarshalOPlainEntityFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "OR":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("OR"))
 			it.Or, err = ec.unmarshalOPlainEntityFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_ne"))
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_ne"))
 			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_ne"))
 			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gt"))
 			it.IDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gt"))
 			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gt"))
 			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lt"))
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lt"))
 			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lt"))
 			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gte"))
 			it.IDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gte"))
 			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gte"))
 			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lte"))
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lte"))
 			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lte"))
 			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_in"))
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_in"))
 			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_in"))
 			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_null"))
 			it.IDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date"))
 			it.Date, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMin"))
 			it.DateMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMax"))
 			it.DateMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date_ne"))
 			it.DateNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMin_ne"))
 			it.DateMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMax_ne"))
 			it.DateMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date_gt"))
 			it.DateGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMin_gt"))
 			it.DateMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMax_gt"))
 			it.DateMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date_lt"))
 			it.DateLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMin_lt"))
 			it.DateMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMax_lt"))
 			it.DateMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date_gte"))
 			it.DateGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMin_gte"))
 			it.DateMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMax_gte"))
 			it.DateMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date_lte"))
 			it.DateLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMin_lte"))
 			it.DateMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMax_lte"))
 			it.DateMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date_in"))
 			it.DateIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMin_in"))
 			it.DateMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMax_in"))
 			it.DateMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date_null"))
 			it.DateNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text"))
 			it.Text, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin"))
 			it.TextMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax"))
 			it.TextMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_ne"))
 			it.TextNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_ne"))
 			it.TextMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_ne"))
 			it.TextMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_gt"))
 			it.TextGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_gt"))
 			it.TextMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_gt"))
 			it.TextMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_lt"))
 			it.TextLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_lt"))
 			it.TextMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_lt"))
 			it.TextMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_gte"))
 			it.TextGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_gte"))
 			it.TextMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_gte"))
 			it.TextMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_lte"))
 			it.TextLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_lte"))
 			it.TextMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_lte"))
 			it.TextMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_in"))
 			it.TextIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_in"))
 			it.TextMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_in"))
 			it.TextMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_like"))
 			it.TextLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_like"))
 			it.TextMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_like"))
 			it.TextMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_prefix"))
 			it.TextPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_prefix"))
 			it.TextMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_prefix"))
 			it.TextMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_suffix"))
 			it.TextSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin_suffix"))
 			it.TextMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax_suffix"))
 			it.TextMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text_null"))
 			it.TextNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_ne"))
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_ne"))
 			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_ne"))
 			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gt"))
 			it.UpdatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gt"))
 			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gt"))
 			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lt"))
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lt"))
 			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lt"))
 			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gte"))
 			it.UpdatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gte"))
 			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gte"))
 			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lte"))
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lte"))
 			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lte"))
 			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_in"))
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_in"))
 			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_in"))
 			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_null"))
 			it.UpdatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_ne"))
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_ne"))
 			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_ne"))
 			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gt"))
 			it.CreatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gt"))
 			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gt"))
 			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lt"))
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lt"))
 			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lt"))
 			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gte"))
 			it.CreatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gte"))
 			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gte"))
 			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lte"))
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lte"))
 			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lte"))
 			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_in"))
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_in"))
 			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_in"))
 			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_null"))
 			it.CreatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_ne"))
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_ne"))
 			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_ne"))
 			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gt"))
 			it.UpdatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gt"))
 			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gt"))
 			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lt"))
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lt"))
 			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lt"))
 			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gte"))
 			it.UpdatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gte"))
 			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gte"))
 			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lte"))
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lte"))
 			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lte"))
 			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_in"))
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_in"))
 			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_in"))
 			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_null"))
 			it.UpdatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_ne"))
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_ne"))
 			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_ne"))
 			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gt"))
 			it.CreatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gt"))
 			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gt"))
 			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lt"))
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lt"))
 			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lt"))
 			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gte"))
 			it.CreatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gte"))
 			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gte"))
 			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lte"))
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lte"))
 			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lte"))
 			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_in"))
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_in"))
 			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_in"))
 			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_null"))
 			it.CreatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
@@ -11734,126 +12705,168 @@ func (ec *executionContext) unmarshalInputPlainEntitySortType(ctx context.Contex
 		switch k {
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "date":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("date"))
 			it.Date, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMin"))
 			it.DateMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dateMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dateMax"))
 			it.DateMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "text":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text"))
 			it.Text, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMin"))
 			it.TextMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "textMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("textMax"))
 			it.TextMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
@@ -11872,864 +12885,1152 @@ func (ec *executionContext) unmarshalInputTaskCategoryFilterType(ctx context.Con
 		switch k {
 		case "AND":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("AND"))
 			it.And, err = ec.unmarshalOTaskCategoryFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "OR":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("OR"))
 			it.Or, err = ec.unmarshalOTaskCategoryFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_ne"))
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_ne"))
 			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_ne"))
 			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gt"))
 			it.IDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gt"))
 			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gt"))
 			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lt"))
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lt"))
 			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lt"))
 			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gte"))
 			it.IDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gte"))
 			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gte"))
 			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lte"))
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lte"))
 			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lte"))
 			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_in"))
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_in"))
 			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_in"))
 			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_null"))
 			it.IDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name"))
 			it.Name, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin"))
 			it.NameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax"))
 			it.NameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_ne"))
 			it.NameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_ne"))
 			it.NameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_ne"))
 			it.NameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_gt"))
 			it.NameGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_gt"))
 			it.NameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_gt"))
 			it.NameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_lt"))
 			it.NameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_lt"))
 			it.NameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_lt"))
 			it.NameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_gte"))
 			it.NameGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_gte"))
 			it.NameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_gte"))
 			it.NameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_lte"))
 			it.NameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_lte"))
 			it.NameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_lte"))
 			it.NameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_in"))
 			it.NameIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_in"))
 			it.NameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_in"))
 			it.NameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_like"))
 			it.NameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_like"))
 			it.NameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_like"))
 			it.NameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_prefix"))
 			it.NamePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_prefix"))
 			it.NameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_prefix"))
 			it.NameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_suffix"))
 			it.NameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin_suffix"))
 			it.NameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax_suffix"))
 			it.NameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name_null"))
 			it.NameNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_ne"))
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_ne"))
 			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_ne"))
 			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gt"))
 			it.UpdatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gt"))
 			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gt"))
 			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lt"))
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lt"))
 			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lt"))
 			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gte"))
 			it.UpdatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gte"))
 			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gte"))
 			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lte"))
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lte"))
 			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lte"))
 			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_in"))
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_in"))
 			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_in"))
 			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_null"))
 			it.UpdatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_ne"))
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_ne"))
 			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_ne"))
 			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gt"))
 			it.CreatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gt"))
 			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gt"))
 			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lt"))
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lt"))
 			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lt"))
 			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gte"))
 			it.CreatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gte"))
 			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gte"))
 			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lte"))
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lte"))
 			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lte"))
 			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_in"))
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_in"))
 			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_in"))
 			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_null"))
 			it.CreatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_ne"))
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_ne"))
 			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_ne"))
 			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gt"))
 			it.UpdatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gt"))
 			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gt"))
 			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lt"))
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lt"))
 			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lt"))
 			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gte"))
 			it.UpdatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gte"))
 			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gte"))
 			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lte"))
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lte"))
 			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lte"))
 			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_in"))
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_in"))
 			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_in"))
 			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_null"))
 			it.UpdatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_ne"))
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_ne"))
 			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_ne"))
 			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gt"))
 			it.CreatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gt"))
 			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gt"))
 			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lt"))
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lt"))
 			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lt"))
 			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gte"))
 			it.CreatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gte"))
 			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gte"))
 			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lte"))
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lte"))
 			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lte"))
 			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_in"))
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_in"))
 			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_in"))
 			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_null"))
 			it.CreatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasks":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasks"))
 			it.Tasks, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, v)
 			if err != nil {
 				return it, err
@@ -12748,132 +14049,176 @@ func (ec *executionContext) unmarshalInputTaskCategorySortType(ctx context.Conte
 		switch k {
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "name":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("name"))
 			it.Name, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMin"))
 			it.NameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "nameMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("nameMax"))
 			it.NameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasksIds":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasksIds"))
 			it.TasksIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasksIdsMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasksIdsMin"))
 			it.TasksIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasksIdsMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasksIdsMax"))
 			it.TasksIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasks":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasks"))
 			it.Tasks, err = ec.unmarshalOTaskSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx, v)
 			if err != nil {
 				return it, err
@@ -12892,1680 +14237,2240 @@ func (ec *executionContext) unmarshalInputTaskFilterType(ctx context.Context, ob
 		switch k {
 		case "AND":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("AND"))
 			it.And, err = ec.unmarshalOTaskFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "OR":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("OR"))
 			it.Or, err = ec.unmarshalOTaskFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_ne"))
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_ne"))
 			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_ne"))
 			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gt"))
 			it.IDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gt"))
 			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gt"))
 			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lt"))
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lt"))
 			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lt"))
 			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gte"))
 			it.IDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gte"))
 			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gte"))
 			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lte"))
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lte"))
 			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lte"))
 			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_in"))
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_in"))
 			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_in"))
 			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_null"))
 			it.IDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title"))
 			it.Title, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin"))
 			it.TitleMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax"))
 			it.TitleMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_ne"))
 			it.TitleNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_ne"))
 			it.TitleMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_ne"))
 			it.TitleMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_gt"))
 			it.TitleGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_gt"))
 			it.TitleMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_gt"))
 			it.TitleMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_lt"))
 			it.TitleLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_lt"))
 			it.TitleMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_lt"))
 			it.TitleMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_gte"))
 			it.TitleGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_gte"))
 			it.TitleMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_gte"))
 			it.TitleMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_lte"))
 			it.TitleLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_lte"))
 			it.TitleMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_lte"))
 			it.TitleMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_in"))
 			it.TitleIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_in"))
 			it.TitleMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_in"))
 			it.TitleMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_like"))
 			it.TitleLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_like"))
 			it.TitleMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_like"))
 			it.TitleMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_prefix"))
 			it.TitlePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_prefix"))
 			it.TitleMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_prefix"))
 			it.TitleMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_suffix"))
 			it.TitleSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin_suffix"))
 			it.TitleMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax_suffix"))
 			it.TitleMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title_null"))
 			it.TitleNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed"))
 			it.Completed, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMin"))
 			it.CompletedMin, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMax"))
 			it.CompletedMax, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed_ne"))
 			it.CompletedNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMin_ne"))
 			it.CompletedMinNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMax_ne"))
 			it.CompletedMaxNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed_gt"))
 			it.CompletedGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMin_gt"))
 			it.CompletedMinGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMax_gt"))
 			it.CompletedMaxGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed_lt"))
 			it.CompletedLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMin_lt"))
 			it.CompletedMinLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMax_lt"))
 			it.CompletedMaxLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed_gte"))
 			it.CompletedGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMin_gte"))
 			it.CompletedMinGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMax_gte"))
 			it.CompletedMaxGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed_lte"))
 			it.CompletedLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMin_lte"))
 			it.CompletedMinLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMax_lte"))
 			it.CompletedMaxLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed_in"))
 			it.CompletedIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMin_in"))
 			it.CompletedMinIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMax_in"))
 			it.CompletedMaxIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed_null"))
 			it.CompletedNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state"))
 			it.State, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMin"))
 			it.StateMin, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMax"))
 			it.StateMax, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state_ne"))
 			it.StateNe, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMin_ne"))
 			it.StateMinNe, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMax_ne"))
 			it.StateMaxNe, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state_gt"))
 			it.StateGt, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMin_gt"))
 			it.StateMinGt, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMax_gt"))
 			it.StateMaxGt, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state_lt"))
 			it.StateLt, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMin_lt"))
 			it.StateMinLt, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMax_lt"))
 			it.StateMaxLt, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state_gte"))
 			it.StateGte, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMin_gte"))
 			it.StateMinGte, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMax_gte"))
 			it.StateMaxGte, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state_lte"))
 			it.StateLte, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMin_lte"))
 			it.StateMinLte, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMax_lte"))
 			it.StateMaxLte, err = ec.unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state_in"))
 			it.StateIn, err = ec.unmarshalOTaskState2ᚕgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskStateᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMin_in"))
 			it.StateMinIn, err = ec.unmarshalOTaskState2ᚕgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskStateᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMax_in"))
 			it.StateMaxIn, err = ec.unmarshalOTaskState2ᚕgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskStateᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state_null"))
 			it.StateNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate"))
 			it.DueDate, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMin"))
 			it.DueDateMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMax"))
 			it.DueDateMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate_ne"))
 			it.DueDateNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMin_ne"))
 			it.DueDateMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMax_ne"))
 			it.DueDateMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate_gt"))
 			it.DueDateGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMin_gt"))
 			it.DueDateMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMax_gt"))
 			it.DueDateMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate_lt"))
 			it.DueDateLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMin_lt"))
 			it.DueDateMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMax_lt"))
 			it.DueDateMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate_gte"))
 			it.DueDateGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMin_gte"))
 			it.DueDateMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMax_gte"))
 			it.DueDateMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate_lte"))
 			it.DueDateLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMin_lte"))
 			it.DueDateMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMax_lte"))
 			it.DueDateMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate_in"))
 			it.DueDateIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMin_in"))
 			it.DueDateMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMax_in"))
 			it.DueDateMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate_null"))
 			it.DueDateNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId"))
 			it.AssigneeID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMin"))
 			it.AssigneeIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMax"))
 			it.AssigneeIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId_ne"))
 			it.AssigneeIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMin_ne"))
 			it.AssigneeIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMax_ne"))
 			it.AssigneeIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId_gt"))
 			it.AssigneeIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMin_gt"))
 			it.AssigneeIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMax_gt"))
 			it.AssigneeIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId_lt"))
 			it.AssigneeIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMin_lt"))
 			it.AssigneeIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMax_lt"))
 			it.AssigneeIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId_gte"))
 			it.AssigneeIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMin_gte"))
 			it.AssigneeIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMax_gte"))
 			it.AssigneeIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId_lte"))
 			it.AssigneeIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMin_lte"))
 			it.AssigneeIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMax_lte"))
 			it.AssigneeIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId_in"))
 			it.AssigneeIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMin_in"))
 			it.AssigneeIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMax_in"))
 			it.AssigneeIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId_null"))
 			it.AssigneeIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId"))
 			it.OwnerID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMin"))
 			it.OwnerIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMax"))
 			it.OwnerIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId_ne"))
 			it.OwnerIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMin_ne"))
 			it.OwnerIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMax_ne"))
 			it.OwnerIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId_gt"))
 			it.OwnerIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMin_gt"))
 			it.OwnerIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMax_gt"))
 			it.OwnerIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId_lt"))
 			it.OwnerIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMin_lt"))
 			it.OwnerIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMax_lt"))
 			it.OwnerIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId_gte"))
 			it.OwnerIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMin_gte"))
 			it.OwnerIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMax_gte"))
 			it.OwnerIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId_lte"))
 			it.OwnerIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMin_lte"))
 			it.OwnerIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMax_lte"))
 			it.OwnerIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId_in"))
 			it.OwnerIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMin_in"))
 			it.OwnerIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMax_in"))
 			it.OwnerIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId_null"))
 			it.OwnerIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId"))
 			it.ParentTaskID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMin"))
 			it.ParentTaskIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMax"))
 			it.ParentTaskIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId_ne"))
 			it.ParentTaskIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMin_ne"))
 			it.ParentTaskIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMax_ne"))
 			it.ParentTaskIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId_gt"))
 			it.ParentTaskIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMin_gt"))
 			it.ParentTaskIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMax_gt"))
 			it.ParentTaskIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId_lt"))
 			it.ParentTaskIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMin_lt"))
 			it.ParentTaskIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMax_lt"))
 			it.ParentTaskIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId_gte"))
 			it.ParentTaskIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMin_gte"))
 			it.ParentTaskIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMax_gte"))
 			it.ParentTaskIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId_lte"))
 			it.ParentTaskIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMin_lte"))
 			it.ParentTaskIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMax_lte"))
 			it.ParentTaskIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId_in"))
 			it.ParentTaskIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMin_in"))
 			it.ParentTaskIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMax_in"))
 			it.ParentTaskIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId_null"))
 			it.ParentTaskIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_ne"))
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_ne"))
 			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_ne"))
 			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gt"))
 			it.UpdatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gt"))
 			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gt"))
 			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lt"))
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lt"))
 			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lt"))
 			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gte"))
 			it.UpdatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gte"))
 			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gte"))
 			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lte"))
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lte"))
 			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lte"))
 			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_in"))
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_in"))
 			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_in"))
 			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_null"))
 			it.UpdatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_ne"))
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_ne"))
 			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_ne"))
 			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gt"))
 			it.CreatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gt"))
 			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gt"))
 			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lt"))
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lt"))
 			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lt"))
 			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gte"))
 			it.CreatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gte"))
 			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gte"))
 			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lte"))
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lte"))
 			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lte"))
 			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_in"))
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_in"))
 			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_in"))
 			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_null"))
 			it.CreatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_ne"))
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_ne"))
 			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_ne"))
 			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gt"))
 			it.UpdatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gt"))
 			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gt"))
 			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lt"))
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lt"))
 			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lt"))
 			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gte"))
 			it.UpdatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gte"))
 			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gte"))
 			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lte"))
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lte"))
 			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lte"))
 			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_in"))
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_in"))
 			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_in"))
 			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_null"))
 			it.UpdatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_ne"))
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_ne"))
 			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_ne"))
 			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gt"))
 			it.CreatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gt"))
 			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gt"))
 			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lt"))
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lt"))
 			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lt"))
 			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gte"))
 			it.CreatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gte"))
 			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gte"))
 			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lte"))
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lte"))
 			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lte"))
 			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_in"))
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_in"))
 			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_in"))
 			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_null"))
 			it.CreatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assignee":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assignee"))
 			it.Assignee, err = ec.unmarshalOUserFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "owner":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("owner"))
 			it.Owner, err = ec.unmarshalOUserFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTask":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTask"))
 			it.ParentTask, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "subtasks":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("subtasks"))
 			it.Subtasks, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "categories":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("categories"))
 			it.Categories, err = ec.unmarshalOTaskCategoryFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx, v)
 			if err != nil {
 				return it, err
@@ -14584,12 +16489,16 @@ func (ec *executionContext) unmarshalInputTaskMetaInput(ctx context.Context, obj
 		switch k {
 		case "key":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("key"))
 			it.Key, err = ec.unmarshalNString2string(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "value":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("value"))
 			it.Value, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
@@ -14608,318 +16517,424 @@ func (ec *executionContext) unmarshalInputTaskSortType(ctx context.Context, obj 
 		switch k {
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "title":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title"))
 			it.Title, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMin"))
 			it.TitleMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "titleMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("titleMax"))
 			it.TitleMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completed":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completed"))
 			it.Completed, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMin"))
 			it.CompletedMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "completedMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("completedMax"))
 			it.CompletedMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "state":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("state"))
 			it.State, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMin"))
 			it.StateMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "stateMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("stateMax"))
 			it.StateMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDate":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDate"))
 			it.DueDate, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMin"))
 			it.DueDateMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "dueDateMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dueDateMax"))
 			it.DueDateMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "metas":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("metas"))
 			it.Metas, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "metasMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("metasMin"))
 			it.MetasMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "metasMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("metasMax"))
 			it.MetasMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "meta":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("meta"))
 			it.Meta, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "metaMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("metaMin"))
 			it.MetaMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "metaMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("metaMax"))
 			it.MetaMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeId":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeId"))
 			it.AssigneeID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMin"))
 			it.AssigneeIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assigneeIdMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assigneeIdMax"))
 			it.AssigneeIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerId":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerId"))
 			it.OwnerID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMin"))
 			it.OwnerIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "ownerIdMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ownerIdMax"))
 			it.OwnerIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskId":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskId"))
 			it.ParentTaskID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMin"))
 			it.ParentTaskIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTaskIdMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTaskIdMax"))
 			it.ParentTaskIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "subtasksIds":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("subtasksIds"))
 			it.SubtasksIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "subtasksIdsMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("subtasksIdsMin"))
 			it.SubtasksIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "subtasksIdsMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("subtasksIdsMax"))
 			it.SubtasksIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "categoriesIds":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("categoriesIds"))
 			it.CategoriesIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "categoriesIdsMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("categoriesIdsMin"))
 			it.CategoriesIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "categoriesIdsMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("categoriesIdsMax"))
 			it.CategoriesIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "assignee":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("assignee"))
 			it.Assignee, err = ec.unmarshalOUserSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "owner":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("owner"))
 			it.Owner, err = ec.unmarshalOUserSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "parentTask":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("parentTask"))
 			it.ParentTask, err = ec.unmarshalOTaskSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "subtasks":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("subtasks"))
 			it.Subtasks, err = ec.unmarshalOTaskSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "categories":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("categories"))
 			it.Categories, err = ec.unmarshalOTaskCategorySortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortType(ctx, v)
 			if err != nil {
 				return it, err
@@ -14938,1782 +16953,2376 @@ func (ec *executionContext) unmarshalInputUserFilterType(ctx context.Context, ob
 		switch k {
 		case "AND":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("AND"))
 			it.And, err = ec.unmarshalOUserFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "OR":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("OR"))
 			it.Or, err = ec.unmarshalOUserFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_ne"))
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_ne"))
 			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_ne"))
 			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gt"))
 			it.IDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gt"))
 			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gt"))
 			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lt"))
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lt"))
 			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lt"))
 			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_gte"))
 			it.IDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_gte"))
 			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_gte"))
 			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_lte"))
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_lte"))
 			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_lte"))
 			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_in"))
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin_in"))
 			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax_in"))
 			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "id_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id_null"))
 			it.IDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code"))
 			it.Code, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMin"))
 			it.CodeMin, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMax"))
 			it.CodeMax, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeAvg":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeAvg"))
 			it.CodeAvg, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code_ne"))
 			it.CodeNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMin_ne"))
 			it.CodeMinNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMax_ne"))
 			it.CodeMaxNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeAvg_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeAvg_ne"))
 			it.CodeAvgNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code_gt"))
 			it.CodeGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMin_gt"))
 			it.CodeMinGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMax_gt"))
 			it.CodeMaxGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeAvg_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeAvg_gt"))
 			it.CodeAvgGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code_lt"))
 			it.CodeLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMin_lt"))
 			it.CodeMinLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMax_lt"))
 			it.CodeMaxLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeAvg_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeAvg_lt"))
 			it.CodeAvgLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code_gte"))
 			it.CodeGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMin_gte"))
 			it.CodeMinGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMax_gte"))
 			it.CodeMaxGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeAvg_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeAvg_gte"))
 			it.CodeAvgGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code_lte"))
 			it.CodeLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMin_lte"))
 			it.CodeMinLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMax_lte"))
 			it.CodeMaxLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeAvg_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeAvg_lte"))
 			it.CodeAvgLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code_in"))
 			it.CodeIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMin_in"))
 			it.CodeMinIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMax_in"))
 			it.CodeMaxIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeAvg_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeAvg_in"))
 			it.CodeAvgIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code_null"))
 			it.CodeNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email"))
 			it.Email, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin"))
 			it.EmailMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax"))
 			it.EmailMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_ne"))
 			it.EmailNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_ne"))
 			it.EmailMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_ne"))
 			it.EmailMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_gt"))
 			it.EmailGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_gt"))
 			it.EmailMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_gt"))
 			it.EmailMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_lt"))
 			it.EmailLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_lt"))
 			it.EmailMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_lt"))
 			it.EmailMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_gte"))
 			it.EmailGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_gte"))
 			it.EmailMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_gte"))
 			it.EmailMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_lte"))
 			it.EmailLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_lte"))
 			it.EmailMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_lte"))
 			it.EmailMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_in"))
 			it.EmailIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_in"))
 			it.EmailMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_in"))
 			it.EmailMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_like"))
 			it.EmailLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_like"))
 			it.EmailMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_like"))
 			it.EmailMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_prefix"))
 			it.EmailPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_prefix"))
 			it.EmailMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_prefix"))
 			it.EmailMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_suffix"))
 			it.EmailSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin_suffix"))
 			it.EmailMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax_suffix"))
 			it.EmailMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email_null"))
 			it.EmailNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName"))
 			it.FirstName, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin"))
 			it.FirstNameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax"))
 			it.FirstNameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_ne"))
 			it.FirstNameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_ne"))
 			it.FirstNameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_ne"))
 			it.FirstNameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_gt"))
 			it.FirstNameGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_gt"))
 			it.FirstNameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_gt"))
 			it.FirstNameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_lt"))
 			it.FirstNameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_lt"))
 			it.FirstNameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_lt"))
 			it.FirstNameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_gte"))
 			it.FirstNameGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_gte"))
 			it.FirstNameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_gte"))
 			it.FirstNameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_lte"))
 			it.FirstNameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_lte"))
 			it.FirstNameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_lte"))
 			it.FirstNameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_in"))
 			it.FirstNameIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_in"))
 			it.FirstNameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_in"))
 			it.FirstNameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_like"))
 			it.FirstNameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_like"))
 			it.FirstNameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_like"))
 			it.FirstNameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_prefix"))
 			it.FirstNamePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_prefix"))
 			it.FirstNameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_prefix"))
 			it.FirstNameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_suffix"))
 			it.FirstNameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin_suffix"))
 			it.FirstNameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax_suffix"))
 			it.FirstNameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName_null"))
 			it.FirstNameNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName"))
 			it.LastName, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin"))
 			it.LastNameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax"))
 			it.LastNameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_ne"))
 			it.LastNameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_ne"))
 			it.LastNameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_ne"))
 			it.LastNameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_gt"))
 			it.LastNameGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_gt"))
 			it.LastNameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_gt"))
 			it.LastNameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_lt"))
 			it.LastNameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_lt"))
 			it.LastNameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_lt"))
 			it.LastNameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_gte"))
 			it.LastNameGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_gte"))
 			it.LastNameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_gte"))
 			it.LastNameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_lte"))
 			it.LastNameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_lte"))
 			it.LastNameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_lte"))
 			it.LastNameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_in"))
 			it.LastNameIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_in"))
 			it.LastNameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_in"))
 			it.LastNameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_like"))
 			it.LastNameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_like"))
 			it.LastNameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_like"))
 			it.LastNameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_prefix"))
 			it.LastNamePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_prefix"))
 			it.LastNameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_prefix"))
 			it.LastNameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_suffix"))
 			it.LastNameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin_suffix"))
 			it.LastNameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax_suffix"))
 			it.LastNameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName_null"))
 			it.LastNameNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw"))
 			it.AddressRaw, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin"))
 			it.AddressRawMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax"))
 			it.AddressRawMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_ne"))
 			it.AddressRawNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_ne"))
 			it.AddressRawMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_ne"))
 			it.AddressRawMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_gt"))
 			it.AddressRawGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_gt"))
 			it.AddressRawMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_gt"))
 			it.AddressRawMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_lt"))
 			it.AddressRawLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_lt"))
 			it.AddressRawMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_lt"))
 			it.AddressRawMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_gte"))
 			it.AddressRawGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_gte"))
 			it.AddressRawMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_gte"))
 			it.AddressRawMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_lte"))
 			it.AddressRawLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_lte"))
 			it.AddressRawMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_lte"))
 			it.AddressRawMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_in"))
 			it.AddressRawIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_in"))
 			it.AddressRawMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_in"))
 			it.AddressRawMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_like"))
 			it.AddressRawLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_like"))
 			it.AddressRawMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_like":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_like"))
 			it.AddressRawMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_prefix"))
 			it.AddressRawPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_prefix"))
 			it.AddressRawMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_prefix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_prefix"))
 			it.AddressRawMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_suffix"))
 			it.AddressRawSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin_suffix"))
 			it.AddressRawMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax_suffix":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax_suffix"))
 			it.AddressRawMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw_null"))
 			it.AddressRawNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary"))
 			it.Salary, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMin"))
 			it.SalaryMin, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMax"))
 			it.SalaryMax, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryAvg":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryAvg"))
 			it.SalaryAvg, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary_ne"))
 			it.SalaryNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMin_ne"))
 			it.SalaryMinNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMax_ne"))
 			it.SalaryMaxNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryAvg_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryAvg_ne"))
 			it.SalaryAvgNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary_gt"))
 			it.SalaryGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMin_gt"))
 			it.SalaryMinGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMax_gt"))
 			it.SalaryMaxGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryAvg_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryAvg_gt"))
 			it.SalaryAvgGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary_lt"))
 			it.SalaryLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMin_lt"))
 			it.SalaryMinLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMax_lt"))
 			it.SalaryMaxLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryAvg_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryAvg_lt"))
 			it.SalaryAvgLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary_gte"))
 			it.SalaryGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMin_gte"))
 			it.SalaryMinGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMax_gte"))
 			it.SalaryMaxGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryAvg_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryAvg_gte"))
 			it.SalaryAvgGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary_lte"))
 			it.SalaryLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMin_lte"))
 			it.SalaryMinLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMax_lte"))
 			it.SalaryMaxLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryAvg_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryAvg_lte"))
 			it.SalaryAvgLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary_in"))
 			it.SalaryIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMin_in"))
 			it.SalaryMinIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMax_in"))
 			it.SalaryMaxIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryAvg_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryAvg_in"))
 			it.SalaryAvgIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary_null"))
 			it.SalaryNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_ne"))
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_ne"))
 			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_ne"))
 			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gt"))
 			it.UpdatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gt"))
 			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gt"))
 			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lt"))
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lt"))
 			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lt"))
 			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_gte"))
 			it.UpdatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_gte"))
 			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_gte"))
 			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_lte"))
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_lte"))
 			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_lte"))
 			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_in"))
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin_in"))
 			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax_in"))
 			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt_null"))
 			it.UpdatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_ne"))
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_ne"))
 			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_ne"))
 			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gt"))
 			it.CreatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gt"))
 			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gt"))
 			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lt"))
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lt"))
 			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lt"))
 			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_gte"))
 			it.CreatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_gte"))
 			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_gte"))
 			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_lte"))
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_lte"))
 			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_lte"))
 			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_in"))
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin_in"))
 			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax_in"))
 			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt_null"))
 			it.CreatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_ne"))
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_ne"))
 			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_ne"))
 			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gt"))
 			it.UpdatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gt"))
 			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gt"))
 			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lt"))
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lt"))
 			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lt"))
 			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_gte"))
 			it.UpdatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_gte"))
 			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_gte"))
 			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_lte"))
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_lte"))
 			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_lte"))
 			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_in"))
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin_in"))
 			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax_in"))
 			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy_null"))
 			it.UpdatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_ne"))
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_ne"))
 			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_ne":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_ne"))
 			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gt"))
 			it.CreatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gt"))
 			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gt"))
 			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lt"))
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lt"))
 			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lt"))
 			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_gte"))
 			it.CreatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_gte"))
 			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_gte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_gte"))
 			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_lte"))
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_lte"))
 			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_lte":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_lte"))
 			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_in"))
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin_in"))
 			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax_in":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax_in"))
 			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy_null":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy_null"))
 			it.CreatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employers":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employers"))
 			it.Employers, err = ec.unmarshalOCompanyFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasks":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasks"))
 			it.Tasks, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdTasks":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdTasks"))
 			it.CreatedTasks, err = ec.unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, v)
 			if err != nil {
 				return it, err
@@ -16732,282 +19341,376 @@ func (ec *executionContext) unmarshalInputUserSortType(ctx context.Context, obj 
 		switch k {
 		case "id":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMin"))
 			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "idMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("idMax"))
 			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "code":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("code"))
 			it.Code, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMin"))
 			it.CodeMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeMax"))
 			it.CodeMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "codeAvg":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("codeAvg"))
 			it.CodeAvg, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "email":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("email"))
 			it.Email, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMin"))
 			it.EmailMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "emailMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("emailMax"))
 			it.EmailMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstName":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstName"))
 			it.FirstName, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMin"))
 			it.FirstNameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "firstNameMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("firstNameMax"))
 			it.FirstNameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastName":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastName"))
 			it.LastName, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMin"))
 			it.LastNameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "lastNameMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("lastNameMax"))
 			it.LastNameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRaw":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRaw"))
 			it.AddressRaw, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMin"))
 			it.AddressRawMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "addressRawMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("addressRawMax"))
 			it.AddressRawMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salary":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salary"))
 			it.Salary, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMin"))
 			it.SalaryMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryMax"))
 			it.SalaryMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "salaryAvg":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("salaryAvg"))
 			it.SalaryAvg, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAt"))
 			it.UpdatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMin"))
 			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedAtMax"))
 			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAt":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAt"))
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMin"))
 			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdAtMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdAtMax"))
 			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedBy"))
 			it.UpdatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMin"))
 			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "updatedByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updatedByMax"))
 			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdBy":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdBy"))
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMin"))
 			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdByMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdByMax"))
 			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employersIds":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employersIds"))
 			it.EmployersIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employersIdsMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employersIdsMin"))
 			it.EmployersIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employersIdsMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employersIdsMax"))
 			it.EmployersIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasksIds":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasksIds"))
 			it.TasksIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasksIdsMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasksIdsMin"))
 			it.TasksIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasksIdsMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasksIdsMax"))
 			it.TasksIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdTasksIds":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdTasksIds"))
 			it.CreatedTasksIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdTasksIdsMin":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdTasksIdsMin"))
 			it.CreatedTasksIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdTasksIdsMax":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdTasksIdsMax"))
 			it.CreatedTasksIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "employers":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("employers"))
 			it.Employers, err = ec.unmarshalOCompanySortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "tasks":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tasks"))
 			it.Tasks, err = ec.unmarshalOTaskSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "createdTasks":
 			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("createdTasks"))
 			it.CreatedTasks, err = ec.unmarshalOTaskSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx, v)
 			if err != nil {
 				return it, err
@@ -18657,7 +21360,8 @@ func (ec *executionContext) ___Type(ctx context.Context, sel ast.SelectionSet, o
 // region    ***************************** type.gotpl *****************************
 
 func (ec *executionContext) unmarshalNBoolean2bool(ctx context.Context, v interface{}) (bool, error) {
-	return graphql.UnmarshalBoolean(v)
+	res, err := graphql.UnmarshalBoolean(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.SelectionSet, v bool) graphql.Marshaler {
@@ -18722,22 +21426,12 @@ func (ec *executionContext) marshalNCompany2ᚖgithubᚗcomᚋloopcontextᚋgrap
 }
 
 func (ec *executionContext) unmarshalNCompanyCreateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
-func (ec *executionContext) unmarshalNCompanyFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx context.Context, v interface{}) (CompanyFilterType, error) {
-	return ec.unmarshalInputCompanyFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNCompanyFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx context.Context, v interface{}) (*CompanyFilterType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNCompanyFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputCompanyFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNCompanyResultType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyResultType(ctx context.Context, sel ast.SelectionSet, v CompanyResultType) graphql.Marshaler {
@@ -18754,27 +21448,18 @@ func (ec *executionContext) marshalNCompanyResultType2ᚖgithubᚗcomᚋloopcont
 	return ec._CompanyResultType(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNCompanySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortType(ctx context.Context, v interface{}) (CompanySortType, error) {
-	return ec.unmarshalInputCompanySortType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNCompanySortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortType(ctx context.Context, v interface{}) (*CompanySortType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNCompanySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputCompanySortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalNCompanyUpdateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
 func (ec *executionContext) unmarshalNID2string(ctx context.Context, v interface{}) (string, error) {
-	return graphql.UnmarshalID(v)
+	res, err := graphql.UnmarshalID(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
@@ -18799,6 +21484,7 @@ func (ec *executionContext) unmarshalNID2ᚕstringᚄ(ctx context.Context, v int
 	var err error
 	res := make([]string, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNID2string(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -18817,7 +21503,8 @@ func (ec *executionContext) marshalNID2ᚕstringᚄ(ctx context.Context, sel ast
 }
 
 func (ec *executionContext) unmarshalNInt2int(ctx context.Context, v interface{}) (int, error) {
-	return graphql.UnmarshalInt(v)
+	res, err := graphql.UnmarshalInt(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNInt2int(ctx context.Context, sel ast.SelectionSet, v int) graphql.Marshaler {
@@ -18882,22 +21569,12 @@ func (ec *executionContext) marshalNPlainEntity2ᚖgithubᚗcomᚋloopcontextᚋ
 }
 
 func (ec *executionContext) unmarshalNPlainEntityCreateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
-func (ec *executionContext) unmarshalNPlainEntityFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterType(ctx context.Context, v interface{}) (PlainEntityFilterType, error) {
-	return ec.unmarshalInputPlainEntityFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNPlainEntityFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterType(ctx context.Context, v interface{}) (*PlainEntityFilterType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNPlainEntityFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputPlainEntityFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNPlainEntityResultType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityResultType(ctx context.Context, sel ast.SelectionSet, v PlainEntityResultType) graphql.Marshaler {
@@ -18914,27 +21591,13 @@ func (ec *executionContext) marshalNPlainEntityResultType2ᚖgithubᚗcomᚋloop
 	return ec._PlainEntityResultType(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNPlainEntitySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntitySortType(ctx context.Context, v interface{}) (PlainEntitySortType, error) {
-	return ec.unmarshalInputPlainEntitySortType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNPlainEntitySortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntitySortType(ctx context.Context, v interface{}) (*PlainEntitySortType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNPlainEntitySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntitySortType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputPlainEntitySortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalNPlainEntityUpdateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
-}
-
-func (ec *executionContext) marshalNReview2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐReview(ctx context.Context, sel ast.SelectionSet, v Review) graphql.Marshaler {
-	return ec._Review(ctx, sel, &v)
 }
 
 func (ec *executionContext) marshalNReview2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐReviewᚄ(ctx context.Context, sel ast.SelectionSet, v []*Review) graphql.Marshaler {
@@ -18985,7 +21648,8 @@ func (ec *executionContext) marshalNReview2ᚖgithubᚗcomᚋloopcontextᚋgraph
 }
 
 func (ec *executionContext) unmarshalNString2string(ctx context.Context, v interface{}) (string, error) {
-	return graphql.UnmarshalString(v)
+	res, err := graphql.UnmarshalString(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
@@ -19101,22 +21765,12 @@ func (ec *executionContext) marshalNTaskCategory2ᚖgithubᚗcomᚋloopcontext�
 }
 
 func (ec *executionContext) unmarshalNTaskCategoryCreateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
-func (ec *executionContext) unmarshalNTaskCategoryFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx context.Context, v interface{}) (TaskCategoryFilterType, error) {
-	return ec.unmarshalInputTaskCategoryFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNTaskCategoryFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx context.Context, v interface{}) (*TaskCategoryFilterType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNTaskCategoryFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputTaskCategoryFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNTaskCategoryResultType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryResultType(ctx context.Context, sel ast.SelectionSet, v TaskCategoryResultType) graphql.Marshaler {
@@ -19133,46 +21787,22 @@ func (ec *executionContext) marshalNTaskCategoryResultType2ᚖgithubᚗcomᚋloo
 	return ec._TaskCategoryResultType(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNTaskCategorySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortType(ctx context.Context, v interface{}) (TaskCategorySortType, error) {
-	return ec.unmarshalInputTaskCategorySortType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNTaskCategorySortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortType(ctx context.Context, v interface{}) (*TaskCategorySortType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNTaskCategorySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputTaskCategorySortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalNTaskCategoryUpdateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
 func (ec *executionContext) unmarshalNTaskCreateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
-func (ec *executionContext) unmarshalNTaskFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx context.Context, v interface{}) (TaskFilterType, error) {
-	return ec.unmarshalInputTaskFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx context.Context, v interface{}) (*TaskFilterType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNTaskFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) marshalNTaskMeta2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskMeta(ctx context.Context, sel ast.SelectionSet, v TaskMeta) graphql.Marshaler {
-	return ec._TaskMeta(ctx, sel, &v)
+	res, err := ec.unmarshalInputTaskFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNTaskMeta2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskMeta(ctx context.Context, sel ast.SelectionSet, v *TaskMeta) graphql.Marshaler {
@@ -19199,21 +21829,15 @@ func (ec *executionContext) marshalNTaskResultType2ᚖgithubᚗcomᚋloopcontext
 	return ec._TaskResultType(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNTaskSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx context.Context, v interface{}) (TaskSortType, error) {
-	return ec.unmarshalInputTaskSortType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNTaskSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx context.Context, v interface{}) (*TaskSortType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNTaskSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputTaskSortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalNTaskState2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx context.Context, v interface{}) (TaskState, error) {
 	var res TaskState
-	return res, res.UnmarshalGQL(v)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNTaskState2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx context.Context, sel ast.SelectionSet, v TaskState) graphql.Marshaler {
@@ -19221,14 +21845,12 @@ func (ec *executionContext) marshalNTaskState2githubᚗcomᚋloopcontextᚋgraph
 }
 
 func (ec *executionContext) unmarshalNTaskUpdateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
 func (ec *executionContext) unmarshalNTime2timeᚐTime(ctx context.Context, v interface{}) (time.Time, error) {
-	return graphql.UnmarshalTime(v)
+	res, err := graphql.UnmarshalTime(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNTime2timeᚐTime(ctx context.Context, sel ast.SelectionSet, v time.Time) graphql.Marshaler {
@@ -19242,11 +21864,8 @@ func (ec *executionContext) marshalNTime2timeᚐTime(ctx context.Context, sel as
 }
 
 func (ec *executionContext) unmarshalNTime2ᚖtimeᚐTime(ctx context.Context, v interface{}) (*time.Time, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNTime2timeᚐTime(ctx, v)
-	return &res, err
+	res, err := graphql.UnmarshalTime(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNTime2ᚖtimeᚐTime(ctx context.Context, sel ast.SelectionSet, v *time.Time) graphql.Marshaler {
@@ -19256,7 +21875,13 @@ func (ec *executionContext) marshalNTime2ᚖtimeᚐTime(ctx context.Context, sel
 		}
 		return graphql.Null
 	}
-	return ec.marshalNTime2timeᚐTime(ctx, sel, *v)
+	res := graphql.MarshalTime(*v)
+	if res == graphql.Null {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+	}
+	return res
 }
 
 func (ec *executionContext) marshalNUser2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUser(ctx context.Context, sel ast.SelectionSet, v User) graphql.Marshaler {
@@ -19311,22 +21936,12 @@ func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋloopcontextᚋgraphql
 }
 
 func (ec *executionContext) unmarshalNUserCreateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
-func (ec *executionContext) unmarshalNUserFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx context.Context, v interface{}) (UserFilterType, error) {
-	return ec.unmarshalInputUserFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNUserFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx context.Context, v interface{}) (*UserFilterType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNUserFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputUserFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNUserResultType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserResultType(ctx context.Context, sel ast.SelectionSet, v UserResultType) graphql.Marshaler {
@@ -19343,27 +21958,18 @@ func (ec *executionContext) marshalNUserResultType2ᚖgithubᚗcomᚋloopcontext
 	return ec._UserResultType(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNUserSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx context.Context, v interface{}) (UserSortType, error) {
-	return ec.unmarshalInputUserSortType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalNUserSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx context.Context, v interface{}) (*UserSortType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalNUserSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputUserSortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalNUserUpdateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	if v == nil {
-		return nil, nil
-	}
 	return v.(map[string]interface{}), nil
 }
 
 func (ec *executionContext) unmarshalN_FieldSet2string(ctx context.Context, v interface{}) (string, error) {
-	return graphql.UnmarshalString(v)
+	res, err := graphql.UnmarshalString(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalN_FieldSet2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
@@ -19422,7 +22028,8 @@ func (ec *executionContext) marshalN__Directive2ᚕgithubᚗcomᚋ99designsᚋgq
 }
 
 func (ec *executionContext) unmarshalN__DirectiveLocation2string(ctx context.Context, v interface{}) (string, error) {
-	return graphql.UnmarshalString(v)
+	res, err := graphql.UnmarshalString(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalN__DirectiveLocation2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
@@ -19447,6 +22054,7 @@ func (ec *executionContext) unmarshalN__DirectiveLocation2ᚕstringᚄ(ctx conte
 	var err error
 	res := make([]string, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalN__DirectiveLocation2string(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19593,7 +22201,8 @@ func (ec *executionContext) marshalN__Type2ᚖgithubᚗcomᚋ99designsᚋgqlgen�
 }
 
 func (ec *executionContext) unmarshalN__TypeKind2string(ctx context.Context, v interface{}) (string, error) {
-	return graphql.UnmarshalString(v)
+	res, err := graphql.UnmarshalString(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalN__TypeKind2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
@@ -19606,10 +22215,6 @@ func (ec *executionContext) marshalN__TypeKind2string(ctx context.Context, sel a
 	return res
 }
 
-func (ec *executionContext) marshalOAddress2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐAddress(ctx context.Context, sel ast.SelectionSet, v Address) graphql.Marshaler {
-	return ec._Address(ctx, sel, &v)
-}
-
 func (ec *executionContext) marshalOAddress2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐAddress(ctx context.Context, sel ast.SelectionSet, v *Address) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -19618,7 +22223,8 @@ func (ec *executionContext) marshalOAddress2ᚖgithubᚗcomᚋloopcontextᚋgrap
 }
 
 func (ec *executionContext) unmarshalOBoolean2bool(ctx context.Context, v interface{}) (bool, error) {
-	return graphql.UnmarshalBoolean(v)
+	res, err := graphql.UnmarshalBoolean(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOBoolean2bool(ctx context.Context, sel ast.SelectionSet, v bool) graphql.Marshaler {
@@ -19626,6 +22232,9 @@ func (ec *executionContext) marshalOBoolean2bool(ctx context.Context, sel ast.Se
 }
 
 func (ec *executionContext) unmarshalOBoolean2ᚕboolᚄ(ctx context.Context, v interface{}) ([]bool, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -19637,6 +22246,7 @@ func (ec *executionContext) unmarshalOBoolean2ᚕboolᚄ(ctx context.Context, v 
 	var err error
 	res := make([]bool, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNBoolean2bool(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19661,19 +22271,15 @@ func (ec *executionContext) unmarshalOBoolean2ᚖbool(ctx context.Context, v int
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOBoolean2bool(ctx, v)
-	return &res, err
+	res, err := graphql.UnmarshalBoolean(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast.SelectionSet, v *bool) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec.marshalOBoolean2bool(ctx, sel, *v)
-}
-
-func (ec *executionContext) marshalOCompany2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompany(ctx context.Context, sel ast.SelectionSet, v Company) graphql.Marshaler {
-	return ec._Company(ctx, sel, &v)
+	return graphql.MarshalBoolean(*v)
 }
 
 func (ec *executionContext) marshalOCompany2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompany(ctx context.Context, sel ast.SelectionSet, v *Company) graphql.Marshaler {
@@ -19683,11 +22289,10 @@ func (ec *executionContext) marshalOCompany2ᚖgithubᚗcomᚋloopcontextᚋgrap
 	return ec._Company(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOCompanyFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx context.Context, v interface{}) (CompanyFilterType, error) {
-	return ec.unmarshalInputCompanyFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalOCompanyFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterTypeᚄ(ctx context.Context, v interface{}) ([]*CompanyFilterType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -19699,6 +22304,7 @@ func (ec *executionContext) unmarshalOCompanyFilterType2ᚕᚖgithubᚗcomᚋloo
 	var err error
 	res := make([]*CompanyFilterType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNCompanyFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19711,15 +22317,14 @@ func (ec *executionContext) unmarshalOCompanyFilterType2ᚖgithubᚗcomᚋloopco
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOCompanyFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanyFilterType(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) unmarshalOCompanySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortType(ctx context.Context, v interface{}) (CompanySortType, error) {
-	return ec.unmarshalInputCompanySortType(ctx, v)
+	res, err := ec.unmarshalInputCompanyFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalOCompanySortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortTypeᚄ(ctx context.Context, v interface{}) ([]*CompanySortType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -19731,6 +22336,7 @@ func (ec *executionContext) unmarshalOCompanySortType2ᚕᚖgithubᚗcomᚋloopc
 	var err error
 	res := make([]*CompanySortType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNCompanySortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19743,12 +22349,8 @@ func (ec *executionContext) unmarshalOCompanySortType2ᚖgithubᚗcomᚋloopcont
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOCompanySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCompanySortType(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) marshalOCountry2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCountry(ctx context.Context, sel ast.SelectionSet, v Country) graphql.Marshaler {
-	return ec._Country(ctx, sel, &v)
+	res, err := ec.unmarshalInputCompanySortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOCountry2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐCountry(ctx context.Context, sel ast.SelectionSet, v *Country) graphql.Marshaler {
@@ -19758,15 +22360,10 @@ func (ec *executionContext) marshalOCountry2ᚖgithubᚗcomᚋloopcontextᚋgrap
 	return ec._Country(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOID2string(ctx context.Context, v interface{}) (string, error) {
-	return graphql.UnmarshalID(v)
-}
-
-func (ec *executionContext) marshalOID2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
-	return graphql.MarshalID(v)
-}
-
 func (ec *executionContext) unmarshalOID2ᚕstringᚄ(ctx context.Context, v interface{}) ([]string, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -19778,6 +22375,7 @@ func (ec *executionContext) unmarshalOID2ᚕstringᚄ(ctx context.Context, v int
 	var err error
 	res := make([]string, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNID2string(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19802,26 +22400,21 @@ func (ec *executionContext) unmarshalOID2ᚖstring(ctx context.Context, v interf
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOID2string(ctx, v)
-	return &res, err
+	res, err := graphql.UnmarshalID(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOID2ᚖstring(ctx context.Context, sel ast.SelectionSet, v *string) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec.marshalOID2string(ctx, sel, *v)
-}
-
-func (ec *executionContext) unmarshalOInt2int(ctx context.Context, v interface{}) (int, error) {
-	return graphql.UnmarshalInt(v)
-}
-
-func (ec *executionContext) marshalOInt2int(ctx context.Context, sel ast.SelectionSet, v int) graphql.Marshaler {
-	return graphql.MarshalInt(v)
+	return graphql.MarshalID(*v)
 }
 
 func (ec *executionContext) unmarshalOInt2ᚕintᚄ(ctx context.Context, v interface{}) ([]int, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -19833,6 +22426,7 @@ func (ec *executionContext) unmarshalOInt2ᚕintᚄ(ctx context.Context, v inter
 	var err error
 	res := make([]int, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNInt2int(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19857,32 +22451,24 @@ func (ec *executionContext) unmarshalOInt2ᚖint(ctx context.Context, v interfac
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOInt2int(ctx, v)
-	return &res, err
+	res, err := graphql.UnmarshalInt(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOInt2ᚖint(ctx context.Context, sel ast.SelectionSet, v *int) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec.marshalOInt2int(ctx, sel, *v)
-}
-
-func (ec *executionContext) unmarshalOObjectSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx context.Context, v interface{}) (ObjectSortType, error) {
-	var res ObjectSortType
-	return res, res.UnmarshalGQL(v)
-}
-
-func (ec *executionContext) marshalOObjectSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx context.Context, sel ast.SelectionSet, v ObjectSortType) graphql.Marshaler {
-	return v
+	return graphql.MarshalInt(*v)
 }
 
 func (ec *executionContext) unmarshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx context.Context, v interface{}) (*ObjectSortType, error) {
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOObjectSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx, v)
-	return &res, err
+	var res = new(ObjectSortType)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOObjectSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐObjectSortType(ctx context.Context, sel ast.SelectionSet, v *ObjectSortType) graphql.Marshaler {
@@ -19892,10 +22478,6 @@ func (ec *executionContext) marshalOObjectSortType2ᚖgithubᚗcomᚋloopcontext
 	return v
 }
 
-func (ec *executionContext) marshalOPlainEntity2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntity(ctx context.Context, sel ast.SelectionSet, v PlainEntity) graphql.Marshaler {
-	return ec._PlainEntity(ctx, sel, &v)
-}
-
 func (ec *executionContext) marshalOPlainEntity2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntity(ctx context.Context, sel ast.SelectionSet, v *PlainEntity) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -19903,11 +22485,10 @@ func (ec *executionContext) marshalOPlainEntity2ᚖgithubᚗcomᚋloopcontextᚋ
 	return ec._PlainEntity(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOPlainEntityFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterType(ctx context.Context, v interface{}) (PlainEntityFilterType, error) {
-	return ec.unmarshalInputPlainEntityFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalOPlainEntityFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterTypeᚄ(ctx context.Context, v interface{}) ([]*PlainEntityFilterType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -19919,6 +22500,7 @@ func (ec *executionContext) unmarshalOPlainEntityFilterType2ᚕᚖgithubᚗcom�
 	var err error
 	res := make([]*PlainEntityFilterType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNPlainEntityFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19931,11 +22513,14 @@ func (ec *executionContext) unmarshalOPlainEntityFilterType2ᚖgithubᚗcomᚋlo
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOPlainEntityFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntityFilterType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputPlainEntityFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalOPlainEntitySortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntitySortTypeᚄ(ctx context.Context, v interface{}) ([]*PlainEntitySortType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -19947,6 +22532,7 @@ func (ec *executionContext) unmarshalOPlainEntitySortType2ᚕᚖgithubᚗcomᚋl
 	var err error
 	res := make([]*PlainEntitySortType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNPlainEntitySortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐPlainEntitySortType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19956,7 +22542,8 @@ func (ec *executionContext) unmarshalOPlainEntitySortType2ᚕᚖgithubᚗcomᚋl
 }
 
 func (ec *executionContext) unmarshalOString2string(ctx context.Context, v interface{}) (string, error) {
-	return graphql.UnmarshalString(v)
+	res, err := graphql.UnmarshalString(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOString2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
@@ -19964,6 +22551,9 @@ func (ec *executionContext) marshalOString2string(ctx context.Context, sel ast.S
 }
 
 func (ec *executionContext) unmarshalOString2ᚕstringᚄ(ctx context.Context, v interface{}) ([]string, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -19975,6 +22565,7 @@ func (ec *executionContext) unmarshalOString2ᚕstringᚄ(ctx context.Context, v
 	var err error
 	res := make([]string, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNString2string(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -19999,19 +22590,15 @@ func (ec *executionContext) unmarshalOString2ᚖstring(ctx context.Context, v in
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOString2string(ctx, v)
-	return &res, err
+	res, err := graphql.UnmarshalString(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel ast.SelectionSet, v *string) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec.marshalOString2string(ctx, sel, *v)
-}
-
-func (ec *executionContext) marshalOTask2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTask(ctx context.Context, sel ast.SelectionSet, v Task) graphql.Marshaler {
-	return ec._Task(ctx, sel, &v)
+	return graphql.MarshalString(*v)
 }
 
 func (ec *executionContext) marshalOTask2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTask(ctx context.Context, sel ast.SelectionSet, v *Task) graphql.Marshaler {
@@ -20021,10 +22608,6 @@ func (ec *executionContext) marshalOTask2ᚖgithubᚗcomᚋloopcontextᚋgraphql
 	return ec._Task(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOTaskCategory2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategory(ctx context.Context, sel ast.SelectionSet, v TaskCategory) graphql.Marshaler {
-	return ec._TaskCategory(ctx, sel, &v)
-}
-
 func (ec *executionContext) marshalOTaskCategory2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategory(ctx context.Context, sel ast.SelectionSet, v *TaskCategory) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -20032,11 +22615,10 @@ func (ec *executionContext) marshalOTaskCategory2ᚖgithubᚗcomᚋloopcontext�
 	return ec._TaskCategory(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOTaskCategoryFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx context.Context, v interface{}) (TaskCategoryFilterType, error) {
-	return ec.unmarshalInputTaskCategoryFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalOTaskCategoryFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterTypeᚄ(ctx context.Context, v interface{}) ([]*TaskCategoryFilterType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20048,6 +22630,7 @@ func (ec *executionContext) unmarshalOTaskCategoryFilterType2ᚕᚖgithubᚗcom�
 	var err error
 	res := make([]*TaskCategoryFilterType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNTaskCategoryFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20060,15 +22643,14 @@ func (ec *executionContext) unmarshalOTaskCategoryFilterType2ᚖgithubᚗcomᚋl
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOTaskCategoryFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategoryFilterType(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) unmarshalOTaskCategorySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortType(ctx context.Context, v interface{}) (TaskCategorySortType, error) {
-	return ec.unmarshalInputTaskCategorySortType(ctx, v)
+	res, err := ec.unmarshalInputTaskCategoryFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalOTaskCategorySortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortTypeᚄ(ctx context.Context, v interface{}) ([]*TaskCategorySortType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20080,6 +22662,7 @@ func (ec *executionContext) unmarshalOTaskCategorySortType2ᚕᚖgithubᚗcomᚋ
 	var err error
 	res := make([]*TaskCategorySortType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNTaskCategorySortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20092,15 +22675,14 @@ func (ec *executionContext) unmarshalOTaskCategorySortType2ᚖgithubᚗcomᚋloo
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOTaskCategorySortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskCategorySortType(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) unmarshalOTaskFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx context.Context, v interface{}) (TaskFilterType, error) {
-	return ec.unmarshalInputTaskFilterType(ctx, v)
+	res, err := ec.unmarshalInputTaskCategorySortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalOTaskFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterTypeᚄ(ctx context.Context, v interface{}) ([]*TaskFilterType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20112,6 +22694,7 @@ func (ec *executionContext) unmarshalOTaskFilterType2ᚕᚖgithubᚗcomᚋloopco
 	var err error
 	res := make([]*TaskFilterType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNTaskFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20124,12 +22707,8 @@ func (ec *executionContext) unmarshalOTaskFilterType2ᚖgithubᚗcomᚋloopconte
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOTaskFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskFilterType(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) marshalOTaskMeta2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskMeta(ctx context.Context, sel ast.SelectionSet, v TaskMeta) graphql.Marshaler {
-	return ec._TaskMeta(ctx, sel, &v)
+	res, err := ec.unmarshalInputTaskFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOTaskMeta2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskMetaᚄ(ctx context.Context, sel ast.SelectionSet, v []*TaskMeta) graphql.Marshaler {
@@ -20179,11 +22758,10 @@ func (ec *executionContext) marshalOTaskMeta2ᚖgithubᚗcomᚋloopcontextᚋgra
 	return ec._TaskMeta(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOTaskMetaInput2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskMetaInput(ctx context.Context, v interface{}) (TaskMetaInput, error) {
-	return ec.unmarshalInputTaskMetaInput(ctx, v)
-}
-
 func (ec *executionContext) unmarshalOTaskMetaInput2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskMetaInput(ctx context.Context, v interface{}) ([]*TaskMetaInput, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20195,6 +22773,7 @@ func (ec *executionContext) unmarshalOTaskMetaInput2ᚕᚖgithubᚗcomᚋloopcon
 	var err error
 	res := make([]*TaskMetaInput, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalOTaskMetaInput2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskMetaInput(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20207,15 +22786,14 @@ func (ec *executionContext) unmarshalOTaskMetaInput2ᚖgithubᚗcomᚋloopcontex
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOTaskMetaInput2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskMetaInput(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) unmarshalOTaskSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx context.Context, v interface{}) (TaskSortType, error) {
-	return ec.unmarshalInputTaskSortType(ctx, v)
+	res, err := ec.unmarshalInputTaskMetaInput(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalOTaskSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortTypeᚄ(ctx context.Context, v interface{}) ([]*TaskSortType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20227,6 +22805,7 @@ func (ec *executionContext) unmarshalOTaskSortType2ᚕᚖgithubᚗcomᚋloopcont
 	var err error
 	res := make([]*TaskSortType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNTaskSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20239,20 +22818,14 @@ func (ec *executionContext) unmarshalOTaskSortType2ᚖgithubᚗcomᚋloopcontext
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOTaskSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskSortType(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) unmarshalOTaskState2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx context.Context, v interface{}) (TaskState, error) {
-	var res TaskState
-	return res, res.UnmarshalGQL(v)
-}
-
-func (ec *executionContext) marshalOTaskState2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx context.Context, sel ast.SelectionSet, v TaskState) graphql.Marshaler {
-	return v
+	res, err := ec.unmarshalInputTaskSortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalOTaskState2ᚕgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskStateᚄ(ctx context.Context, v interface{}) ([]TaskState, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20264,6 +22837,7 @@ func (ec *executionContext) unmarshalOTaskState2ᚕgithubᚗcomᚋloopcontextᚋ
 	var err error
 	res := make([]TaskState, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNTaskState2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20316,8 +22890,9 @@ func (ec *executionContext) unmarshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋ
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOTaskState2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx, v)
-	return &res, err
+	var res = new(TaskState)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐTaskState(ctx context.Context, sel ast.SelectionSet, v *TaskState) graphql.Marshaler {
@@ -20327,15 +22902,10 @@ func (ec *executionContext) marshalOTaskState2ᚖgithubᚗcomᚋloopcontextᚋgr
 	return v
 }
 
-func (ec *executionContext) unmarshalOTime2timeᚐTime(ctx context.Context, v interface{}) (time.Time, error) {
-	return graphql.UnmarshalTime(v)
-}
-
-func (ec *executionContext) marshalOTime2timeᚐTime(ctx context.Context, sel ast.SelectionSet, v time.Time) graphql.Marshaler {
-	return graphql.MarshalTime(v)
-}
-
 func (ec *executionContext) unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx context.Context, v interface{}) ([]*time.Time, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20347,6 +22917,7 @@ func (ec *executionContext) unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx context.Cont
 	var err error
 	res := make([]*time.Time, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNTime2ᚖtimeᚐTime(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20371,19 +22942,15 @@ func (ec *executionContext) unmarshalOTime2ᚖtimeᚐTime(ctx context.Context, v
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOTime2timeᚐTime(ctx, v)
-	return &res, err
+	res, err := graphql.UnmarshalTime(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalOTime2ᚖtimeᚐTime(ctx context.Context, sel ast.SelectionSet, v *time.Time) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
-	return ec.marshalOTime2timeᚐTime(ctx, sel, *v)
-}
-
-func (ec *executionContext) marshalOUser2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUser(ctx context.Context, sel ast.SelectionSet, v User) graphql.Marshaler {
-	return ec._User(ctx, sel, &v)
+	return graphql.MarshalTime(*v)
 }
 
 func (ec *executionContext) marshalOUser2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUser(ctx context.Context, sel ast.SelectionSet, v *User) graphql.Marshaler {
@@ -20393,11 +22960,10 @@ func (ec *executionContext) marshalOUser2ᚖgithubᚗcomᚋloopcontextᚋgraphql
 	return ec._User(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOUserFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx context.Context, v interface{}) (UserFilterType, error) {
-	return ec.unmarshalInputUserFilterType(ctx, v)
-}
-
 func (ec *executionContext) unmarshalOUserFilterType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterTypeᚄ(ctx context.Context, v interface{}) ([]*UserFilterType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20409,6 +22975,7 @@ func (ec *executionContext) unmarshalOUserFilterType2ᚕᚖgithubᚗcomᚋloopco
 	var err error
 	res := make([]*UserFilterType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNUserFilterType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20421,15 +22988,14 @@ func (ec *executionContext) unmarshalOUserFilterType2ᚖgithubᚗcomᚋloopconte
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOUserFilterType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserFilterType(ctx, v)
-	return &res, err
-}
-
-func (ec *executionContext) unmarshalOUserSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx context.Context, v interface{}) (UserSortType, error) {
-	return ec.unmarshalInputUserSortType(ctx, v)
+	res, err := ec.unmarshalInputUserFilterType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalOUserSortType2ᚕᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortTypeᚄ(ctx context.Context, v interface{}) ([]*UserSortType, error) {
+	if v == nil {
+		return nil, nil
+	}
 	var vSlice []interface{}
 	if v != nil {
 		if tmp1, ok := v.([]interface{}); ok {
@@ -20441,6 +23007,7 @@ func (ec *executionContext) unmarshalOUserSortType2ᚕᚖgithubᚗcomᚋloopcont
 	var err error
 	res := make([]*UserSortType, len(vSlice))
 	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
 		res[i], err = ec.unmarshalNUserSortType2ᚖgithubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
@@ -20453,8 +23020,8 @@ func (ec *executionContext) unmarshalOUserSortType2ᚖgithubᚗcomᚋloopcontext
 	if v == nil {
 		return nil, nil
 	}
-	res, err := ec.unmarshalOUserSortType2githubᚗcomᚋloopcontextᚋgraphqlᚑormᚋtestᚋgenᚐUserSortType(ctx, v)
-	return &res, err
+	res, err := ec.unmarshalInputUserSortType(ctx, v)
+	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalO__EnumValue2ᚕgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐEnumValueᚄ(ctx context.Context, sel ast.SelectionSet, v []introspection.EnumValue) graphql.Marshaler {
@@ -20577,19 +23144,11 @@ func (ec *executionContext) marshalO__InputValue2ᚕgithubᚗcomᚋ99designsᚋg
 	return ret
 }
 
-func (ec *executionContext) marshalO__Schema2githubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐSchema(ctx context.Context, sel ast.SelectionSet, v introspection.Schema) graphql.Marshaler {
-	return ec.___Schema(ctx, sel, &v)
-}
-
 func (ec *executionContext) marshalO__Schema2ᚖgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐSchema(ctx context.Context, sel ast.SelectionSet, v *introspection.Schema) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec.___Schema(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalO__Type2githubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐType(ctx context.Context, sel ast.SelectionSet, v introspection.Type) graphql.Marshaler {
-	return ec.___Type(ctx, sel, &v)
 }
 
 func (ec *executionContext) marshalO__Type2ᚕgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐTypeᚄ(ctx context.Context, sel ast.SelectionSet, v []introspection.Type) graphql.Marshaler {

@@ -3,7 +3,7 @@ module github.com/loopcontext/go-graphql-orm
 go 1.15
 
 require (
-	github.com/99designs/gqlgen v0.11.3
+	github.com/99designs/gqlgen v0.13.0
 	github.com/ghodss/yaml v1.0.0
 	github.com/gofrs/uuid v3.3.0+incompatible
 	github.com/graphql-go/graphql v0.7.9

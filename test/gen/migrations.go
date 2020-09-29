@@ -18,8 +18,7 @@ func Migrate(db *gorm.DB, options *gormigrate.Options, migrations []*gormigrate.
 	return m.Migrate()
 }
 
-// AutoMigrate auto applies model changes
-func AutoMigrate(db *gorm.DB) error {
+func AutoMigrate(db *gorm.DB) (err error) {
 	_db := db.AutoMigrate(
 		Task{},
 		TaskCategory{},
@@ -33,26 +32,68 @@ func AutoMigrate(db *gorm.DB) error {
 	}
 	if _db.Dialect().GetName() != "sqlite3" {
 
-		_db.Model(Task{}).RemoveForeignKey("assigneeId", TableName("users")+"(id)")
-		_db = _db.Model(Task{}).AddForeignKey("assigneeId", TableName("users")+"(id)", "SET NULL", "SET NULL")
+		err = _db.Model(Task{}).RemoveForeignKey("assigneeId", TableName("users")+"(id)").Error
+		if err != nil {
+			return err
+		}
+		err = _db.Model(Task{}).AddForeignKey("assigneeId", TableName("users")+"(id)", "SET NULL", "SET NULL").Error
+		if err != nil {
+			return err
+		}
 
-		_db.Model(Task{}).RemoveForeignKey("ownerId", TableName("users")+"(id)")
-		_db = _db.Model(Task{}).AddForeignKey("ownerId", TableName("users")+"(id)", "SET NULL", "SET NULL")
+		err = _db.Model(Task{}).RemoveForeignKey("ownerId", TableName("users")+"(id)").Error
+		if err != nil {
+			return err
+		}
+		err = _db.Model(Task{}).AddForeignKey("ownerId", TableName("users")+"(id)", "SET NULL", "SET NULL").Error
+		if err != nil {
+			return err
+		}
 
-		_db.Model(Task{}).RemoveForeignKey("parentTaskId", TableName("tasks")+"(id)")
-		_db = _db.Model(Task{}).AddForeignKey("parentTaskId", TableName("tasks")+"(id)", "CASCADE", "SET NULL")
+		err = _db.Model(Task{}).RemoveForeignKey("parentTaskId", TableName("tasks")+"(id)").Error
+		if err != nil {
+			return err
+		}
+		err = _db.Model(Task{}).AddForeignKey("parentTaskId", TableName("tasks")+"(id)", "CASCADE", "SET NULL").Error
+		if err != nil {
+			return err
+		}
 
-		_db.Model(TaskCategoryTasks{}).RemoveForeignKey("taskId", TableName("tasks")+"(id)")
-		_db = _db.Model(TaskCategoryTasks{}).AddForeignKey("taskId", TableName("tasks")+"(id)", "CASCADE", "CASCADE")
+		err = _db.Model(TaskCategoryTasks{}).RemoveForeignKey("taskId", TableName("tasks")+"(id)").Error
+		if err != nil {
+			return err
+		}
+		err = _db.Model(TaskCategoryTasks{}).AddForeignKey("taskId", TableName("tasks")+"(id)", "CASCADE", "CASCADE").Error
+		if err != nil {
+			return err
+		}
 
-		_db.Model(TaskCategoryTasks{}).RemoveForeignKey("categoryId", TableName("task_categories")+"(id)")
-		_db = _db.Model(TaskCategoryTasks{}).AddForeignKey("categoryId", TableName("task_categories")+"(id)", "CASCADE", "CASCADE")
+		err = _db.Model(TaskCategoryTasks{}).RemoveForeignKey("categoryId", TableName("task_categories")+"(id)").Error
+		if err != nil {
+			return err
+		}
+		err = _db.Model(TaskCategoryTasks{}).AddForeignKey("categoryId", TableName("task_categories")+"(id)", "CASCADE", "CASCADE").Error
+		if err != nil {
+			return err
+		}
 
-		_db.Model(UserEmployers{}).RemoveForeignKey("employerId", TableName("companies")+"(id)")
-		_db = _db.Model(UserEmployers{}).AddForeignKey("employerId", TableName("companies")+"(id)", "CASCADE", "CASCADE")
+		err = _db.Model(UserEmployers{}).RemoveForeignKey("employerId", TableName("companies")+"(id)").Error
+		if err != nil {
+			return err
+		}
+		err = _db.Model(UserEmployers{}).AddForeignKey("employerId", TableName("companies")+"(id)", "CASCADE", "CASCADE").Error
+		if err != nil {
+			return err
+		}
 
-		_db.Model(UserEmployers{}).RemoveForeignKey("employeeId", TableName("users")+"(id)")
-		_db = _db.Model(UserEmployers{}).AddForeignKey("employeeId", TableName("users")+"(id)", "CASCADE", "CASCADE")
+		err = _db.Model(UserEmployers{}).RemoveForeignKey("employeeId", TableName("users")+"(id)").Error
+		if err != nil {
+			return err
+		}
+		err = _db.Model(UserEmployers{}).AddForeignKey("employeeId", TableName("users")+"(id)", "CASCADE", "CASCADE").Error
+		if err != nil {
+			return err
+		}
 
 		if _db.Error != nil {
 			log.Err(_db.Error).Send()
