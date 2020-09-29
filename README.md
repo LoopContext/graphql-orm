@@ -5,11 +5,11 @@
 
 Golang GraphQL API generator using [gqlgen](https://gqlgen.com) and [gorm](https://gorm.io)
 
-# Why
+## Why
 
 While following microservices design patterns we ended up with many "model services". gqlgen is perfect tool, but implementing resolvers in every service is getting more and more cumbersome. Using this tool we only have to update `model.graphql` and all resolvers get generated automatically.
 
-# Installation
+## Installation
 
 Before you start, please make sure you have `goimports` installed:
 
@@ -102,19 +102,11 @@ docker build -f docker/Dockerfile -t {IMAGE_NAME} .
 
 If you want to create your own docker image, you can check the example repository for generated Dockerfile: <https://github.com/loopcontext/go-graphql-orm-example/blob/master/Dockerfile>
 
-<<<<<<< HEAD
-
-# Events transport
-
-=======
-
 ## What's this library for
 
 While following microservices design patterns we ended up with many "model services". gqlgen is perfect tool, but implementing resolvers in every service is getting more and more cumbersome. Using this tool we only have to update `model.graphql` and all resolvers get generated automatically.
 
 ## Events transport
-
-> > > > > > > 79cff52... mayor changes follow:
 
 For event driven architecture it's necessary that the service is able to send events about changes in state.
 Services built using this library automatically send event for every mutation using CloudEvents (entity created/updated/deleted and changed column and their values). Supported targets are:
