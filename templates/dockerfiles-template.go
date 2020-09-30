@@ -24,7 +24,7 @@ cmd = "go build -v -o ./tmp/graphql-server ."
 # Binary file yields from "cmd".
 bin = "tmp/graphql-server"
 # Customize binary.
-full_bin = "./tmp/graphql-server automigrate && ./tmp/graphql-server migrate && ./tmp/graphql-server start"
+full_bin = "./tmp/graphql-server automigrate; ./tmp/graphql-server migrate; ./tmp/graphql-server start"
 # Watch these filename extensions.
 include_ext = ["go", "tpl", "tmpl", "html", ".dev"]
 # Ignore these filename extensions or directories.
@@ -140,10 +140,10 @@ var RunDevSh = `#!/bin/sh
 app="graphql-server"
 printf "\nStart running: $app\n"
 # Set all ENV vars for the server to run
-# export $(grep -v '^#' .env | xargs)
+export $(cat .env | xargs)
 time /$GOPATH/bin/air
 # This should unset all the ENV vars, just in case.
-# unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/''' | xargs)
+# unset $(cat .env | sed -E 's/(.*)=.*/\1/' | xargs)
 printf "\nStopped running: $app\n\n"
 `
 
@@ -154,12 +154,12 @@ app="./"
 program="$buildPath/$app"
 printf "\nStart app: $app\n"
 # Set all ENV vars for the program to run
-#export $(grep -v '^#' .env | xargs)
+# export $(cat .env | xargs)
 time make automigrate
 time make migrate
 time ./$program
 # This should unset all the ENV vars, just in case.
-#unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
+# unset $(cat .env | sed -E 's/(.*)=.*/\1/' | xargs)
 printf "\nStopped app: $app\n\n"
 `
 
