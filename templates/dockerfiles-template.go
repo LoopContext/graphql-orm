@@ -107,31 +107,33 @@ CMD ["./graphql-server/server", "start"]
 `
 
 // Dockerfile ...
-var Dockerfile = `FROM golang as builder
+var Dockerfile = `# Multistaged build production golang service
+FROM golang:alpine as base
 
-ENV GO111MODULE=on
-WORKDIR /go/src/{{.Config.Package}}
+FROM base AS ci
 
-COPY . .
-RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o /tmp/app *.go
+# To add sqlite3 support, add build-base to the package list
+RUN apk update && apk upgrade && apk add --no-cache git
+RUN mkdir /build
+ADD . /build/
+WORKDIR /build
 
-FROM loopcontext/wait-for as wait-for
+# Build prod
+FROM ci AS build-env
 
-FROM alpine:3.5
+RUN go mod download
 
-RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
+# To add sqlite3 support, change to CGO_ENABLED=1
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix \
+    cgo -ldflags '-extldflags "-static"' -o server .
 
-WORKDIR /app
+FROM alpine AS prod
+RUN apk --no-cache add ca-certificates
 
-COPY --from=wait-for /usr/local/bin/wait-for /usr/local/bin/wait-for
-COPY --from=builder /tmp/app /usr/local/bin/app
+COPY --from=build-env build/server ./graphql-server/
 
-# https://serverfault.com/questions/772227/chmod-not-working-correctly-in-docker
-RUN chmod +x /usr/local/bin/app
-
-ENTRYPOINT []
-CMD [ "/bin/sh", "-c", "wait-for ${DATABASE_URL} && app start"]
-`
+# Set all the ENV variables here
+CMD ["./graphql-server/server", "start"]`
 
 // RunDevSh ...
 var RunDevSh = `#!/bin/sh
