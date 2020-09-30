@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	// "github.com/loopcontext/go-graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/events"
 	"github.com/loopcontext/go-graphql-orm/test/gen"
 )
 
@@ -31,9 +31,9 @@ func New(db *gen.DB, ec *gen.EventController) *Resolver {
 
 	resolver.Handlers.CompanyReviews = func(ctx context.Context, r *gen.GeneratedResolver, obj *gen.Company) (res []*gen.Review, err error) {
 		return []*gen.Review{
-			&gen.Review{
+			{
 				ID: "1",
-			}, &gen.Review{
+			}, {
 				ID: "2",
 			},
 		}, nil

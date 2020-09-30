@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/jinzhu/gorm"
-	"github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/events"
 )
 
 // ResolutionHandlers struct

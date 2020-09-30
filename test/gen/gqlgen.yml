@@ -17,7 +17,6 @@ federation:
   package: gen
 
 models:
-
   Task:
     model: github.com/loopcontext/go-graphql-orm/test/gen.Task
     fields:
@@ -120,4 +119,3 @@ models:
 
   Country:
     fields:
-

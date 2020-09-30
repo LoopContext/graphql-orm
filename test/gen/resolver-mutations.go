@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/gofrs/uuid"
-	"github.com/loopcontext/graphql-orm/events"
+	"github.com/loopcontext/go-graphql-orm/events"
 )
 
 // GeneratedMutationResolver ...
