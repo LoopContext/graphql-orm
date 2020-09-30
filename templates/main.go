@@ -111,6 +111,11 @@ func startServer(enableCors bool, port string) error {
 		return err
 	}
 
+	gqlBasePath := os.Getenv("API_GRAPHQL_BASE_RESOURCE")
+	if gqlBasePath == "" {
+		gqlBasePath = "/graphql"
+	}
+
 	mux := gen.GetHTTPServeMux(src.New(db, &eventController), db, src.GetMigrations(db))
 
 	mux.HandleFunc("/healthcheck", func(res http.ResponseWriter, req *http.Request) {
