@@ -22,7 +22,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "graphql-orm"
 	app.Usage = "This tool is for generating a graphql-api"
-	app.Version = "1.0.8"
+	app.Version = "1.0.9"
 
 	app.Commands = []cli.Command{
 		startCmd,
@@ -115,6 +115,10 @@ func startServer(enableCors bool, port string) error {
 	if gqlBasePath == "" {
 		gqlBasePath = "/graphql"
 	}
+
+	// secure the (i.e.) /v1/graphql route
+	amw := middleware.AuthJWT{DB: db, Path: os.Getenv("API_VERSION") + gqlBasePath}
+	mux.Use(amw.Middleware)
 
 	mux := gen.GetHTTPServeMux(src.New(db, &eventController), db, src.GetMigrations(db))
 

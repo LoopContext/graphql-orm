@@ -57,6 +57,10 @@ func generate(filePattern, p string) error {
 	genPath := path.Join(p, "gen")
 	ensureDir(genPath)
 
+	ensureDir(path.Join(p, "src"))
+	ensureDir(path.Join(p, "src/utils"))
+	ensureDir(path.Join(p, "src/middleware"))
+
 	err = model.EnrichModelObjects(&m)
 	if err != nil {
 		return err
@@ -89,18 +93,18 @@ func generate(filePattern, p string) error {
 
 	schema = "# This schema is generated, please don't update it manually\n\n" + schema
 
-	if err := ioutil.WriteFile(path.Join(p, "gen/schema.graphql"), []byte(schema), 0644); err != nil {
+	if err := ioutil.WriteFile(path.Join(p, "gen/schema.graphql"), []byte(schema), 0o644); err != nil {
 		return err
 	}
 
-	var re = regexp.MustCompile(`(?sm)schema {[^}]+}`)
+	re := regexp.MustCompile(`(?sm)schema {[^}]+}`)
 	schemaSDL = re.ReplaceAllString(schemaSDL, ``)
-	var re2 = regexp.MustCompile(`(?sm)type _Service {[^}]+}`)
+	re2 := regexp.MustCompile(`(?sm)type _Service {[^}]+}`)
 	schemaSDL = re2.ReplaceAllString(schemaSDL, ``)
 	schemaSDL = strings.Replace(schemaSDL, "\n  _service: _Service!", "", 1)
 	schemaSDL = strings.Replace(schemaSDL, "\n  _entities(representations: [_Any!]!): [_Entity]!", "", 1)
 	schemaSDL = strings.Replace(schemaSDL, "\nscalar _Any", "", 1)
-	var re3 = regexp.MustCompile(`(?sm)[\n]{3,}`)
+	re3 := regexp.MustCompile(`(?sm)[\n]{3,}`)
 	schemaSDL = re3.ReplaceAllString(schemaSDL, "\n\n")
 	schemaSDL = strings.Trim(schemaSDL, "\n")
 	constants := map[string]interface{}{
@@ -120,7 +124,7 @@ func generate(filePattern, p string) error {
 
 func ensureDir(dir string) {
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		err = os.Mkdir(dir, 0777)
+		err = os.Mkdir(dir, 0o777)
 		if err != nil {
 			panic(err)
 		}
@@ -182,6 +186,16 @@ func generateFiles(p string, m *model.Model, c *model.Config) error {
 	// and let the generator create a new one if there are any schema changes.
 	if !fileExists(path.Join(p, "src/resolver_ext.go")) {
 		if err := templates.WriteTemplate(templates.ResolverSrcExt, path.Join(p, "src/resolver_ext.go"), data); err != nil {
+			return err
+		}
+	}
+	if !fileExists(path.Join(p, "src/middleware/auth.go")) {
+		if err := templates.WriteTemplate(templates.MiddlewareJWT, path.Join(p, "src/middleware/auth.go"), data); err != nil {
+			return err
+		}
+	}
+	if !fileExists(path.Join(p, "src/utils/tools.go")) {
+		if err := templates.WriteTemplate(templates.UtilTools, path.Join(p, "src/utils/tools.go"), data); err != nil {
 			return err
 		}
 	}
