@@ -10,9 +10,13 @@ import (
 	"os"
 	"strings"
 
+	"github.com/gorilla/mux"
+
+	"github.com/loopcontext/deliver-api-go/src/middleware"
+
 	"github.com/rs/cors"
 	"github.com/rs/zerolog/log"
-	"github.com/99designs/gqlgen/handler"
+	"github.com/urfave/cli"
 
 	"{{.Config.Package}}/gen"
 	"{{.Config.Package}}/src"
@@ -117,10 +121,10 @@ func startServer(enableCors bool, port string) error {
 	}
 
 	// secure the (i.e.) /v1/graphql route
-	amw := middleware.AuthJWT{DB: db, Path: os.Getenv("API_VERSION") + gqlBasePath}
-	mux.Use(amw.Middleware)
+	amw := middleware.AuthJWT{Path: os.Getenv("API_VERSION") + gqlBasePath}
 
 	mux := gen.GetHTTPServeMux(src.New(db, &eventController), db, src.GetMigrations(db))
+	mux.Use(amw.Middleware)
 
 	mux.HandleFunc("/healthcheck", func(res http.ResponseWriter, req *http.Request) {
 		if err := db.Ping(); err != nil {
