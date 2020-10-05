@@ -26,18 +26,22 @@ func getNamedType(t ast.Type) ast.Type {
 	}
 	panic("unable to get named type of " + t.String())
 }
+
 func isNonNullType(t ast.Type) bool {
 	return t.GetKind() == kinds.NonNull
 }
+
 func isListType(t ast.Type) bool {
 	return t.GetKind() == kinds.List
 }
+
 func getNullableType(t ast.Type) ast.Type {
 	if isNonNullType(t) {
 		return t.(*ast.NonNull).Type
 	}
 	return t
 }
+
 func nonNull(t ast.Type) ast.Type {
 	if isNonNullType(t) {
 		return t
@@ -62,19 +66,20 @@ func nameNode(name string) *ast.Name {
 	}
 }
 
-func astTypeToString(t ast.Type) string {
-	_t := getNamedType(t).(*ast.Named)
-	res := _t.Name.Value
+// TODO: see if this func is dead or not
+// func astTypeToString(t ast.Type) string {
+// 	_t := getNamedType(t).(*ast.Named)
+// 	res := _t.Name.Value
 
-	if !isNonNullType(t) {
-		res = "*" + res
-	}
+// 	if !isNonNullType(t) {
+// 		res = "*" + res
+// 	}
 
-	if isListType(getNullableType(t)) {
-		res = "[]" + res
-	}
-	return res
-}
+// 	if isListType(getNullableType(t)) {
+// 		res = "[]" + res
+// 	}
+// 	return res
+// }
 
 var goTypeMap = map[string]string{
 	"String":  "string",

@@ -56,7 +56,7 @@ func (o *ObjectField) ModelTags() string {
 			if arg.Name.Value == "unique" {
 				val, ok := arg.Value.GetValue().(bool)
 				if ok && val {
-					_gorm += fmt.Sprintf(";unique")
+					_gorm += ";unique"
 				}
 			}
 			if arg.Name.Value == "index" {

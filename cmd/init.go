@@ -86,6 +86,9 @@ func createConfigFile(p string) error {
 	}
 
 	data, err := ioutil.ReadFile(modFilename)
+	if err != nil {
+		return err
+	}
 	reader := bufio.NewReader(bytes.NewReader(data))
 	line, _, err := reader.ReadLine()
 	if err != nil {
@@ -99,9 +102,10 @@ func createConfigFile(p string) error {
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile(path.Join(p, "graphql-orm.yml"), content, 0644)
+	err = ioutil.WriteFile(path.Join(p, "graphql-orm.yml"), content, 0o644)
 	return err
 }
+
 func createMainFile(p string) error {
 	c, err := model.LoadConfigFromPath(p)
 	if err != nil {
@@ -109,6 +113,7 @@ func createMainFile(p string) error {
 	}
 	return templates.WriteTemplate(templates.Main, path.Join(p, "main.go"), templates.TemplateData{Config: &c})
 }
+
 func createLambdaMainFile(p string) error {
 	c, err := model.LoadConfigFromPath(p)
 	if err != nil {
@@ -117,6 +122,7 @@ func createLambdaMainFile(p string) error {
 	ensureDir(path.Join(p, "lambda"))
 	return templates.WriteTemplate(templates.Lambda, path.Join(p, "lambda/main.go"), templates.TemplateData{Config: &c})
 }
+
 func createDummyModelFile(p string) error {
 	data := templates.TemplateData{Model: nil, Config: nil}
 	return templates.WriteTemplate(templates.DummyModel, path.Join(p, "model.graphql"), data)
@@ -145,6 +151,10 @@ func createDockerFiles(p string) error {
 		return err
 	}
 	err = templates.WriteTemplate(templates.AirConf, path.Join(p, ".air.conf"), data)
+	if err != nil {
+		return err
+	}
+	err = templates.WriteTemplate(templates.DotenvExample, path.Join(p, ".env.example"), data)
 	if err != nil {
 		return err
 	}
