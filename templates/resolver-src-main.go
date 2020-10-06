@@ -15,7 +15,7 @@ import (
 func New(db *gen.DB, ec *gen.EventController) *Resolver {
 	resolver := NewResolver(db, ec)
 
-	resolver.Handlers.CreateUser = func(ctx context.Context, r *gen.GeneratedResolver, input map[string]interface{}) (item *gen.User, err error) {
+	// resolver.Handlers.CreateUser = func(ctx context.Context, r *gen.GeneratedResolver, input map[string]interface{}) (item *gen.User, err error) {
 		// Before save
 
 		// Verify email, for example.
@@ -24,7 +24,7 @@ func New(db *gen.DB, ec *gen.EventController) *Resolver {
 		// 	return nil, err
 		// }
 		return gen.CreateUserHandler(ctx, r, input)
-	}
+	// }
 	resolver.Handlers.OnEvent = func(ctx context.Context, r *gen.GeneratedResolver, e *events.Event) (err error) {
 		// After save
 		if e.Entity == "User" && (e.Type == events.EventTypeCreated || e.Type == events.EventTypeUpdated) {
