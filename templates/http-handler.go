@@ -174,7 +174,7 @@ func GetPrincipalIDFromContext(ctx context.Context) *string {
 	return v
 }
 
-// GetJWTClaimsFromContext ...
+// GetJWTClaimsFromContext method
 func GetJWTClaimsFromContext(ctx context.Context) *JWTClaims {
 	val, _ := ctx.Value(KeyJWTClaims).(*JWTClaims)
 	return val
@@ -189,9 +189,13 @@ func getJWTClaims(req *http.Request) (*JWTClaims, error) {
 	}
 
 	p = &JWTClaims{}
-	jwtgo.ParseWithClaims(tokenStr, p, nil)
+	_, err := jwtgo.ParseWithClaims(tokenStr, p, nil)
+	if err != nil {
+		return p, err
+	}
 	return p, nil
 }
+
 
 // JWTClaims JWT Claims
 type JWTClaims struct {
