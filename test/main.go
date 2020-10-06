@@ -114,11 +114,17 @@ func startServer(enableCors bool, port string) error {
 	mux.HandleFunc("/healthcheck", func(res http.ResponseWriter, req *http.Request) {
 		if err := db.Ping(); err != nil {
 			res.WriteHeader(400)
-			res.Write([]byte("ERROR"))
+			_, err := res.Write([]byte("ERROR"))
+			if err != nil {
+				log.Println(err)
+			}
 			return
 		}
 		res.WriteHeader(200)
-		res.Write([]byte("OK"))
+		_, err := res.Write([]byte("OK"))
+		if err != nil {
+			log.Println(err)
+		}
 	})
 
 	var handler http.Handler

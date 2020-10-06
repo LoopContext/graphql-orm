@@ -9,7 +9,7 @@ import (
 // GetMigrations migrations
 func GetMigrations(db *gen.DB) []*gormigrate.Migration {
 	return []*gormigrate.Migration{
-		&gormigrate.Migration{
+		{
 			ID: "INIT",
 			Migrate: func(tx *gorm.DB) error {
 				return db.AutoMigrate()
@@ -19,7 +19,7 @@ func GetMigrations(db *gen.DB) []*gormigrate.Migration {
 				return nil
 			},
 		},
-		&gormigrate.Migration{
+		{
 			ID: "01create_user_blah",
 			Migrate: func(tx *gorm.DB) error {
 				type User struct {
@@ -28,7 +28,7 @@ func GetMigrations(db *gen.DB) []*gormigrate.Migration {
 				return tx.AutoMigrate(&User{}).Error
 			},
 		},
-		&gormigrate.Migration{
+		{
 			ID: "02drop_user_blah",
 			Migrate: func(tx *gorm.DB) error {
 				if tx.Dialect().GetName() == "sqlite3" {
@@ -37,7 +37,7 @@ func GetMigrations(db *gen.DB) []*gormigrate.Migration {
 				type User struct {
 					blah string
 				}
-				return tx.Model(User{}).DropColumn("blah").Error
+				return tx.Model(User{blah: "blah"}).DropColumn("blah").Error
 			},
 		},
 	}

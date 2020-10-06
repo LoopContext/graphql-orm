@@ -19,11 +19,17 @@ func New(db *gen.DB, ec *gen.EventController) *Resolver {
 			change := e.Change("firstName")
 			if change != nil {
 				var firstName string
-				change.NewValueAs(&firstName)
+				err = change.NewValueAs(&firstName)
+				if err != nil {
+					return nil
+				}
 				_, err = r.Handlers.CreateTask(ctx, r, map[string]interface{}{
 					"title":      fmt.Sprintf("Hello %s!", firstName),
 					"assigneeId": e.EntityID,
 				})
+				if err != nil {
+					return nil
+				}
 			}
 		}
 		return nil

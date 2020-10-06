@@ -97,7 +97,10 @@ func (r *EntityResultType) GetItems(ctx context.Context, db *gorm.DB, opts GetIt
 	}
 
 	for _, sort := range r.Sort {
-		sort.Apply(ctx, dialect, &sorts, &joins)
+		err = sort.Apply(ctx, dialect, &sorts, &joins)
+		if err != nil {
+			return err
+		}
 	}
 
 	if r.Filter != nil {
@@ -110,7 +113,7 @@ func (r *EntityResultType) GetItems(ctx context.Context, db *gorm.DB, opts GetIt
 	if len(sorts) > 0 {
 		for i, sort := range sorts {
 			if !sort.IsAggregation {
-				subqGroups = append(subqGroups, fmt.Sprintf("%s", sort.Field))
+				subqGroups = append(subqGroups, fmt.Sprintf("%v", sort.Field))
 			}
 			subqFields = append(subqFields, fmt.Sprintf("%s as "+dialect.Quote("sort_key_%d"), sort.Field, i))
 			qSorts = append(qSorts, fmt.Sprintf(dialect.Quote("filter_table")+"."+dialect.Quote("sort_key_%d")+" %s", i, sort.Direction))

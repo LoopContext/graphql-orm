@@ -1,15 +1,13 @@
-package templates
-
-// MiddlewareJWT template
-var MiddlewareJWT = `package middleware
+package middleware
 
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"strings"
 
-	"{{.Config.Package}}/src/utils"
+	"github.com/loopcontext/go-graphql-orm/test/src/utils"
 	"github.com/rs/zerolog/log"
 
 	"github.com/dgrijalva/jwt-go"
@@ -186,4 +184,3 @@ func (a *AuthJWT) Middleware(next http.Handler) http.Handler {
 		}
 	})
 }
-`
