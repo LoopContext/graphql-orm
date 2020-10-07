@@ -23,7 +23,7 @@ func New(db *gen.DB, ec *gen.EventController) *Resolver {
 		// if err != nil {
 		// 	return nil, err
 		// }
-		return gen.CreateUserHandler(ctx, r, input)
+		// return gen.CreateUserHandler(ctx, r, input)
 	// }
 	resolver.Handlers.OnEvent = func(ctx context.Context, r *gen.GeneratedResolver, e *events.Event) (err error) {
 		// After save
