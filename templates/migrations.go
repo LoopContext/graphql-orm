@@ -39,20 +39,20 @@ func AutoMigrate(db *gorm.DB) (err error) {
 				{{if $rel.IsToOne}}
 					err = _db.Model({{$obj.Name}}{}).RemoveForeignKey("{{$rel.Name}}Id",TableName("{{$rel.Target.TableName}}")+"({{$rel.ForeignKeyDestinationColumn}})").Error
 					if err != nil {
-						return err
+						log.Err(err).Send()
 					}
 					err = _db.Model({{$obj.Name}}{}).AddForeignKey("{{$rel.Name}}Id",TableName("{{$rel.Target.TableName}}")+"({{$rel.ForeignKeyDestinationColumn}})", "{{$rel.OnDelete "SET NULL"}}", "{{$rel.OnUpdate "SET NULL"}}").Error
 					if err != nil {
-						return err
+						log.Err(err).Send()
 					}
 				{{else if $rel.IsManyToMany}}
 					err = _db.Model({{$rel.ManyToManyObjectNameCC}}{}).RemoveForeignKey("{{$rel.ForeignKeyDestinationColumn}}",TableName("{{$rel.Obj.TableName}}")+"(id)").Error
 					if err != nil {
-						return err
+						log.Err(err).Send()
 					}
 					err = _db.Model({{$rel.ManyToManyObjectNameCC}}{}).AddForeignKey("{{$rel.ForeignKeyDestinationColumn}}",TableName("{{$rel.Obj.TableName}}")+"(id)", "{{$rel.OnDelete "CASCADE"}}", "{{$rel.OnUpdate "CASCADE"}}").Error
 					if err != nil {
-						return err
+						log.Err(err).Send()
 					}
 				{{end}}
 			{{end}}
