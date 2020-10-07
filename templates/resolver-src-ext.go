@@ -37,6 +37,16 @@ func (r *MutationResolver) Create{{$obj.Name}}(ctx context.Context, input map[st
 	return r.GeneratedMutationResolver.Create{{$obj.Name}}(ctx, input)
 }
 
+// Read{{$obj.Name}} method
+func (r *QueryResolver) {{$obj.Name}}(ctx context.Context, id *string, q *string, filter *gen.{{$obj.Name}}FilterType) (*gen.{{$obj.Name}}, error) {
+	jwtClaims := gen.GetJWTClaimsFromContext(ctx)
+	if !gen.HasPermission(jwtClaims, "{{$obj.TableName}}", gen.JWTPermissionConstRead) {
+		return nil, fmt.Errorf(jwtTokenPermissionErrMsg, gen.JWTPermissionConstRead, "{{$obj.TableName}}")
+	}
+	// TODO: Insert here any code ETL on your query/mutation for example: scope {{$obj.PluralName}} to current jwtClaims.Subject (User.ID)
+	return r.GeneratedQueryResolver.{{$obj.Name}}(ctx, id, q, filter)
+}
+
 // Update{{$obj.Name}} method
 func (r *MutationResolver) Update{{$obj.Name}}(ctx context.Context, id string, input map[string]interface{}) (item *gen.{{$obj.Name}}, err error) {
 	jwtClaims := gen.GetJWTClaimsFromContext(ctx)
