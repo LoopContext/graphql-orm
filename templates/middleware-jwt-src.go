@@ -147,17 +147,18 @@ func ParseToken(req *http.Request) (t *jwt.Token, err error) {
 
 // AuthJWT auth middleware struct
 type AuthJWT struct {
-	Path string
+	Path          string
+	PathWhitelist map[string]bool
 }
 
 // Middleware auth func, called each request
 func (a *AuthJWT) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-		log.Debug().Msgf("[JWTAuth.Middleware] Applied to path: %s - current path: %s", a.Path, req.RequestURI)
-		if !strings.HasPrefix(req.RequestURI, a.Path) {
+		if !strings.HasPrefix(req.RequestURI, a.Path) || a.PathWhitelist[req.RequestURI] {
 			next.ServeHTTP(res, req)
 			return
 		}
+		log.Debug().Msgf("[JWTAuth.Middleware] Applied to path: %s - current path: %s", a.Path, req.RequestURI)
 		t, err := ParseToken(req)
 		if err != nil {
 			authError(res, err)
