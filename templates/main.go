@@ -10,16 +10,15 @@ import (
 	"os"
 	"strings"
 
+
+	"{{.Config.Package}}/src/middleware"
+	"{{.Config.Package}}/gen"
+	"{{.Config.Package}}/src"
+
 	"github.com/gorilla/mux"
-
-	"github.com/loopcontext/deliver-api-go/src/middleware"
-
 	"github.com/rs/cors"
 	"github.com/rs/zerolog/log"
 	"github.com/urfave/cli"
-
-	"{{.Config.Package}}/gen"
-	"{{.Config.Package}}/src"
 )
 
 func main() {
