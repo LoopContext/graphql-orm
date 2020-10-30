@@ -130,3 +130,28 @@ The same applies for HTTP endpoints (when `EXPOSE_MIGRATION_ENDPOINT=true`):
 - `post /automigrate` - runs gorm basic automigration
 
 To add new migration, edit `src/migrations` file and its GetMigrations method. For more information see [gormigrate Readme](https://github.com/go-gormigrate/gormigrate)
+
+## Caveats
+
+If you need to do a relationship with a table, and you don't need it to be
+queried on its related records table, let's say it's a typification table
+(i.e: categories) then you hve to do like this:
+
+```gql
+type Category @entity {
+    name String @column
+    description Srting @column
+    product Product @relationship(inverse: "category")
+}
+
+type Product @entity {
+    code String @column
+    description String @column
+    category Category @relationship(inverse:"product")
+}
+```
+
+This way when querying for categories, even though Product and ProductId will
+show in the list of fields, they won't get filled.
+This comes with the caveat that the table WILL have a productId column in the db
+you can always drop it, but it will be nullable and never filled.
