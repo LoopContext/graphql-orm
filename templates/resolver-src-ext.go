@@ -72,10 +72,10 @@ func (r *MutationResolver) DeleteAll{{$obj.PluralName}}(ctx context.Context) (ok
 	jwtClaims := gen.GetJWTClaimsFromContext(ctx)
 	if !gen.HasRole(jwtClaims, "admin") &&
 	 !gen.HasPermission(jwtClaims, "{{$obj.TableName}}", gen.JWTPermissionConstDelete[:1]) {
-		return false, fmt.Errorf(jwtTokenPermissionErrMsg, gen.JWTPermissionConstDelete, "{{$obj.TableName}}")
+		 // TODO: Insert here any code ETL on your query/mutation for example: scope {{$obj.PluralName}} to current jwtClaims.Subject (User.ID)
+		 return r.GeneratedMutationResolver.DeleteAll{{$obj.PluralName}}(ctx)
 	}
-	// TODO: Insert here any code ETL on your query/mutation for example: scope {{$obj.PluralName}} to current jwtClaims.Subject (User.ID)
-	return r.GeneratedMutationResolver.DeleteAll{{$obj.PluralName}}(ctx)
+	return false, fmt.Errorf(jwtTokenPermissionErrMsg, gen.JWTPermissionConstDelete, "{{$obj.TableName}}")
 }
 
 {{end}}
