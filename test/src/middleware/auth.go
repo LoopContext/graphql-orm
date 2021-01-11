@@ -137,8 +137,6 @@ func ParseToken(req *http.Request) (t *jwt.Token, err error) {
 		if jwt.GetSigningMethod(SigningAlgorithm) != t.Method {
 			return nil, ErrInvalidSigningAlgorithm
 		}
-		// save token string if vaild
-		// c.Set("AUTH_JWT_TOKEN", token)
 		return Key, nil
 	})
 }
