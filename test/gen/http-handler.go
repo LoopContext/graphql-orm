@@ -89,8 +89,8 @@ func GetHTTPServeMux(r ResolverRoot, db *DB, migrations []*gormigrate.Migration)
 	return mux
 }
 
-// GetHTTPVercel func for be used with Vercel deployments
-func GetHTTPVercel(r ResolverRoot, db *DB, migrations []*gormigrate.Migration, res http.ResponseWriter, req *http.Request) {
+// GetHTTPHandler func for be used with Handler deployments
+func GetHTTPHandler(r ResolverRoot, db *DB, migrations []*gormigrate.Migration, res http.ResponseWriter, req *http.Request) {
 	if os.Getenv("DEBUG") == "true" {
 		log.Debug().Msgf("Path base: %s", path.Base(req.URL.Path))
 	}
