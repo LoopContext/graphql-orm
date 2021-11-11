@@ -33,6 +33,7 @@ import (
 	// IsEntity ...
 	func (m *{{.Name}}) IsEntity() {}
 
+
 	{{range $interface := $object.Interfaces}}
 	// Is{{$interface}} ...
 	func (m *{{$object.Name}}) Is{{$interface}}() {}

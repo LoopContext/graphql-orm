@@ -43,10 +43,8 @@ models:
 
   {{range $ext := .Model.ObjectExtensions}}{{$obj := $ext.Object}}{{if not $ext.ExtendsLocalObject}}
   {{$obj.Name}}:
-    fields:{{range $col := $obj.Columns}}{{if $col.IsReadonlyType}}
-      {{$col.Name}}:
-        resolver: true{{end}}{{end}}{{range $rel := $obj.Relationships}}
-      {{$rel.Name}}:
-        resolver: true{{end}}
+    fields:{{range $field := $obj.Fields}}{{if not $field.IsExternal}}
+      {{$field.Name}}:
+        resolver: true{{end}}{{end}}
   {{end}}{{end}}
   `

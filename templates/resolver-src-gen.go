@@ -39,6 +39,7 @@ func (r * MutationResolver) BeginTransaction(ctx context.Context,fn func(context
 type QueryResolver struct {
 	*gen.GeneratedQueryResolver
 }
+
 // Mutation ...
 func (r *Resolver) Mutation() gen.MutationResolver {
 	return &MutationResolver{
@@ -47,6 +48,7 @@ func (r *Resolver) Mutation() gen.MutationResolver {
 		},
 	}
 }
+
 // Query ...
 func (r *Resolver) Query() gen.QueryResolver {
 	return &QueryResolver{
@@ -92,7 +94,7 @@ func (r *Resolver) Query() gen.QueryResolver {
 		type {{$obj.Name}}Resolver struct {
 			*gen.Generated{{$obj.Name}}Resolver
 		}
-		{{if or $obj.HasAnyRelationships $obj.HasReadonlyColumns}}
+		{{if or $obj.HasAnyRelationships $obj.HasReadonlyColumns $ext.HasAnyNonExternalField}}
 			// {{$obj.Name}} ...
 			func (r *Resolver) {{$obj.Name}}() gen.{{$obj.Name}}Resolver {
 				return &{{$obj.Name}}Resolver{

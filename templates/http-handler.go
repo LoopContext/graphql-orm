@@ -130,6 +130,11 @@ func GetHTTPHandler(r ResolverRoot, db *DB, migrations []*gormigrate.Migration, 
 			}
 			fmt.Fprintf(res, "OK")
 		}
+		ctx := context.WithValue(req.Context(), KeyJWTClaims, claims)
+		ctx = context.WithValue(ctx, KeyHTTPRequest, req)
+		if principalID != nil {
+			ctx = context.WithValue(ctx, KeyPrincipalID, principalID)
+		}
 	}
 	gqlBasePath := os.Getenv("API_GRAPHQL_BASE_RESOURCE")
 	if gqlBasePath == "" {
@@ -180,6 +185,24 @@ func GetJWTClaimsFromContext(ctx context.Context) *JWTClaims {
 	return val
 }
 
+// GetHTTPRequestFromContext ...
+func GetHTTPRequestFromContext(ctx context.Context) *http.Request {
+	v, _ := ctx.Value(KeyHTTPRequest).(*http.Request)
+	return v
+}
+
+// JWTClaims JWT Claims
+type JWTClaims struct {
+	jwtgo.StandardClaims
+	Scope *string   ` + "`" + `json:"scope,omitempty"` + "`" + `
+	Email string    ` + "`" + `json:"email"` + "`" + `
+	Name string    ` + "`" + `json:"name"` + "`" + `
+	Nickname string    ` + "`" + `json:"nickname"` + "`" + `
+	Picture string    ` + "`" + `json:"avatar,omitempty"` + "`" + `
+	Roles []string ` + "`" + `json:"roles,omitempty"` + "`" + `
+	Permissions map[string]string ` + "`" + `json:"permissions,omitempty"` + "`" + `
+}
+
 func getJWTClaims(req *http.Request) (*JWTClaims, error) {
 	var p *JWTClaims
 
@@ -194,20 +217,6 @@ func getJWTClaims(req *http.Request) (*JWTClaims, error) {
 		return p, err
 	}
 	return p, nil
-}
-
-
-// JWTClaims JWT Claims
-type JWTClaims struct {
-	jwtgo.StandardClaims
-	Email string    ` + "`" + `json:"email"` + "`" + `
-	Name string    ` + "`" + `json:"name"` + "`" + `
-	Nickname string    ` + "`" + `json:"nickname"` + "`" + `
-	Picture string    ` + "`" + `json:"avatar,omitempty"` + "`" + `
-	Roles []string ` + "`" + `json:"roles,omitempty"` + "`" + `
-	Permissions map[string]string ` + "`" + `json:"permissions,omitempty"` + "`" + `
-	Scope *string   ` + "`" + `json:"scope,omitempty"` + "`" + `
-
 }
 
 // Scopes ...

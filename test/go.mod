@@ -21,4 +21,4 @@ require (
 	gopkg.in/gormigrate.v1 v1.6.0
 )
 
-replace github.com/loopcontext/go-graphql-orm v0.0.0-20210302110458-c32b8f56ab03 => ../
+replace github.com/loopcontext/go-graphql-orm v0.0.0-20210302221454-2d745f04c960 => ../

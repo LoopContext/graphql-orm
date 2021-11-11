@@ -124,6 +124,7 @@ func (e *Event) AddNewValue(column string, v EventDataValue) {
 	if change == nil {
 		c := EventChange{Name: column}
 		change = &c
+		change.SetOldValue(nil)
 		e.Changes = append(e.Changes, change)
 	}
 	if err := change.SetNewValue(v); err != nil {
