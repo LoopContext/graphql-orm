@@ -62,6 +62,7 @@ type GeneratedResolver struct {
 	EventController *EventController
 }
 
+// NewGeneratedResolver ...
 func NewGeneratedResolver(handlers ResolutionHandlers, db *DB, ec *EventController) *GeneratedResolver {
 	return &GeneratedResolver{Handlers: handlers, db: db, EventController: ec}
 }

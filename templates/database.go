@@ -125,7 +125,7 @@ func (db *DB) Close() error {
 	return db.db.Close()
 }
 
-// Ping pong
+// Ping ...
 func (db *DB) Ping() error {
 	return db.db.DB().Ping()
 }

@@ -10,7 +10,6 @@ import (
 	"os"
 	"strings"
 
-
 	"{{.Config.Package}}/src/middleware"
 	"{{.Config.Package}}/gen"
 	"{{.Config.Package}}/src"

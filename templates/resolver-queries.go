@@ -24,6 +24,7 @@ type GeneratedQueryResolver struct{ *GeneratedResolver }
 		Q      *string
 		Filter *{{$obj.Name}}FilterType
 	}
+
 	// {{$obj.Name}} ...
 	func (r *GeneratedQueryResolver) {{$obj.Name}}(ctx context.Context, id *string, q *string, filter *{{$obj.Name}}FilterType) (*{{$obj.Name}}, error) {
 		opts := Query{{$obj.Name}}HandlerOptions{
@@ -151,13 +152,13 @@ type GeneratedQueryResolver struct{ *GeneratedResolver }
 
 	// Items ...
 	func (r *Generated{{$obj.Name}}ResultTypeResolver) Items(ctx context.Context, obj *{{$obj.Name}}ResultType) (items []*{{$obj.Name}}, err error) {
-		otps := GetItemsOptions{
+		opts := GetItemsOptions{
 			Alias:TableName("{{$obj.TableName}}"),
 			Preloaders:[]string{ {{range $r := $obj.PreloadableRelationships}}
 				"{{$r.MethodName}}",{{end}}
 			},
 		}
-		err = obj.GetItems(ctx, r.GetDB(ctx), otps, &items)
+		err = obj.GetItems(ctx, r.GetDB(ctx), opts, &items)
 		{{if $obj.HasPreloadableRelationships}}
 			for _, item := range items {
 				{{range $rel := $obj.PreloadableRelationships}}
@@ -185,8 +186,41 @@ type GeneratedQueryResolver struct{ *GeneratedResolver }
 				"{{$r.MethodName}}",{{end}}
 			},
 		}
-		return obj.GetCount(ctx, r.GetDB(ctx),opts, &{{$obj.Name}}{})
+		return obj.GetCount(ctx, r.GetDB(ctx), opts, &{{$obj.Name}}{})
 	}
+
+	{{if $obj.HasAggregableColumn}}
+	// Aggregations ...
+	func (r *Generated{{$obj.Name}}ResultTypeResolver) Aggregations(ctx context.Context, obj *{{$obj.Name}}ResultType) (res *{{$obj.Name}}ResultAggregations, err error) {
+		aggregationsMap := map[string]GetAggregationsAggregationField{
+			{{range $agg := $obj.AggregationsByField}}
+			"{{$agg.FieldName}}": GetAggregationsAggregationField{"{{$agg.Field}}","{{$agg.Name}}"},{{end}}
+		}
+		aggregationFieldsMap := map[string]string{
+			{{range $agg := $obj.AggregationsByField}}
+			"{{$agg.FieldName}}": "{{$agg.Field}}",{{end}}
+		}
+		fieldsMap := map[string]struct{}{}
+		fields := []string{}
+		aggregationFields := []GetAggregationsAggregationField{}
+		for _, f := range graphql.CollectFieldsCtx(ctx, nil) {
+			aggregationFields = append(aggregationFields, aggregationsMap[f.Field.Name])
+			fieldsMap[aggregationFieldsMap[f.Field.Name]] = struct{}{}
+		}
+		for key, _ := range fieldsMap {
+			fields = append(fields, key)
+		}
+
+		opts := GetAggregationsOptions{
+			Alias:             TableName("{{$obj.TableName}}"),
+			Fields:            fields,
+			AggregationFields: aggregationFields,
+		}
+		res = &{{$obj.Name}}ResultAggregations{}
+		err = obj.GetAggregations(ctx, r.GetDB(ctx), opts, &{{$obj.Name}}{}, res)
+		return
+	}
+	{{end}}
 
 	{{if $obj.NeedsQueryResolver}}
 		// Generated{{$obj.Name}}Resolver struct
@@ -198,7 +232,7 @@ type GeneratedQueryResolver struct{ *GeneratedResolver }
 				func (r *Generated{{$obj.Name}}Resolver) {{$col.MethodName}}(ctx context.Context, obj *{{$obj.Name}}) (res {{$col.GoResultType}}, err error) {
 					return r.Handlers.{{$obj.Name}}{{$col.MethodName}}(ctx, r.GeneratedResolver, obj)
 				}
-				// {{$obj.Name}}{{$col.MethodName}}Handler handler
+				// {{$obj.Name}}.{{$col.MethodName}}Handler handler
 				func {{$obj.Name}}{{$col.MethodName}}Handler(ctx context.Context,r *GeneratedResolver, obj *{{$obj.Name}}) (res {{$col.GoResultType}}, err error) {
 					{{if and (not $col.IsList) $col.HasTargetTypeWithIDField ($obj.HasColumn (print $col.Name "Id"))}}
 						if obj.{{$col.MethodName}}ID != nil {
@@ -229,7 +263,7 @@ type GeneratedQueryResolver struct{ *GeneratedResolver }
 			func (r *Generated{{$obj.Name}}Resolver) {{$rel.MethodName}}(ctx context.Context, obj *{{$obj.Name}}) (res {{$rel.ReturnType}}, err error) {
 				return r.Handlers.{{$obj.Name}}{{$rel.MethodName}}(ctx, r.GeneratedResolver, obj)
 			}
-			// {{$obj.Name}}{{$rel.MethodName}}Handler handler
+			// {{$obj.Name}}.{{$rel.MethodName}}Handler handler
 			func {{$obj.Name}}{{$rel.MethodName}}Handler(ctx context.Context,r *GeneratedResolver, obj *{{$obj.Name}}) (res {{$rel.ReturnType}}, err error) {
 				{{if $rel.Preload}}
 				if obj.{{$rel.MethodName}}Preloaded {

@@ -1,9 +1,8 @@
 package model
 
 import (
-	"github.com/graphql-go/graphql/language/kinds"
-
 	"github.com/graphql-go/graphql/language/ast"
+	"github.com/graphql-go/graphql/language/kinds"
 )
 
 // https://github.com/99designs/gqlgen/issues/681 for nested fields
@@ -41,6 +40,9 @@ func EnrichModel(m *Model) error {
 		}
 		definitions = append(definitions, createObjectDefinition(o), updateObjectDefinition(o), createObjectSortType(o), createObjectFilterType(o))
 		definitions = append(definitions, objectResultTypeDefinition(&o))
+		if o.HasAggregableColumn() {
+			definitions = append(definitions, objectResultTypeAggregationsDefinition(&o))
+		}
 	}
 
 	for _, o := range m.EmbeddedObjects() {
